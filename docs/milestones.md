@@ -10,9 +10,6 @@
 - **Viabilidad:** 
   Este milestone será viable cuando el documento incluya una descripción clara de las entidades y relaciones necesarias para recopilar y organizar los datos demográficos de manera efectiva.
 
-- **Historias de usuario asociadas:** 
-  HU1, HU2, HU3, HU4
-
 ---
 
 ## [M1] Recopilación de conjunto de datos demográficos:
@@ -23,8 +20,6 @@
 - **Viabilidad:** 
   Será viable cuando se disponga de un conjunto mínimo de datos demográficos de los últimos años disponibles, por ejemplo, 2022-2023, que permita realizar análisis preliminares.
 
-- **Historias de usuario asociadas:** 
-  HU1, HU2, HU3, HU4
 
 ---
 
@@ -36,8 +31,6 @@
 - **Viabilidad:** 
   Se considerará viable cuando los datos estén integrados y estructurados en una base de datos sencilla, y se haya verificado que se pueden realizar consultas básicas, como por ejemplo la distribución de la población por edades.
 
-- **Historias de usuario asociadas:** 
-  HU1, HU2, HU4
 
 ---
 
@@ -49,8 +42,6 @@
 - **Viabilidad:** 
   Será viable cuando se puedan aplicar filtros de búsqueda específicos, como seleccionar poblaciones de personas mayores de 65 años en ciertos municipios, permitiendo a los usuarios obtener datos más segmentados y específicos.
 
-- **Historias de usuario asociadas:** 
-  HU1, HU2, HU3, HU4
 
 ---
 
@@ -62,8 +53,6 @@
 - **Viabilidad:** 
   Será viable cuando se pueda generar y visualizar gráficos básicos que muestren de forma clara las tendencias clave de envejecimiento y despoblación, permitiendo la interpretación de los datos.
 
-- **Historias de usuario asociadas:** 
-  HU1, HU2
 
 ---
 
@@ -75,5 +64,3 @@
 - **Viabilidad:** 
   Será viable cuando se pueda generar un informe que contenga gráficos y datos seleccionados según las necesidades del usuario, como un reportaje sobre la despoblación o un análisis detallado por edades y municipios.
 
-- **Historias de usuario asociadas:** 
-  HU1, HU2, HU3
