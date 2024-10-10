@@ -1,93 +1,79 @@
-# Milestones - Proyecto SeguraSenior
+# Milestones 
 
 ---
 
-## [M0] Definición del dominio del problema
-
-- **Objetivo:** 
-  Identificar y definir los elementos clave relacionados con la situación demográfica de la Sierra de Segura, tales como envejecimiento, migración, tasas de natalidad, mortalidad, y otras variables demográficas relevantes que afecten a la región.
+## [M0] Documento con descripción de las entidades:
 
 - **Producto a entregar:** 
-  Documento que describa las entidades clave (población, edades, natalidad, mortalidad, migración) y sus relaciones, sirviendo como base conceptual para estructurar los datos demográficos.
+  Un documento que describa las entidades clave (población, edades, natalidad, mortalidad, migración) y sus relaciones, sirviendo como base conceptual para estructurar los datos demográficos de la Sierra de Segura.
 
 - **Viabilidad:** 
-  Será viable cuando el documento incluya una descripción clara de las entidades y relaciones necesarias para recopilar y organizar los datos demográficos de manera efectiva.
+  Este milestone será viable cuando el documento incluya una descripción clara de las entidades y relaciones necesarias para recopilar y organizar los datos demográficos de manera efectiva.
 
 - **Historias de usuario asociadas:** 
   HU1, HU2, HU3, HU4
 
+---
 
-## [M1] Recopilación de datos demográficos
-
-- **Objetivo:** 
-  Recolectar datos demográficos sobre la Sierra de Segura desde fuentes públicas o accesibles, tales como censos, informes estadísticos y estudios previos.
+## [M1] Recopilación de conjunto de datos demográficos:
 
 - **Producto a entregar:** 
-  Dataset básico con los datos demográficos más relevantes (población por edad, tasas de natalidad, mortalidad, migración, etc.) para la Sierra de Segura.
+  Un dataset básico que contenga los datos demográficos más relevantes (población por edad, tasas de natalidad, mortalidad, migración, etc.) de la Sierra de Segura, obtenidos de fuentes públicas o accesibles.
 
 - **Viabilidad:** 
-  Será viable cuando se haya reunido un conjunto básico de datos demográficos, por ejemplo, correspondientes a un par de años recientes (2022-2023).
+  Será viable cuando se disponga de un conjunto mínimo de datos demográficos de los últimos años disponibles, por ejemplo, 2022-2023, que permita realizar análisis preliminares.
 
 - **Historias de usuario asociadas:** 
   HU1, HU2, HU3, HU4
 
+---
 
-## [M2] Integración y estructuración de datos
-
-- **Objetivo:** 
-  Estructurar y organizar los datos recopilados en una base de datos sencilla que permita realizar análisis básicos, normalizando la información y haciéndola accesible para consultas simples.
+## [M2] Integrado y estructurado de datos
 
 - **Producto a entregar:** 
-  Una base de datos básica, estructurada para realizar consultas simples como la población por edad o municipio, y con datos listos para ser usados en análisis preliminares.
+  Una base de datos básica y estructurada que permita realizar consultas simples como la población por edad o municipio. Los datos deben estar organizados de forma coherente para su análisis.
 
 - **Viabilidad:** 
-  Será viable cuando los datos estén organizados de forma coherente en una base de datos sencilla, y se haya probado que se puedan realizar con éxito consultas básicas, como consultar población por edades o ubicaciones. No es necesario un sistema de base de datos avanzado, solo funcional. 
+  Se considerará viable cuando los datos estén integrados y estructurados en una base de datos sencilla, y se haya verificado que se pueden realizar consultas básicas, como por ejemplo la distribución de la población por edades.
 
 - **Historias de usuario asociadas:** 
   HU1, HU2, HU4
 
+---
 
 ## [M3] Implementación de filtros de búsqueda
 
-- **Objetivo:** 
-  Añadir la funcionalidad de filtros en la base de datos que permita realizar búsquedas más específicas, como filtrar por rangos de edad, localidades, años o cualquier otra variable relevante.
-
 - **Producto a entregar:** 
-  Sistema de búsqueda con filtros que permita segmentar los datos por diferentes categorías, facilitando un análisis más detallado.
+  Funcionalidad de filtros que permita segmentar los datos por categorías específicas, como rangos de edad, localidades y años, mejorando la capacidad de análisis detallado.
 
 - **Viabilidad:** 
-  Será viable cuando los usuarios puedan aplicar filtros de búsqueda para acotar la información en función de las necesidades específicas de las consultas (por ejemplo, filtrar solo personas mayores de 65 años en ciertos municipios).
+  Será viable cuando se puedan aplicar filtros de búsqueda específicos, como seleccionar poblaciones de personas mayores de 65 años en ciertos municipios, permitiendo a los usuarios obtener datos más segmentados y específicos.
 
 - **Historias de usuario asociadas:** 
   HU1, HU2, HU3, HU4
 
+---
 
 ## [M4] Visualización básica de datos
 
-- **Objetivo:** 
-  Desarrollar una funcionalidad inicial que permita visualizar los datos demográficos en gráficos sencillos (barras, líneas, tablas) que muestren tendencias como el envejecimiento de la población y la despoblación.
-
 - **Producto a entregar:** 
-  Gráficos simples y tablas generados a partir de la base de datos, mostrando tendencias clave demográficas, como la distribución de edades o la evolución poblacional.
+  Gráficos sencillos (barras, líneas, tablas) que permitan visualizar las principales tendencias demográficas, como la distribución por edad o la evolución poblacional en la Sierra de Segura.
 
 - **Viabilidad:** 
-  Será viable cuando los datos puedan visualizarse de forma clara y sencilla, con gráficos básicos que permitan identificar rápidamente tendencias demográficas clave.
+  Será viable cuando se pueda generar y visualizar gráficos básicos que muestren de forma clara las tendencias clave de envejecimiento y despoblación, permitiendo la interpretación de los datos.
 
 - **Historias de usuario asociadas:** 
   HU1, HU2
 
+---
 
 ## [M5] Generación de informes
 
-- **Objetivo:** 
-  Crear un sistema que permita generar informes en PDF , basados en los datos demográficos estructurados y visualizados, para su uso en reportajes y análisis.
-
 - **Producto a entregar:** 
-  Informes que recojan los gráficos y consultas que el cliente desee.
+  Un sistema que permita generar informes automáticos en formato PDF, que incluyan gráficos y datos relevantes extraídos de la base de datos y los filtros aplicados.
 
 - **Viabilidad:** 
-  Será viable cuando se puedan generar informes que contengan gráficos y los datos consultados que se soliciten. Estos informes deben ser útiles para la creación de reportajes o solicitudes de apoyo.
+  Será viable cuando se pueda generar un informe que contenga gráficos y datos seleccionados según las necesidades del usuario, como un reportaje sobre la despoblación o un análisis detallado por edades y municipios.
 
 - **Historias de usuario asociadas:** 
   HU1, HU2, HU3
-
