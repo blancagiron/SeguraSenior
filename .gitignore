@@ -1,0 +1,11 @@
+
+#Archivos de vscode
+.vscode
+
+#Archivos de dotenv
+.env
+
+#Archivos de backup
+*.bak
+*.tmp
+
