@@ -2,65 +2,31 @@
 
 ---
 
-## [M0] Documento con descripción de las entidades:
+## [M0] Modelo de entidades:
 
 - **Producto a entregar:** 
-  Un documento que describa las entidades clave (población, edades, natalidad, mortalidad, migración) y sus relaciones, sirviendo como base conceptual para estructurar los datos demográficos de la Sierra de Segura.
+  Diseño e implementación de un modelo de entidades que represente los elementos demográficos clave de la Sierra de Segura (población, edades, migración, etc.). Este modelo será la base para almacenar y organizar los datos necesarios para futuros análisis.
 
 - **Viabilidad:** 
-  Este milestone será viable cuando el documento incluya una descripción clara de las entidades y relaciones necesarias para recopilar y organizar los datos demográficos de manera efectiva.
+  Este milestone será viable cuando el código de las entidades esté implementado correctamente y se pueda usar para crear, leer, actualizar y eliminar datos en la base de datos. Además, deberá incluir las relaciones necesarias entre las entidades, permitiendo una correcta estructuración y acceso a los datos. Así mismo, el código debe permitir que otro desarrollador entienda el modelo sin ambigüedades.
 
 ---
 
-## [M1] Recopilación de conjunto de datos demográficos:
+## [M1] Base de Datos Demográfica con datos recopilados:
 
 - **Producto a entregar:** 
-  Un dataset básico que contenga los datos demográficos más relevantes (población por edad, tasas de natalidad, mortalidad, migración, etc.) de la Sierra de Segura, obtenidos de fuentes públicas o accesibles.
+  Una base de datos inicial que contenga datos demográficos relevantes de la Sierra de Segura (población por edad, tasas de natalidad, mortalidad, migración, etc.), recopilados de fuentes públicas o accesibles y organizados para su análisis. Este producto integrará tanto la recopilación como la estructuración de los datos en una base de datos utilizable.
 
 - **Viabilidad:** 
-  Será viable cuando se disponga de un conjunto mínimo de datos demográficos de los últimos años disponibles, por ejemplo, 2022-2023, que permita realizar análisis preliminares.
-
+  Será viable cuando los datos más recientes (por ejemplo, 2022-2023) estén recopilados y correctamente organizados en la base de datos. La viabilidad se comprobará mediante la realización exitosa de consultas simples, como la distribución de la población por edades o municipios, asegurando que los datos pueden ser utilizados en futuros análisis sin problemas de estructura o acceso.
 
 ---
 
-## [M2] Integrado y estructurado de datos
-
+## [M2] Sistema de Consulta, Visualización y Generación de Informes
 - **Producto a entregar:** 
-  Una base de datos básica y estructurada que permita realizar consultas simples como la población por edad o municipio. Los datos deben estar organizados de forma coherente para su análisis.
+  Un sistema que permita a los usuarios realizar consultas demográficas personalizadas, aplicar filtros sobre los datos (como edad, localidad y periodo), visualizar resultados a través de gráficos interactivos, y generar informes que incluyan los datos y gráficos seleccionados.
 
 - **Viabilidad:** 
-  Se considerará viable cuando los datos estén integrados y estructurados en una base de datos sencilla, y se haya verificado que se pueden realizar consultas básicas, como por ejemplo la distribución de la población por edades.
+ El sistema será viable cuando: se puedan realizar consultas filtradas sobre los datos demográficos, como segmentar la población por rangos de edad y localidades específicas, los usuarios puedan visualizar gráficos básicos (barras, líneas, tablas) con tendencias clave de envejecimiento y despoblación, y sea posible generar informes que contengan los datos y gráficos relevantes, listos para su uso en reportajes, análisis o propuestas de políticas.
 
-
----
-
-## [M3] Implementación de filtros de búsqueda
-
-- **Producto a entregar:** 
-  Funcionalidad de filtros que permita segmentar los datos por categorías específicas, como rangos de edad, localidades y años, mejorando la capacidad de análisis detallado.
-
-- **Viabilidad:** 
-  Será viable cuando se puedan aplicar filtros de búsqueda específicos, como seleccionar poblaciones de personas mayores de 65 años en ciertos municipios, permitiendo a los usuarios obtener datos más segmentados y específicos.
-
-
----
-
-## [M4] Visualización básica de datos
-
-- **Producto a entregar:** 
-  Gráficos sencillos (barras, líneas, tablas) que permitan visualizar las principales tendencias demográficas, como la distribución por edad o la evolución poblacional en la Sierra de Segura.
-
-- **Viabilidad:** 
-  Será viable cuando se pueda generar y visualizar gráficos básicos que muestren de forma clara las tendencias clave de envejecimiento y despoblación, permitiendo la interpretación de los datos.
-
-
----
-
-## [M5] Generación de informes
-
-- **Producto a entregar:** 
-  Un sistema que permita generar informes automáticos en formato PDF, que incluyan gráficos y datos relevantes extraídos de la base de datos y los filtros aplicados.
-
-- **Viabilidad:** 
-  Será viable cuando se pueda generar un informe que contenga gráficos y datos seleccionados según las necesidades del usuario, como un reportaje sobre la despoblación o un análisis detallado por edades y municipios.
 
