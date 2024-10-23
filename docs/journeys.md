@@ -2,37 +2,21 @@
 
 ---
 
-## Raquel, Periodista
+## Periodista investigadora:
 
-Raquel trabaja en Madrid y necesita escribir un reportaje sobre la despoblación en la Sierra de Segura. Requiere datos demográficos detallados para completar su investigación.
+La Sierra de Segura sufre despoblación y envejecimiento. Para un periodista, cubrir estos temas es crucial para informar sobre sus impactos sociales y económicos.
 
-### Pasos para resolver el problema:
-1. **Identificación de la necesidad**: Raquel se da cuenta de que necesita datos específicos para su reportaje.
-2. **Consulta de fuentes**: Investiga en bases de datos públicas como el **INE** para obtener estadísticas sobre población, envejecimiento y migración.
-3. **Comparación y análisis**: Utiliza información del **INE** y **SIMA** para comparar la situación de la Sierra de Segura con otras regiones.
-4. **Organización de la información**: Clasifica los datos obtenidos y los integra en su reportaje.
-5. **Revisión y finalización**: Verifica la precisión de los datos antes de publicar el artículo.
+Cuando la periodista se enfrenta a la tarea de investigar la despoblación en la región, se encuentra con importantes obstáculos para obtener datos fiables y accesibles. La Sierra de Segura, al ser una zona despoblada, rural y alejada de los grandes núcleos urbanos, presenta particularidades que complican aún más esta labor. La dispersión geográfica de las localidades dificulta la recopilación de información, obligándola a buscar en múltiples fuentes, lo que consume más tiempo del que realmente dispone.
 
-**Fuentes útiles**: 
-
-- INE (Instituto Nacional de Estadística)
-- SIMA (Sistema de Información Multiterritorial de Andalucía)
+La periodista se siente frustrada por la falta de herramientas que le permitan crear gráficos
+ y comparar tendencias de manera eficiente. Esta situación la lleva a terminar con información incompleta o difícil de interpretar, lo que pone en riesgo la calidad de su reportaje. Su preocupación crece, ya que la falta de claridad en la presentación de los datos puede impedir que su audiencia comprenda la gravedad del problema de la despoblación y sus implicaciones para la región.
 
 ---
 
-## Fran, Concejal de Desarrollo Rural
+## Concejal de Desarrollo Rural
 
-Fran es concejal en un municipio de la Sierra de Segura. Necesita datos para justificar la solicitud de más recursos ante el gobierno regional, enfocados en la población envejecida de su comunidad.
+En la Sierra de Segura, los municipios enfrentan serios desafíos debido a la despoblación y el envejecimiento de su población. El concejal, preocupado por la situación de su comunidad, debe justificar la solicitud de recursos adicionales ante el gobierno regional. Sin embargo, al intentar preparar su caso, se da cuenta de que enfrenta un obstáculo significativo: la falta de datos actualizados y organizados sobre la población de su municipio.
 
-### Pasos para resolver el problema:
-1. **Detección del problema**: Fran identifica la necesidad de más recursos debido al envejecimiento de la población.
-2. **Búsqueda de datos**: Consulta fuentes oficiales como el **INE** y el **SIMA** para obtener estadísticas sobre la evolución demográfica de su municipio.
-3. **Análisis de la información**: Examina las tendencias demográficas y las necesidades emergentes de la población local.
-4. **Elaboración de informes**: Fran recopila los datos y genera informes que respalden su solicitud.
-5. **Seguimiento continuo**: Realiza un seguimiento periódico de los datos demográficos para ajustar futuras solicitudes.
+Cada vez que intenta reunir la información necesaria, el proceso resulta tedioso y frustrante. Los datos que logra encontrar son fragmentados y difíciles de analizar, lo que aumenta su sensación de impotencia. En un momento en que cada argumento cuenta, siente la presión de no poder presentar una imagen clara de la situación actual. Sin herramientas adecuadas para organizar y visualizar la información, se encuentra en una lucha constante para construir un caso sólido que respalde sus solicitudes.
 
-**Fuentes útiles**: 
-
-- INE (Instituto Nacional de Estadística)
-- SIMA (Sistema de Información Multiterritorial de Andalucía)
-
+Esta falta de datos accesibles no solo afecta su capacidad de argumentar de manera efectiva, sino que también lo deja con la preocupación de que sus peticiones no sean tomadas en serio. A menudo, siente que no tiene la evidencia suficiente para demostrar la urgencia de la situación de su comunidad, lo que lo lleva a cuestionar si podrá lograr el apoyo que tanto necesita para mejorar la calidad de vida de sus conciudadanos.
