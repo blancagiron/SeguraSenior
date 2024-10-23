@@ -2,23 +2,22 @@
 
 ---
 
-## [M0] Modelo de entidades:
+## [M0] Implementado del Modelo de Entidades en Código
 
-- **Producto a entregar:** 
-  Diseño e implementación de un modelo de entidades que represente los elementos demográficos clave de la Sierra de Segura (población, edades, migración, etc.). Este modelo será la base para almacenar y organizar los datos necesarios para futuros análisis.
+- **Producto a entregar:**  
+	Código que implementa un modelo de entidades clave de la Sierra de Segura. El código debe permitir definir las relaciones entre las entidades, como la relación entre un municipio y su población, asegurando que el modelo sea extensible y compatible con una futura base de datos.
 
-- **Viabilidad:** 
-  Este milestone será viable cuando el código de las entidades esté implementado correctamente y se pueda usar para crear, leer, actualizar y eliminar datos en la base de datos. Además, deberá incluir las relaciones necesarias entre las entidades, permitiendo una correcta estructuración y acceso a los datos. Así mismo, el código debe permitir que otro desarrollador entienda el modelo sin ambigüedades.
-
+- **Viabilidad:**
+	Este milestone será viable cuando haya una representación completa de las entidades clave, es decir, se hayan implementado al menos las entidades principales y las relaciones entre ellas estén bien definidas, además se deben permitir ajustes futuros para incorporar posibles cambios. Por otro lado, se deben realizar validaciones para asegurar que el código puede cargar correctamente los datos desde archivos y que permite manipularlos en memoria (como agregar, modificar o eliminar datos). 
 ---
 
-## [M1] Base de Datos Demográfica con datos recopilados:
+## [M1] Creación de la Base de Datos Demográfica con Datos Recopilados
 
-- **Producto a entregar:** 
-  Una base de datos inicial que contenga datos demográficos relevantes de la Sierra de Segura (población por edad, tasas de natalidad, mortalidad, migración, etc.), recopilados de fuentes públicas o accesibles y organizados para su análisis. Este producto integrará tanto la recopilación como la estructuración de los datos en una base de datos utilizable.
+- **Producto a entregar:**  
+  Código que crea la base de datos estructurada según el modelo de entidades definido e implementado en el milestone anterior. Se recopilarán y almacenarán datos demográficos reales de la Sierra de Segura (población por edad, tasas de natalidad, mortalidad, migración, etc.) en la base de datos. El código debe permitir la creación, lectura, actualización y eliminación de datos en esta base de datos.
 
-- **Viabilidad:** 
-  Será viable cuando los datos más recientes (por ejemplo, 2022-2023) estén recopilados y correctamente organizados en la base de datos. La viabilidad se comprobará mediante la realización exitosa de consultas simples, como la distribución de la población por edades o municipios, asegurando que los datos pueden ser utilizados en futuros análisis sin problemas de estructura o acceso.
+- **Viabilidad:**  
+  Será viable cuando la base de datos esté creada y funcional, con los datos organizados de acuerdo con el modelo de entidades. Se comprobará mediante la ejecución de consultas simples y operaciones que validen la correcta integración del modelo con los datos.
 
 ---
 

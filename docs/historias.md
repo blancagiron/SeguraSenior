@@ -3,8 +3,20 @@
 ---
 
 ## [HU1] Raquel, Periodista
-Raquel trabaja en un medio de comunicación en Madrid y está encargada de investigar la situación demográfica de la Sierra de Segura, una región afectada por el envejecimiento y la despoblación. Necesita una herramienta que le permita acceder de manera sencilla a datos detallados sobre la población, para poder comprender las tendencias demográficas y presentar la información de manera clara y comprensible en sus reportajes.
+
+Raquel es periodista en Madrid. Está investigando la situación demográfica de la Sierra de Segura, afectada por envejecimiento y despoblación. Las herramientas actuales son difíciles de usar porque la información está dispersa y no centralizada. Necesita una herramienta que le permita:
+
+- Acceder y analizar datos demográficos detallados en un solo lugar.
+- Seleccionar los datos relevantes y generar gráficos de forma sencilla.
+- Identificar tendencias y visualizarlas para sus reportajes.
+- Presentar la información de manera precisa y comprensible, facilitando su labor periodística y optimizando la generación de gráficos personalizados.
 
 ## [HU2] Fran, Concejal de Desarrollo Rural
-Fran es concejal en un pequeño municipio de la Sierra de Segura. Preocupado por el envejecimiento de la población y la necesidad de obtener más recursos, necesita acceder a informes demográficos que le permitan justificar ante el gobierno regional o nacional la necesidad de apoyo adicional. Con una herramienta que le proporcione datos precisos, podrá demostrar la situación actual y las crecientes necesidades de su comunidad.
+
+Como concejal en la Sierra de Segura, Fran necesita analizar datos demográficos detallados para justificar ante las administraciones la solicitud de recursos adicionales para su comunidad, afectada por el envejecimiento poblacional. Las fuentes de datos relevantes están demasiado dispersas en distintas plataformas, lo que dificulta su análisis. No basta con descargar informes aislados; necesita una herramienta que centralice estos datos y le permita:
+
+- Filtrar y segmentar los datos por edades y periodos.
+- Comparar la situación de su municipio con otras áreas rurales.
+
+
 
