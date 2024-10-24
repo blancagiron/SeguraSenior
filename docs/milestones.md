@@ -11,7 +11,7 @@
 	Este milestone será viable cuando haya una representación completa de las entidades clave, es decir, se hayan implementado al menos las entidades principales y las relaciones entre ellas estén bien definidas, además se deben permitir ajustes futuros para incorporar posibles cambios. Por otro lado, se deben realizar validaciones para asegurar que el código puede cargar correctamente los datos desde archivos y que permite manipularlos en memoria (como agregar, modificar o eliminar datos). 
 ---
 
-## [M1] Creación de la Base de Datos Demográfica con Datos Recopilados
+## [M1] Base de Datos Demográfica con Datos Recopilados
 
 - **Producto a entregar:**  
   Código que crea la base de datos estructurada según el modelo de entidades definido e implementado en el milestone anterior. Se recopilarán y almacenarán datos demográficos reales de la Sierra de Segura (población por edad, tasas de natalidad, mortalidad, migración, etc.) en la base de datos. El código debe permitir la creación, lectura, actualización y eliminación de datos en esta base de datos.
