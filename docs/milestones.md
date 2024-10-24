@@ -2,30 +2,50 @@
 
 ---
 
-## [M0] Implementado del Modelo de Entidades en Código
+## [M0] Estructura del problema.
+
+Definir el dominio del problema definido en la [HU1](https://github.com/blancagiron/SeguraSenior/issues/2) de modo que se pueda organizar y extraer la información demográfica dispersa en múltiples fuentes y formatos. Será necesario establecer los recursos y herramientas para resolver el problema, así como la manera en la que se van a extraer los datos de las páginas indicadas en la [HU1](https://github.com/blancagiron/SeguraSenior/issues/2) y cómo y dónde almacenarlos.
 
 - **Producto a entregar:**  
-	Código que implementa un modelo de entidades clave de la Sierra de Segura. El código debe permitir definir las relaciones entre las entidades, como la relación entre un municipio y su población, asegurando que el modelo sea extensible y compatible con una futura base de datos.
-
+Código que represente el dominio del problema descrito en la [HU1](https://github.com/blancagiron/SeguraSenior/issues/2) 
+	
 - **Viabilidad:**
-	Este milestone será viable cuando haya una representación completa de las entidades clave, es decir, se hayan implementado al menos las entidades principales y las relaciones entre ellas estén bien definidas, además se deben permitir ajustes futuros para incorporar posibles cambios. Por otro lado, se deben realizar validaciones para asegurar que el código puede cargar correctamente los datos desde archivos y que permite manipularlos en memoria (como agregar, modificar o eliminar datos). 
+Este milestone será viable cuando el producto represente de forma clara el dominio del problema descrito en la [HU1](https://github.com/blancagiron/SeguraSenior/issues/2).
+
 ---
 
-## [M1] Base de Datos Demográfica con Datos Recopilados
+## [M1] Recopilación y estructuración de los datos.
+
+Extraer y recopilar los datos demográficos desde las fuentes indicadas en la [HU1](https://github.com/blancagiron/SeguraSenior/issues/2) siguiendo la estructura definida en el milestone anterior. Es necesario establecer cómo se van a integrar los datos que vienen en distintos formatos de forma que se facilite su manipulación y consulta. Además, se debe decidir como unificar los datos de distintas fuentes de forma eficiente.
 
 - **Producto a entregar:**  
-  Código que crea la base de datos estructurada según el modelo de entidades definido e implementado en el milestone anterior. Se recopilarán y almacenarán datos demográficos reales de la Sierra de Segura (población por edad, tasas de natalidad, mortalidad, migración, etc.) en la base de datos. El código debe permitir la creación, lectura, actualización y eliminación de datos en esta base de datos.
+Código que recoja los datos de las fuentes indicadas, los convierta a formato común y los estructure de forma que se permitan consultas futuras.
 
 - **Viabilidad:**  
-  Será viable cuando la base de datos esté creada y funcional, con los datos organizados de acuerdo con el modelo de entidades. Se comprobará mediante la ejecución de consultas simples y operaciones que validen la correcta integración del modelo con los datos.
+Este milestone se considerará viable cuando el sistema sea capaz de recolectar y estructurar los datos de diversas fuentes, y cuando la información esté organizada y lista para su uso posterior de manera coherente y estructurada.
 
 ---
 
-## [M2] Sistema de Consulta, Visualización y Generación de Informes
+## [M2] Consulta de datos.
+
+Implementar funcionalidad que permita realizar consultas sobre los datos demográficos recopilados y organizados. Los usuarios deberán poder realizar búsquedas y aplicar filtros enfocados en resolver las necesidades planteadas en la [HU1](https://github.com/blancagiron/SeguraSenior/issues/2).
+
 - **Producto a entregar:** 
-  Un sistema que permita a los usuarios realizar consultas demográficas personalizadas, aplicar filtros sobre los datos (como edad, localidad y periodo), visualizar resultados a través de gráficos interactivos, y generar informes que incluyan los datos y gráficos seleccionados.
+Código que permita realizar diversas consultas sobre los datos demográficos, presentando los resultados de manera clara y accesible para facilitar el análisis y la toma de decisiones.
 
 - **Viabilidad:** 
- El sistema será viable cuando: se puedan realizar consultas filtradas sobre los datos demográficos, como segmentar la población por rangos de edad y localidades específicas, los usuarios puedan visualizar gráficos básicos (barras, líneas, tablas) con tendencias clave de envejecimiento y despoblación, y sea posible generar informes que contengan los datos y gráficos relevantes, listos para su uso en reportajes, análisis o propuestas de políticas.
+Este milestone será viable cuando se logre que los usuarios puedan realizar búsquedas y aplicar filtros sobre los datos, obteniendo resultados coherentes y organizados.
+
+---
+
+## [M3] Visualización de datos:
+
+Desarrollar funcionalidad que permita visualizar los datos recopilados. El objetivo es facilitar la comprensión, el análisis y la exportación de la información. Se deben crear gráficos y tablas que faciliten la comprensión y organización de los datos, mejorando la claridad de los reportajes que se elaboren y de los análisis demográficos.
+
+- **Producto a entregar:** 
+Código que genere visualizaciones gráficas que resuman y presenten los datos demográficos de manera clara y organizada.
+
+- **Viabilidad:** 
+Este milestone será viable cuando los usuarios puedan visualizar y analizar los datos de manera efectiva, resolviendo así los problemas indicados en la [HU1](https://github.com/blancagiron/SeguraSenior/issues/2).
 
 
