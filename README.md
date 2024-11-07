@@ -18,9 +18,9 @@ Como periodista, existe una creciente preocupación por analizar y reportar sobr
 
 ---
 
-## Lenguaje (Idea Provisional)
+## Lenguaje:
 
-- **Lenguaje de Programación**: Python
+- **Lenguaje de Programación**: Go
 
 ---
 
