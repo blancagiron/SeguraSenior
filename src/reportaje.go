@@ -1,7 +1,11 @@
 package segurasenior
 
-func extraerinfo(){
-	
+import(
+	"strings"
+)
+
+func extraerinfo(texto string, localidad string){
+	return strings.Contains(texto,localidad)
 }
 
 type Reportaje struct{
