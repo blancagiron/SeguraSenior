@@ -1,6 +1,6 @@
 package segurasenior
 
-type estadopoblacion int
+type Estadopoblacion int
 
 const (
 	Decreciente = iota
@@ -12,8 +12,15 @@ func buscatexto(direccion string)(string){
 	return texto
 }
 
+func (e Estadopoblacion) String() (string){
+	return [...]string{"Decreciente","Creciente"}
+}
+
+func (e Estadopoblacion) EnumIndex () (int){
+	return int(e)
+}
+
 type Tendencia struct{
 	Nombre string
-	poblacion int
-	retransmision string
+	Estadotendencia Estadopoblacion
 }
