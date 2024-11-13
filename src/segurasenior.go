@@ -12,6 +12,10 @@ func buscatexto(direccion string)(string){
 	return texto
 }
 
+func consultaFuentes(texto string, localidad string)(bool){
+	return strings.Contains(texto,localidad)
+}
+
 func (e Estadopoblacion) String() (string){
 	return [...]string{"Decreciente","Creciente"}
 }
