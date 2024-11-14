@@ -2,12 +2,9 @@ package segurasenior
 
 type Estadopoblacion int
 
-const (
-	Decreciente = iota
-	Creciente
-)
 
-func buscatexto(direccion string)(string){
+
+func buscatexto(direccion string) string{
 	//función para extraer texto del paquete net/http e io/ioutil
 	return texto
 }
@@ -16,13 +13,21 @@ func consultaFuentes(texto string, localidad string)(bool){
 	return strings.Contains(texto,localidad)
 }
 
-func (e Estadopoblacion) String() (string){
-	return [...]string{"Decreciente","Creciente"}
+const (
+	Decreciente = iota
+	Creciente
+)
+
+func (e Estadopoblacion) String() string{
+	switch e {
+		case Decreciente:
+			return "decreciente"
+		case Creciente 
+			return "creciente"
+	}
+	return "unknown"
 }
 
-func (e Estadopoblacion) EnumIndex () (int){
-	return int(e)
-}
 
 type Tendencia struct{
 	Nombre string
