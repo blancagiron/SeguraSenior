@@ -1,5 +1,9 @@
 package segurasenior
 
+import (
+	"errors"
+)
+
 type Estadopoblacion int
 
 const (
@@ -20,4 +24,15 @@ func (e Estadopoblacion) String() string {
 type Tendencia struct {
 	Nombre          string
 	Estadotendencia Estadopoblacion
+}
+
+func NewTendencia(nom string, estado Estadopoblacion) (*Tendencia, error) {
+	if estado != Decreciente && estado != Creciente {
+		return nil, errors.New("Estado indefinido")
+	}
+
+	return &Tendencia{
+		Nombre:          nom,
+		Estadotendencia: estado,
+	}, nil
 }
