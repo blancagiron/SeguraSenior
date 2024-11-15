@@ -24,9 +24,10 @@ func (e Estadopoblacion) String() string {
 type Tendencia struct {
 	Nombre          string
 	Estadotendencia Estadopoblacion
+	Direccion       string
 }
 
-func NewTendencia(nom string, estado Estadopoblacion) (*Tendencia, error) {
+func NewTendencia(nom string, estado Estadopoblacion, dir string) (*Tendencia, error) {
 	if estado != Decreciente && estado != Creciente {
 		return nil, errors.New("Estado indefinido")
 	}
@@ -34,5 +35,6 @@ func NewTendencia(nom string, estado Estadopoblacion) (*Tendencia, error) {
 	return &Tendencia{
 		Nombre:          nom,
 		Estadotendencia: estado,
+		Direccion:       dir,
 	}, nil
 }
