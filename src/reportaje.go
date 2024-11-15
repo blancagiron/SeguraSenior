@@ -1,20 +1,15 @@
 package segurasenior
 
-import(
-	"strings"
-)
-
-
-type Reportaje struct{
-	nombre string
-	poblacion int
+type Reportaje struct {
+	nombre        string
+	poblacion     int
 	retransmision string
 }
 
-func AniadirRepo(nom string, pobla int, medio string)(Reportaje){
-	return Reportaje{
-		nombre: nom
-		poblacion: pobla
-		retransmision: medio
+func AniadirRepo(nom string, pobla int, medio string) *Reportaje {
+	return &Reportaje{
+		nombre:        nom,
+		poblacion:     pobla,
+		retransmision: medio,
 	}
 }
