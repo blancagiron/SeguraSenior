@@ -38,11 +38,3 @@ func NewTendencia(nom string, estado Estadopoblacion, pobl Poblacion) (*Tendenci
 		Poblacion:       pobl,
 	}, nil
 }
-
-func (t *Tendencia) ConflictoInfo(other *Tendencia) bool {
-	if t.Nombre == other.Nombre && t.Estadotendencia != other.Estadotendencia {
-		return true
-	} else {
-		return false
-	}
-}
