@@ -4,7 +4,7 @@ type Reportaje struct {
 	Nombre        string
 	Poblacion     int
 	Retransmision string
-	Fuente        []Fuente
+	Fuentes       []Fuente
 }
 
 func AniadirRepo(nom string, pobla int, medio string, orig []Fuente) *Reportaje {
@@ -12,6 +12,6 @@ func AniadirRepo(nom string, pobla int, medio string, orig []Fuente) *Reportaje 
 		Nombre:        nom,
 		Poblacion:     pobla,
 		Retransmision: medio,
-		Fuente:        orig,
+		Fuentes:       orig,
 	}
 }
