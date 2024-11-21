@@ -3,11 +3,11 @@ package segurasenior
 import "errors"
 
 type Poblacion struct {
-	Demografia     string
-	PoblacionTotal int
-	Tasanat        int
-	Tasaenv        int
-	Tasamort       int
+	Nombre_pueblo       string
+	Poblacion_total     int
+	Tasa_natalidad      int
+	Tasa_envejecimiento int
+	Tasa_mortalidad     int
 }
 
 func NewPoblacion(nom string, poblacion int, tasan int, tasae int, tasam int) (*Poblacion, error) {
@@ -15,10 +15,10 @@ func NewPoblacion(nom string, poblacion int, tasan int, tasae int, tasam int) (*
 		return nil, errors.New("valor de tasas erróneo, debe estar comprendido entre 0 y 1000")
 	}
 	return &Poblacion{
-		Demografia:     nom,
-		PoblacionTotal: poblacion,
-		Tasanat:        tasan,
-		Tasaenv:        tasae,
-		Tasamort:       tasam,
+		Nombre_pueblo:       nom,
+		Poblacion_total:     poblacion,
+		Tasa_natalidad:      tasan,
+		Tasa_envejecimiento: tasae,
+		Tasa_mortalidad:     tasam,
 	}, nil
 }
