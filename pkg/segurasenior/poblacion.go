@@ -11,8 +11,14 @@ type Poblacion struct {
 }
 
 func NewPoblacion(nom string, poblacion int, tasan float32, tasae float32, tasam float32) (*Poblacion, error) {
-	if (tasan < 0.0) || (tasan > 1000.0) || (tasae < 0.0) || (tasae > 1000.0) || (tasam < 0.0) || (tasam > 1000.0) {
-		return nil, errors.New("valor de tasas erróneo, debe estar comprendido entre 0 y 1000")
+	if (tasan < 0.0) || (tasan > 1000.0) {
+		return nil, errors.New("valor de tasa de natalidada erróneo, debe estar comprendido entre 0 y 1000")
+	}
+	if (tasae < 0.0) || (tasae > 1000.0) {
+		return nil, errors.New("valor de tasa de envejecimiento erróneo, debe estar comprendido entre 0 y 1000")
+	}
+	if (tasam < 0.0) || (tasam > 1000.0) {
+		return nil, errors.New("valor de tasa de mortalidad erróneo, debe estar comprendido entre 0 y 1000")
 	}
 	return &Poblacion{
 		nombre_pueblo:       nom,
