@@ -22,9 +22,9 @@ func (e Estadopoblacion) String() string {
 }
 
 type Tendencia struct {
-	Nombre          string
-	Estadotendencia Estadopoblacion
-	Poblacion       Poblacion
+	Nombre_pueblo_tendencia string
+	Estadotendencia         Estadopoblacion
+	Poblacion               Poblacion
 }
 
 func NewTendencia(nom string, estado Estadopoblacion, pobl Poblacion) (*Tendencia, error) {
