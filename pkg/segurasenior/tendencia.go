@@ -33,8 +33,8 @@ func NewTendencia(nom string, estado Estadopoblacion, pobl Poblacion) (*Tendenci
 	}
 
 	return &Tendencia{
-		Nombre:          nom,
-		Estadotendencia: estado,
-		Poblacion:       pobl,
+		Nombre_pueblo_tendencia: nom,
+		Estadotendencia:         estado,
+		Poblacion:               pobl,
 	}, nil
 }
