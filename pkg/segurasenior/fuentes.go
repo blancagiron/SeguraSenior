@@ -29,7 +29,7 @@ type Fuente struct {
 
 func NewFuente(ext formato, dir string) (*Fuente, error) {
 	if ext != html && ext != pdf && ext != excel {
-		return nil, errors.New("Formato indefinido")
+		return nil, errors.New("formato indefinido")
 	}
 	return &Fuente{
 		formato_fuente: ext,
