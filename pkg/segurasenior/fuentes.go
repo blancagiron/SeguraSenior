@@ -1,7 +1,7 @@
 package segurasenior
 
 type Fuente struct {
-	Formato   string //Nombre reducido de la página o especificación de la extensión para entendimiento del origen de la fuente
+	Formato   string
 	Direccion string
 	Poblacion Tendencia
 }
