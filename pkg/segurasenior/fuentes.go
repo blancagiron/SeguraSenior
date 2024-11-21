@@ -2,7 +2,7 @@ package segurasenior
 
 import "errors"
 
-type Formato int
+type formato int
 
 const (
 	html = iota
@@ -10,7 +10,7 @@ const (
 	excel
 )
 
-func (f Formato) String() string {
+func (f formato) String() string {
 	switch f {
 	case html:
 		return "html"
@@ -23,11 +23,11 @@ func (f Formato) String() string {
 }
 
 type Fuente struct {
-	formato_fuente Formato
+	formato_fuente formato
 	direccion      string
 }
 
-func NewFuente(ext Formato, dir string) (*Fuente, error) {
+func NewFuente(ext formato, dir string) (*Fuente, error) {
 	if ext != html && ext != pdf && ext != excel {
 		return nil, errors.New("Formato indefinido")
 	}
