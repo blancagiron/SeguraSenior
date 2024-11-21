@@ -4,14 +4,14 @@ import (
 	"errors"
 )
 
-type Estadopoblacion int
+type Estado int
 
 const (
 	decreciente = iota
 	creciente
 )
 
-func (e Estadopoblacion) String() string {
+func (e Estado) String() string {
 	switch e {
 	case decreciente:
 		return "decreciente"
@@ -23,11 +23,11 @@ func (e Estadopoblacion) String() string {
 
 type Tendencia struct {
 	nombre_pueblo_tendencia string
-	estadotendencia         Estadopoblacion
+	estadotendencia         Estado
 	poblacion               Poblacion
 }
 
-func NewTendencia(nom string, estado Estadopoblacion, pobl Poblacion) (*Tendencia, error) {
+func NewTendencia(nom string, estado Estado, pobl Poblacion) (*Tendencia, error) {
 	if estado != decreciente && estado != creciente {
 		return nil, errors.New("estado indefinido")
 	}
