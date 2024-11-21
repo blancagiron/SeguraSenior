@@ -5,9 +5,9 @@ import "errors"
 type Poblacion struct {
 	Demografia     string
 	PoblacionTotal int
-	Tasanat        int //medido en tantos por mil
-	Tasaenv        int //medido en tantos por mil
-	Tasamort       int //medido en tantos por mil
+	Tasanat        int
+	Tasaenv        int
+	Tasamort       int
 }
 
 func NewPoblacion(nom string, poblacion int, tasan int, tasae int, tasam int) (*Poblacion, error) {
