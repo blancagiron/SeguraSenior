@@ -7,7 +7,7 @@ import (
 type Estado int
 
 const (
-	decreciente = iota
+	decreciente Estado = iota
 	creciente
 )
 
