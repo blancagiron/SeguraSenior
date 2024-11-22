@@ -5,10 +5,9 @@ type Reportaje struct {
 	tendencia_reportaje Tendencia
 }
 
-func NewRepo(nom string, ten Tendencia, orig []Fuente) (*Reportaje, error) {
+func NewRepo(nom string, ten Tendencia) (*Reportaje, error) {
 	return &Reportaje{
 		nombre:              nom,
 		tendencia_reportaje: ten,
-		fuentes:             orig,
 	}, nil
 }
