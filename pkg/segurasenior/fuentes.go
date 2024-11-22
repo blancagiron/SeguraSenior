@@ -5,7 +5,7 @@ import "errors"
 type formato int
 
 const (
-	html = iota
+	html formato = iota
 	pdf
 	excel
 )
