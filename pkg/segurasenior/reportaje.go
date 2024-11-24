@@ -1,7 +1,7 @@
 package segurasenior
 
 type Reportaje struct {
-	nombre          string
+	titulo          string
 	tendencias      []Tendencia
 	datos_poblacion []Poblacion
 	fuentes         []Fuente
@@ -9,7 +9,7 @@ type Reportaje struct {
 
 func NewRepo(nom string, ten []Tendencia, datospob []Poblacion, origen []Fuente) (*Reportaje, error) {
 	return &Reportaje{
-		nombre:          nom,
+		titulo:          nom,
 		tendencias:      ten,
 		datos_poblacion: datospob,
 		fuentes:         origen,
