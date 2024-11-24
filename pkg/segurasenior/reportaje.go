@@ -11,7 +11,10 @@ type Reportaje struct {
 
 func NewRepo(nom string, ten []Tendencia, datospob []Poblacion, origen []Fuente) (*Reportaje, error) {
 	if nom == "" {
-		return nil, errors.New("nombre no puede estar vacío")
+		return nil, errors.New("debe haber un título")
+	}
+	if len(origen) == 0 {
+		return nil, errors.New("el reportaje debe provenir de alguna fuente")
 	}
 	return &Reportaje{
 		titulo:          nom,
