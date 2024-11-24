@@ -5,6 +5,9 @@ import "errors"
 type Poblacion struct {
 	nombre_pueblo       string
 	poblacion_total     int
+	poblacion_joven     int
+	poblacion_adulta    int
+	poblacion_anciana   int
 	tasa_natalidad      float32
 	tasa_envejecimiento float32
 	tasa_mortalidad     float32
