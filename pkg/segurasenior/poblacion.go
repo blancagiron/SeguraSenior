@@ -14,6 +14,9 @@ type Poblacion struct {
 }
 
 func NewPoblacion(nom string, poblacion int, poblacionjoven int, poblacionmedia int, poblacionmayor int, tasan float32, tasae float32, tasam float32) (*Poblacion, error) {
+	if poblacion < 0 {
+		return nil, errors.New("valor de poblacion total debe ser mayor a 0")
+	}
 	if (tasan < 0.0) || (tasan > 1000.0) {
 		return nil, errors.New("valor de tasa de natalidada erróneo, debe estar comprendido entre 0 y 1000")
 	}
