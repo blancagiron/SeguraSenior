@@ -27,10 +27,12 @@ type Tendencia struct {
 }
 
 func NewTendencia(nom string, estado Estado) (*Tendencia, error) {
+	if nom == "" {
+		return nil, errors.New("nombre no puede estar vacío")
+	}
 	if estado != decreciente && estado != creciente {
 		return nil, errors.New("estado indefinido")
 	}
-
 	return &Tendencia{
 		nombre_pueblo_tendencia: nom,
 		estadotendencia:         estado,
