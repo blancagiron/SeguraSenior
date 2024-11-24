@@ -14,6 +14,9 @@ type Poblacion struct {
 }
 
 func NewPoblacion(nom string, poblacion int, poblacionjoven int, poblacionmedia int, poblacionmayor int, tasan float32, tasae float32, tasam float32) (*Poblacion, error) {
+	if nom == "" {
+		return nil, errors.New("nombre no puede estar vacío")
+	}
 	if poblacion < 0 {
 		return nil, errors.New("valor de poblacion total debe ser mayor a 0")
 	}
