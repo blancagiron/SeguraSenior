@@ -13,6 +13,9 @@ func NewRepo(nom string, ten []Tendencia, datospob []Poblacion, origen []Fuente)
 	if nom == "" {
 		return nil, errors.New("debe haber un título")
 	}
+	if len(datospob) == 0 {
+		return nil, errors.New("un reportaje debe contener algún dato para mostar")
+	}
 	if len(origen) == 0 {
 		return nil, errors.New("el reportaje debe provenir de alguna fuente")
 	}
