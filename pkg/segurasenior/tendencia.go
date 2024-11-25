@@ -30,7 +30,7 @@ func NewTendencia(nom string, estado Estado) (*Tendencia, error) {
 	if nom == "" {
 		return nil, errors.New("nombre no puede estar vacío")
 	}
-	if estado != decreciente && estado != creciente {
+	if estado != Decreciente && estado != Creciente {
 		return nil, errors.New("estado indefinido")
 	}
 	return &Tendencia{
