@@ -5,9 +5,9 @@ import "errors"
 type FormatoFuente string
 
 const (
-	html  FormatoFuente = "html"
-	pdf   FormatoFuente = "pdf"
-	excel FormatoFuente = "excel"
+	HTML  FormatoFuente = "html"
+	PDF   FormatoFuente = "pdf"
+	EXCEL FormatoFuente = "excel"
 )
 
 type Fuente struct {
@@ -21,7 +21,7 @@ func NewFuente(nom string, nompoblacion string, ext FormatoFuente, dir string) (
 	if nompoblacion == "" {
 		return nil, errors.New("una fuente debe hablar de alguna población")
 	}
-	if ext != html && ext != pdf && ext != excel {
+	if ext != HTML && ext != PDF && ext != EXCEL {
 		return nil, errors.New("formato indefinido")
 	}
 	return &Fuente{
