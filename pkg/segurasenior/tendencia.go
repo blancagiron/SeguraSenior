@@ -7,15 +7,15 @@ import (
 type Estado int
 
 const (
-	decreciente Estado = iota
-	creciente
+	Decreciente Estado = iota
+	Creciente
 )
 
 func (e Estado) String() string {
 	switch e {
-	case decreciente:
+	case Decreciente:
 		return "decreciente"
-	case creciente:
+	case Creciente:
 		return "creciente"
 	}
 	return "unknown"
