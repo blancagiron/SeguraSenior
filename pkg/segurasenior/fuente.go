@@ -11,10 +11,10 @@ const (
 )
 
 type Fuente struct {
-	nombre_fuente           string
-	nombre_poblacion_fuente string
-	formato_fuente          FormatoFuente
-	direccion               string
+	Nombre_fuente           string
+	Nombre_poblacion_fuente string
+	Formato_fuente          FormatoFuente
+	Direccion               string
 }
 
 func NewFuente(nom string, nompoblacion string, ext FormatoFuente, dir string) (*Fuente, error) {
@@ -25,9 +25,9 @@ func NewFuente(nom string, nompoblacion string, ext FormatoFuente, dir string) (
 		return nil, errors.New("formato indefinido")
 	}
 	return &Fuente{
-		nombre_fuente:           nom,
-		nombre_poblacion_fuente: nompoblacion,
-		formato_fuente:          ext,
-		direccion:               dir,
+		Nombre_fuente:           nom,
+		Nombre_poblacion_fuente: nompoblacion,
+		Formato_fuente:          ext,
+		Direccion:               dir,
 	}, nil
 }
