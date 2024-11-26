@@ -2,14 +2,6 @@ package segurasenior
 
 import "errors"
 
-type FormatoFuente string
-
-const (
-	HTML  FormatoFuente = "html"
-	PDF   FormatoFuente = "pdf"
-	EXCEL FormatoFuente = "excel"
-)
-
 type Fuente struct {
 	Nombre_fuente           string
 	Nombre_poblacion_fuente string
