@@ -2,7 +2,7 @@ package segurasenior
 
 import "errors"
 
-type Poblacion struct {
+type Datos_poblacion struct {
 	Nombre_pueblo       string
 	Poblacion_total     int
 	Poblacion_joven     int
@@ -38,7 +38,7 @@ func NewPoblacion(nom string, poblacion int, poblacionjoven int, poblacionmedia 
 	if (tasam < 0.0) || (tasam > 1000.0) {
 		return nil, errors.New("valor de tasa de mortalidad erróneo, debe estar comprendido entre 0 y 1000")
 	}
-	return &Poblacion{
+	return &Datos_poblacion{
 		Nombre_pueblo:       nom,
 		Poblacion_total:     poblacion,
 		Poblacion_joven:     poblacionjoven,
