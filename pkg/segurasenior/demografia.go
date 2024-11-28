@@ -7,16 +7,6 @@ const (
 	Creciente
 )
 
-func (e Estado) String() string {
-	switch e {
-	case Decreciente:
-		return "decreciente"
-	case Creciente:
-		return "creciente"
-	}
-	return "unknown"
-}
-
 type Registro_demografico struct {
 	Estadisticas_poblacion Datos_poblacion
 	Tendencias_poblacion   Estado
