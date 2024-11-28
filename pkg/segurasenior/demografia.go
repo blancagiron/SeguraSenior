@@ -1,7 +1,5 @@
 package segurasenior
 
-import "errors"
-
 type Estado int
 
 const (
@@ -26,9 +24,6 @@ type Registro_demografico struct {
 }
 
 func NewRegistro(poblacion Datos_poblacion, fuentes []Fuente, tendencia Tendencia) (*Registro_demografico, error) {
-	if len(poblaciones) == 0 {
-		return nil, errors.New("el registro debe incluir algún dato sobre la población")
-	}
 	return &Registro_demografico{
 		Estadisticas_poblacion: poblacion,
 		Tendencias_poblacion:   tendencia,
