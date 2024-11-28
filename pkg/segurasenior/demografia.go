@@ -20,17 +20,17 @@ func (e Estado) String() string {
 }
 
 type Registro_demografico struct {
-	Estadisticas_poblacion []Datos_poblacion
+	Estadisticas_poblacion Datos_poblacion
 	Tendencias_poblacion   Estado
 	Fuentes                []Fuente
 }
 
-func NewRegistro(poblaciones []Datos_poblacion, fuentes []Fuente, tendencia Tendencia) (*Registro_demografico, error) {
+func NewRegistro(poblacion Datos_poblacion, fuentes []Fuente, tendencia Tendencia) (*Registro_demografico, error) {
 	if len(poblaciones) == 0 {
 		return nil, errors.New("el registro debe incluir algún dato sobre la población")
 	}
 	return &Registro_demografico{
-		Estadisticas_poblacion: poblaciones,
+		Estadisticas_poblacion: poblacion,
 		Tendencias_poblacion:   tendencia,
 		Fuentes:                fuentes,
 	}, nil
