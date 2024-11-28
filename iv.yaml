@@ -1,2 +1,2 @@
 lenguaje: Go
-entidad: src/demografia.go
+entidad: pkg/segurasenior/demografia.go
