@@ -20,13 +20,13 @@ func (e Estado) String() string {
 type Registro_demografico struct {
 	Estadisticas_poblacion Datos_poblacion
 	Tendencias_poblacion   Estado
-	Fuentes                []Fuente
+	Direcciones_fuentes    []string
 }
 
-func NewRegistro(poblacion Datos_poblacion, fuentes []Fuente, tendencia Estado) (*Registro_demografico, error) {
+func NewRegistro(poblacion Datos_poblacion, fuentes []string, tendencia Estado) (*Registro_demografico, error) {
 	return &Registro_demografico{
 		Estadisticas_poblacion: poblacion,
 		Tendencias_poblacion:   tendencia,
-		Fuentes:                fuentes,
+		Direcciones_fuentes:    fuentes,
 	}, nil
 }
