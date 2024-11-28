@@ -22,16 +22,14 @@ func (e Estado) String() string {
 }
 
 type Tendencia struct {
-	Nombre_pueblo_tendencia string
-	Estadotendencia         Estado
+	Estadotendencia Estado
 }
 
-func NewTendencia(nom string, estado Estado) (*Tendencia, error) {
+func NewTendencia(estado Estado) (*Tendencia, error) {
 	if nom == "" {
 		return nil, errors.New("nombre no puede estar vacío")
 	}
 	return &Tendencia{
-		Nombre_pueblo_tendencia: nom,
-		Estadotendencia:         estado,
+		Estadotendencia: estado,
 	}, nil
 }
