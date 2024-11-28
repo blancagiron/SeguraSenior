@@ -30,3 +30,5 @@ func NewRegistro(poblacion Datos_poblacion, fuentes []string, tendencia Estado) 
 		Direcciones_fuentes:    fuentes,
 	}, nil
 }
+
+type Registros_demografia []Registro_demografico
