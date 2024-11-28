@@ -23,7 +23,7 @@ type Registro_demografico struct {
 	Fuentes                []Fuente
 }
 
-func NewRegistro(poblacion Datos_poblacion, fuentes []Fuente, tendencia Tendencia) (*Registro_demografico, error) {
+func NewRegistro(poblacion Datos_poblacion, fuentes []Fuente, tendencia Estado) (*Registro_demografico, error) {
 	return &Registro_demografico{
 		Estadisticas_poblacion: poblacion,
 		Tendencias_poblacion:   tendencia,
