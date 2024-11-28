@@ -2,9 +2,26 @@ package segurasenior
 
 import "errors"
 
+type Estado int
+
+const (
+	Decreciente Estado = iota
+	Creciente
+)
+
+func (e Estado) String() string {
+	switch e {
+	case Decreciente:
+		return "decreciente"
+	case Creciente:
+		return "creciente"
+	}
+	return "unknown"
+}
+
 type Registro_demografico struct {
 	Estadisticas_poblacion []Datos_poblacion
-	Tendencias_poblacion   Tendencia
+	Tendencias_poblacion   Estado
 	Fuentes                []Fuente
 }
 
