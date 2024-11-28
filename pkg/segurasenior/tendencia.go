@@ -1,9 +1,5 @@
 package segurasenior
 
-import (
-	"errors"
-)
-
 type Estado int
 
 const (
@@ -26,9 +22,6 @@ type Tendencia struct {
 }
 
 func NewTendencia(estado Estado) (*Tendencia, error) {
-	if nom == "" {
-		return nil, errors.New("nombre no puede estar vacío")
-	}
 	return &Tendencia{
 		Estadotendencia: estado,
 	}, nil
