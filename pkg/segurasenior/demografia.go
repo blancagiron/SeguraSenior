@@ -21,4 +21,4 @@ func NewRegistro(poblacion Datos_poblacion, fuentes []string, tendencia Estado) 
 	}, nil
 }
 
-type Registros_demografia []Registro_demografico
+type Registros_demografia map[*Registro_demografico][]string
