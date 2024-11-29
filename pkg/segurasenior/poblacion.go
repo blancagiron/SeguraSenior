@@ -14,7 +14,7 @@ type Datos_poblacion struct {
 }
 
 func NewPoblacion(nom string, poblacion uint32, poblacion_menor_18 uint32, poblacion_entre_18_y_64 uint32, poblacion_mayor_64 uint32,
-	tasa_natalidad_sobre_1000 float64, tasa_envejecimiento float64, tasa_mortalidad float64) (*Datos_poblacion, error) {
+	tasa_natalidad_sobre_1000 float64, tasa_envejecimiento_sobre_1000 float64, tasa_mortalidad float64) (*Datos_poblacion, error) {
 	if nom == "" {
 		return nil, errors.New("nombre no puede estar vacío")
 	}
@@ -22,7 +22,7 @@ func NewPoblacion(nom string, poblacion uint32, poblacion_menor_18 uint32, pobla
 	if (tasa_natalidad_sobre_1000 < 0.0) || (tasa_natalidad_sobre_1000 > 1000.0) {
 		return nil, errors.New("valor de tasa de natalidada erróneo, debe estar comprendido entre 0 y 1000")
 	}
-	if (tasa_envejecimiento < 0.0) || (tasa_envejecimiento > 1000.0) {
+	if (tasa_envejecimiento_sobre_1000 < 0.0) || (tasa_envejecimiento_sobre_1000 > 1000.0) {
 		return nil, errors.New("valor de tasa de envejecimiento erróneo, debe estar comprendido entre 0 y 1000")
 	}
 	if (tasa_mortalidad < 0.0) || (tasa_mortalidad > 1000.0) {
@@ -35,7 +35,7 @@ func NewPoblacion(nom string, poblacion uint32, poblacion_menor_18 uint32, pobla
 		Poblacion_adulta:    poblacion_entre_18_y_64,
 		Poblacion_anciana:   poblacion_mayor_64,
 		Tasa_natalidad:      tasa_natalidad_sobre_1000,
-		Tasa_envejecimiento: tasa_envejecimiento,
+		Tasa_envejecimiento: tasa_envejecimiento_sobre_1000,
 		Tasa_mortalidad:     tasa_mortalidad,
 	}, nil
 }
