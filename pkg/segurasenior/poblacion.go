@@ -19,6 +19,10 @@ func NewPoblacion(nom string, poblacion uint32, poblacionMenor18 uint32, poblaci
 		return nil, errors.New("nombre no puede estar vacío")
 	}
 
+	if poblacionMenor18+poblacionEntre18Y64+poblacionMayor64 != poblacion {
+		return nil, errors.New("valor de poblacion total erróneo, debe ser la suma de la población menor a 18, entre 18 y 64 y mayor a 64")
+	}
+
 	if (tasaNatalidadSobre1000 < 0.0) || (tasaNatalidadSobre1000 > 1000.0) {
 		return nil, errors.New("valor de tasa de natalidada erróneo, debe estar comprendido entre 0 y 1000")
 	}
