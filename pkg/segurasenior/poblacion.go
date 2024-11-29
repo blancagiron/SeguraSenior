@@ -20,9 +20,7 @@ func NewPoblacion(nom string, poblacion int, poblacionjoven int, poblacionmedia 
 	if poblacion < 0 {
 		return nil, errors.New("valor de poblacion total debe ser mayor a 0")
 	}
-	if (poblacionjoven <= poblacion) || (poblacionjoven < 0) {
-		return nil, errors.New("valor de poblacion_joven debe ser menor a la poblacion_total y positiva")
-	}
+
 	if (poblacionmedia <= poblacion) || (poblacionmedia < 0) {
 		return nil, errors.New("valor de poblacion_adulta debe ser menor a la poblacion_total y positiva")
 	}
