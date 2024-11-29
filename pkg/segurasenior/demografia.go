@@ -7,16 +7,16 @@ const (
 	Creciente   Estado = "creciente"
 )
 
-type Registro_demografico struct {
-	Estadisticas_poblacion Datos_poblacion
-	Tendencias_poblacion   Estado
+type RegistroDemografico struct {
+	EstadisticasPoblacion Datos_poblacion
+	TendenciasPoblacion   Estado
 }
 
-func NewRegistro(poblacion Datos_poblacion, tendencia Estado) (*Registro_demografico, error) {
-	return &Registro_demografico{
-		Estadisticas_poblacion: poblacion,
-		Tendencias_poblacion:   tendencia,
+func NewRegistro(poblacion Datos_poblacion, tendencia Estado) (*RegistroDemografico, error) {
+	return &RegistroDemografico{
+		EstadisticasPoblacion: poblacion,
+		TendenciasPoblacion:   tendencia,
 	}, nil
 }
 
-type Registros_demografia map[string][]Registro_demografico
+type Registros_demografia map[string][]RegistroDemografico
