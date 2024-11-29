@@ -13,7 +13,7 @@ type Datos_poblacion struct {
 	Tasa_mortalidad     float64
 }
 
-func NewPoblacion(nom string, poblacion uint32, poblacion_menor_18 uint32, poblacionmedia uint32, poblacionmayor uint32, tasan float64, tasae float64, tasam float64) (*Datos_poblacion, error) {
+func NewPoblacion(nom string, poblacion uint32, poblacion_menor_18 uint32, poblacion_entre_18_y_64 uint32, poblacionmayor uint32, tasan float64, tasae float64, tasam float64) (*Datos_poblacion, error) {
 	if nom == "" {
 		return nil, errors.New("nombre no puede estar vacío")
 	}
@@ -31,7 +31,7 @@ func NewPoblacion(nom string, poblacion uint32, poblacion_menor_18 uint32, pobla
 		Nombre_pueblo:       nom,
 		Poblacion_total:     poblacion,
 		Poblacion_joven:     poblacion_menor_18,
-		Poblacion_adulta:    poblacionmedia,
+		Poblacion_adulta:    poblacion_entre_18_y_64,
 		Poblacion_anciana:   poblacionmayor,
 		Tasa_natalidad:      tasan,
 		Tasa_envejecimiento: tasae,
