@@ -1,10 +1,10 @@
 package segurasenior
 
-type Estado int
+type Estado string
 
 const (
-	Decreciente Estado = iota
-	Creciente
+	Decreciente Estado = "decreciente"
+	Creciente   Estado = "creciente"
 )
 
 type Registro_demografico struct {
