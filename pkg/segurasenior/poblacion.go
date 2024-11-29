@@ -21,9 +21,6 @@ func NewPoblacion(nom string, poblacion int, poblacionjoven int, poblacionmedia 
 		return nil, errors.New("valor de poblacion total debe ser mayor a 0")
 	}
 
-	if (poblacionmayor <= poblacion) || (poblacionjoven < 0) {
-		return nil, errors.New("valor de poblacion_anciana debe ser menor a la poblacion_total y positiva")
-	}
 	if (tasan < 0.0) || (tasan > 1000.0) {
 		return nil, errors.New("valor de tasa de natalidada erróneo, debe estar comprendido entre 0 y 1000")
 	}
