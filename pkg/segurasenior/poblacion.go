@@ -13,13 +13,11 @@ type Datos_poblacion struct {
 	Tasa_mortalidad     float64
 }
 
-func NewPoblacion(nom string, poblacion int, poblacionjoven int, poblacionmedia int, poblacionmayor int, tasan float64, tasae float64, tasam float64) (*Datos_poblacion, error) {
+func NewPoblacion(nom string, poblacion uint16, poblacionjoven int, poblacionmedia int, poblacionmayor int, tasan float64, tasae float64, tasam float64) (*Datos_poblacion, error) {
 	if nom == "" {
 		return nil, errors.New("nombre no puede estar vacío")
 	}
-	if poblacion < 0 {
-		return nil, errors.New("valor de poblacion total debe ser mayor a 0")
-	}
+
 	if (tasan < 0.0) || (tasan > 1000.0) {
 		return nil, errors.New("valor de tasa de natalidada erróneo, debe estar comprendido entre 0 y 1000")
 	}
