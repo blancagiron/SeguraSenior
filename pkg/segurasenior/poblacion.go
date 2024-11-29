@@ -5,7 +5,7 @@ import "errors"
 type Datos_poblacion struct {
 	Nombre_pueblo       string
 	Poblacion_total     uint16
-	Poblacion_joven     int
+	Poblacion_joven     uint16
 	Poblacion_adulta    int
 	Poblacion_anciana   int
 	Tasa_natalidad      float64
