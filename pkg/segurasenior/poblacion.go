@@ -4,7 +4,7 @@ import "errors"
 
 type Datos_poblacion struct {
 	Nombre_pueblo       string
-	Poblacion_total     int
+	Poblacion_total     uint16
 	Poblacion_joven     int
 	Poblacion_adulta    int
 	Poblacion_anciana   int
@@ -20,7 +20,6 @@ func NewPoblacion(nom string, poblacion int, poblacionjoven int, poblacionmedia 
 	if poblacion < 0 {
 		return nil, errors.New("valor de poblacion total debe ser mayor a 0")
 	}
-
 	if (tasan < 0.0) || (tasan > 1000.0) {
 		return nil, errors.New("valor de tasa de natalidada erróneo, debe estar comprendido entre 0 y 1000")
 	}
