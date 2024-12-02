@@ -1,18 +1,18 @@
 package segurasenior
 
-type Estado string
+type EstadoPoblacion string
 
 const (
-	Decreciente Estado = "decreciente"
-	Creciente   Estado = "creciente"
+	Decreciente EstadoPoblacion = "decreciente"
+	Creciente   EstadoPoblacion = "creciente"
 )
 
 type RegistroDemografico struct {
 	EstadisticasPoblacion DatosPoblacion
-	TendenciasPoblacion   Estado
+	TendenciasPoblacion   EstadoPoblacion
 }
 
-func NewRegistroDemografico(poblacion DatosPoblacion, tendencia Estado) (*RegistroDemografico, error) {
+func NewRegistroDemografico(poblacion DatosPoblacion, tendencia EstadoPoblacion) (*RegistroDemografico, error) {
 	return &RegistroDemografico{
 		EstadisticasPoblacion: poblacion,
 		TendenciasPoblacion:   tendencia,
