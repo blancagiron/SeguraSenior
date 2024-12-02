@@ -3,7 +3,7 @@ package segurasenior
 import "errors"
 
 type DatosPoblacion struct {
-	NombrePueblo       string
+	NombrePoblacion    string
 	PoblacionTotal     uint32
 	PoblacionJoven     uint32
 	PoblacionAdulta    uint32
@@ -13,9 +13,9 @@ type DatosPoblacion struct {
 	TasaMortalidad     float64
 }
 
-func NewPoblacion(nom string, poblacion uint32, poblacionMenor18 uint32, poblacionEntre18Y64 uint32, poblacionMayor64 uint32,
+func NewPoblacion(nombrepoblacion string, poblacion uint32, poblacionMenor18 uint32, poblacionEntre18Y64 uint32, poblacionMayor64 uint32,
 	tasaNatalidadSobre1000 float64, tasaEnvejecimientoSobre1000 float64, tasaMortalidadSobre1000 float64) (*DatosPoblacion, error) {
-	if nom == "" {
+	if nombrepoblacion == "" {
 		return nil, errors.New("nombre no puede estar vacío")
 	}
 
@@ -33,7 +33,7 @@ func NewPoblacion(nom string, poblacion uint32, poblacionMenor18 uint32, poblaci
 		return nil, errors.New("valor de tasa de mortalidad erróneo, debe estar comprendido entre 0 y 1000")
 	}
 	return &DatosPoblacion{
-		NombrePueblo:       nom,
+		NombrePoblacion:    nombrepoblacion,
 		PoblacionTotal:     poblacion,
 		PoblacionJoven:     poblacionMenor18,
 		PoblacionAdulta:    poblacionEntre18Y64,
