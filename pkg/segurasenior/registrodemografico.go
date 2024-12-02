@@ -9,13 +9,13 @@ const (
 
 type RegistroDemografico struct {
 	EstadisticasPoblacion DatosPoblacion
-	TendenciasPoblacion   EstadoPoblacion
+	EstadoDeLaPoblacion   EstadoPoblacion
 }
 
 func NewRegistroDemografico(poblacion DatosPoblacion, tendencia EstadoPoblacion) (*RegistroDemografico, error) {
 	return &RegistroDemografico{
 		EstadisticasPoblacion: poblacion,
-		TendenciasPoblacion:   tendencia,
+		EstadoDeLaPoblacion:   tendencia,
 	}, nil
 }
 
