@@ -12,9 +12,9 @@ type RegistroDemografico struct {
 	EstadoDeLaPoblacion   EstadoPoblacion
 }
 
-func NewRegistroDemografico(poblacion DatosPoblacion, tendencia EstadoPoblacion) (*RegistroDemografico, error) {
+func NewRegistroDemografico(datospoblacion DatosPoblacion, tendencia EstadoPoblacion) (*RegistroDemografico, error) {
 	return &RegistroDemografico{
-		EstadisticasPoblacion: poblacion,
+		EstadisticasPoblacion: datospoblacion,
 		EstadoDeLaPoblacion:   tendencia,
 	}, nil
 }
