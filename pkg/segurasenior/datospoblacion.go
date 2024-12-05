@@ -1,32 +1,19 @@
 package segurasenior
 
-import "errors"
-
-type MesDelAnio int
-
-const (
-	Enero MesDelAnio = iota + 1
-	Febrero
-	Marzo
-	Abril
-	Mayo
-	Junio
-	Julio
-	Agosto
-	Septiembre
-	Octubre
-	Noviembre
-	Diciembre
+import (
+	"errors"
+	"time"
 )
 
 type FechaObtencionDeDatos struct {
 	Dia  uint16
-	Mes  MesDelAnio
+	Mes  time.Month
 	Anio uint16
 }
 
 type DatosPoblacion struct {
 	NombrePoblacion    string
+	FechaDeDatos       FechaObtencionDeDatos
 	PoblacionTotal     uint32
 	PoblacionJoven     uint32
 	PoblacionAdulta    uint32
@@ -36,8 +23,12 @@ type DatosPoblacion struct {
 	TasaMortalidad     float64
 }
 
-func NewDatosPoblacion(nombrepoblacion string, poblacion uint32, poblacionMenor18 uint32, poblacionEntre18Y64 uint32, poblacionMayor64 uint32,
+func NewDatosPoblacion(nombrepoblacion string, fechadatos FechaObtencionDeDatos, poblacion uint32, poblacionMenor18 uint32, poblacionEntre18Y64 uint32, poblacionMayor64 uint32,
 	tasaNatalidadSobre1000 float64, tasaEnvejecimientoSobre1000 float64, tasaMortalidadSobre1000 float64) (*DatosPoblacion, error) {
+	if nombrepoblacion == "" {
+		return nil, errors.New("nombre no puede estar vacío")
+	}
+
 	if nombrepoblacion == "" {
 		return nil, errors.New("nombre no puede estar vacío")
 	}
