@@ -19,4 +19,4 @@ func NewRegistroDemografico(datosPoblacion DatosPoblacion, estadoPoblacion Estad
 	}, nil
 }
 
-type Registros_demografia map[string][]RegistroDemografico
+type RegistrosDemografia map[string][]RegistroDemografico
