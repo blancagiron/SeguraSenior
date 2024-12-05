@@ -6,9 +6,13 @@ import (
 )
 
 type FechaObtencionDeDatos struct {
-	Dia  uint16
+	Dia  int
 	Mes  time.Month
-	Anio uint16
+	Anio int
+}
+
+func daysIn(mes time.Month, anio int) int {
+	return time.Date(anio, mes+1, 0, 0, 0, 0, 0, time.UTC).Day()
 }
 
 type DatosPoblacion struct {
@@ -29,8 +33,8 @@ func NewDatosPoblacion(nombrepoblacion string, fechadatos FechaObtencionDeDatos,
 		return nil, errors.New("nombre no puede estar vacío")
 	}
 
-	if nombrepoblacion == "" {
-		return nil, errors.New("nombre no puede estar vacío")
+	if fechadatos.Dia > daysIn(fechadatos.Mes, fechadatos.Anio) {
+		return nil, errors.New("día de mes incorrecto")
 	}
 
 	if poblacionMenor18+poblacionEntre18Y64+poblacionMayor64 != poblacion {
@@ -48,6 +52,7 @@ func NewDatosPoblacion(nombrepoblacion string, fechadatos FechaObtencionDeDatos,
 	}
 	return &DatosPoblacion{
 		NombrePoblacion:    nombrepoblacion,
+		FechaDeDatos:       fechadatos,
 		PoblacionTotal:     poblacion,
 		PoblacionJoven:     poblacionMenor18,
 		PoblacionAdulta:    poblacionEntre18Y64,
