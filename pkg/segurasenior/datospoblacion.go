@@ -15,9 +15,13 @@ func daysIn(mes time.Month, anio int) int {
 	return time.Date(anio, mes+1, 0, 0, 0, 0, 0, time.UTC).Day()
 }
 
+type IdentificadorDatos struct {
+	NombrePoblacion string
+	FechaDeDatos    FechaObtencionDeDatos
+}
+
 type DatosPoblacion struct {
-	NombrePoblacion    string
-	FechaDeDatos       FechaObtencionDeDatos
+	NombreFechaDatos   IdentificadorDatos
 	PoblacionTotal     uint32
 	PoblacionJoven     uint32
 	PoblacionAdulta    uint32
