@@ -31,13 +31,13 @@ type DatosPoblacion struct {
 	TasaMortalidad     float64
 }
 
-func NewDatosPoblacion(nombrepoblacion string, fechadatos FechaObtencionDeDatos, poblacion uint32, poblacionMenor18 uint32, poblacionEntre18Y64 uint32, poblacionMayor64 uint32,
+func NewDatosPoblacion(nombrefechadatos IdentificadorDatos, poblacion uint32, poblacionMenor18 uint32, poblacionEntre18Y64 uint32, poblacionMayor64 uint32,
 	tasaNatalidadSobre1000 float64, tasaEnvejecimientoSobre1000 float64, tasaMortalidadSobre1000 float64) (*DatosPoblacion, error) {
-	if nombrepoblacion == "" {
+	if nombrefechadatos.NombrePoblacion == "" {
 		return nil, errors.New("nombre no puede estar vacío")
 	}
 
-	if fechadatos.Dia > daysIn(fechadatos.Mes, fechadatos.Anio) {
+	if nombrefechadatos.FechaDeDatos.Dia > daysIn(nombrefechadatos.FechaDeDatos.Mes, nombrefechadatos.FechaDeDatos.Anio) {
 		return nil, errors.New("día de mes incorrecto")
 	}
 
@@ -55,8 +55,7 @@ func NewDatosPoblacion(nombrepoblacion string, fechadatos FechaObtencionDeDatos,
 		return nil, errors.New("valor de tasa de mortalidad erróneo, debe estar comprendido entre 0 y 1000")
 	}
 	return &DatosPoblacion{
-		NombrePoblacion:    nombrepoblacion,
-		FechaDeDatos:       fechadatos,
+		NombreFechaDatos:   nombrefechadatos,
 		PoblacionTotal:     poblacion,
 		PoblacionJoven:     poblacionMenor18,
 		PoblacionAdulta:    poblacionEntre18Y64,
