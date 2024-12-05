@@ -2,9 +2,26 @@ package segurasenior
 
 import "errors"
 
+type MesDelAnio int
+
+const (
+	Enero MesDelAnio = iota + 1
+	Febrero
+	Marzo
+	Abril
+	Mayo
+	Junio
+	Julio
+	Agosto
+	Septiembre
+	Octubre
+	Noviembre
+	Diciembre
+)
+
 type FechaObtencionDeDatos struct {
 	Dia  uint16
-	Mes  string
+	Mes  MesDelAnio
 	Anio uint16
 }
 
