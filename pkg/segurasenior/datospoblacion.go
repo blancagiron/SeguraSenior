@@ -2,6 +2,12 @@ package segurasenior
 
 import "errors"
 
+type FechaObtencionDeDatos struct {
+	Dia  uint16
+	Mes  string
+	Anio uint16
+}
+
 type DatosPoblacion struct {
 	NombrePoblacion    string
 	PoblacionTotal     uint32
