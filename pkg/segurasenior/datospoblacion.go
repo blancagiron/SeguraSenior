@@ -6,13 +6,13 @@ import (
 )
 
 type FechaObtencionDeDatos struct {
-	Dia  int
+	Dia  uint16
 	Mes  time.Month
-	Anio int
+	Anio uint16
 }
 
-func daysIn(mes time.Month, anio int) int {
-	return time.Date(anio, mes+1, 0, 0, 0, 0, 0, time.UTC).Day()
+func daysIn(mes time.Month, anio uint16) int {
+	return time.Date(int(anio), mes+1, 0, 0, 0, 0, 0, time.UTC).Day()
 }
 
 type IdentificadorDatos struct {
@@ -37,7 +37,7 @@ func NewDatosPoblacion(nombrefechadatos IdentificadorDatos, poblacion uint32, po
 		return nil, errors.New("nombre no puede estar vacío")
 	}
 
-	if nombrefechadatos.FechaDeDatos.Dia > daysIn(nombrefechadatos.FechaDeDatos.Mes, nombrefechadatos.FechaDeDatos.Anio) {
+	if int(nombrefechadatos.FechaDeDatos.Dia) > daysIn(nombrefechadatos.FechaDeDatos.Mes, nombrefechadatos.FechaDeDatos.Anio) {
 		return nil, errors.New("día de mes incorrecto")
 	}
 
