@@ -2,6 +2,7 @@ package segurasenior
 
 import (
 	"errors"
+	"time"
 )
 
 type EstadoPoblacion string
@@ -10,6 +11,12 @@ const (
 	Decreciente EstadoPoblacion = "decreciente"
 	Creciente   EstadoPoblacion = "creciente"
 )
+
+type FechaObtencionDeDatos struct {
+	Dia  uint16
+	Mes  time.Month
+	Anio uint16
+}
 
 type IdentificadorDatos struct {
 	NombrePoblacion string
