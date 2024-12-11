@@ -7,8 +7,13 @@ const (
 	Creciente   EstadoPoblacion = "creciente"
 )
 
+type IdentificadorDatos struct {
+	NombrePoblacion string
+	FechaDeDatos    FechaObtencionDeDatos
+}
+
 type RegistroDemografico struct {
-	EstadisticasPoblacion DatosPoblacion
+	EstadisticasPoblacion map[IdentificadorDatos]DatosPoblacion
 	EstadoDeLaPoblacion   EstadoPoblacion
 }
 
