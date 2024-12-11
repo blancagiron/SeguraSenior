@@ -56,5 +56,3 @@ func NewDatosPoblacion(poblacion uint32, poblacionMenor18 uint32, poblacionEntre
 		TasaMortalidad:     tasaMortalidadSobre1000,
 	}, nil
 }
-
-type DatosAlmacenadosDePoblaciones map[IdentificadorDatos][]DatosPoblacion
