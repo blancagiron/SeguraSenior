@@ -17,7 +17,7 @@ type RegistroDemografico struct {
 	EstadoDeLaPoblacion   EstadoPoblacion
 }
 
-func NewRegistroDemografico(datosPoblacion DatosPoblacion, estadoPoblacion EstadoPoblacion) (*RegistroDemografico, error) {
+func NewRegistroDemografico(datosPoblacion map[IdentificadorDatos]DatosPoblacion, estadoPoblacion EstadoPoblacion) (*RegistroDemografico, error) {
 	return &RegistroDemografico{
 		EstadisticasPoblacion: datosPoblacion,
 		EstadoDeLaPoblacion:   estadoPoblacion,
