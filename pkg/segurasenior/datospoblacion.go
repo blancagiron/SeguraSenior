@@ -21,7 +21,6 @@ type IdentificadorDatos struct {
 }
 
 type DatosPoblacion struct {
-	NombreFechaDatos   IdentificadorDatos
 	PoblacionTotal     uint32
 	PoblacionJoven     uint32
 	PoblacionAdulta    uint32
