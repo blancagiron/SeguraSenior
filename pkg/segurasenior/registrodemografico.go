@@ -1,5 +1,9 @@
 package segurasenior
 
+import (
+	"errors"
+)
+
 type EstadoPoblacion string
 
 const (
@@ -18,6 +22,9 @@ type RegistroDemografico struct {
 }
 
 func NewRegistroDemografico(datosPoblacion map[IdentificadorDatos]DatosPoblacion, estadoPoblacion EstadoPoblacion) (*RegistroDemografico, error) {
+	if len(datosPoblacion) == 0 {
+		return nil, errors.New("los datos de población no pueden estar vacíos")
+	}
 	return &RegistroDemografico{
 		EstadisticasPoblacion: datosPoblacion,
 		EstadoDeLaPoblacion:   estadoPoblacion,
