@@ -29,6 +29,12 @@ type RegistroDemografico struct {
 }
 
 func NewRegistroDemografico(datosPoblacion map[IdentificadorDatos]DatosPoblacion, estadoPoblacion EstadoPoblacion) (*RegistroDemografico, error) {
+	for identificador := range datosPoblacion {
+		if identificador.NombrePoblacion == "" {
+			return nil, errors.New("el nombre de la población no puede estar vacío")
+		}
+	}
+
 	if len(datosPoblacion) == 0 {
 		return nil, errors.New("los datos de población no pueden estar vacíos")
 	}
