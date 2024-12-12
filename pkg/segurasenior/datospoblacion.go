@@ -2,7 +2,19 @@ package segurasenior
 
 import (
 	"errors"
+	"time"
 )
+
+type FechaObtencionDeDatos struct {
+	Dia  uint16
+	Mes  time.Month
+	Anio uint16
+}
+
+type IdentificadorDatos struct {
+	NombrePoblacion string
+	FechaDeDatos    FechaObtencionDeDatos
+}
 
 type DatosPoblacion struct {
 	PoblacionTotal     uint32
