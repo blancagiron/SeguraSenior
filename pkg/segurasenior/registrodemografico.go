@@ -18,6 +18,10 @@ type FechaObtencionDeDatos struct {
 	Anio uint16
 }
 
+func daysIn(mes time.Month, anio uint16) int {
+	return time.Date(int(anio), mes+1, 0, 0, 0, 0, 0, time.UTC).Day()
+}
+
 type IdentificadorDatos struct {
 	NombrePoblacion string
 	FechaDeDatos    FechaObtencionDeDatos
