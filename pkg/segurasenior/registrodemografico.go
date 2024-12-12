@@ -37,6 +37,10 @@ func NewRegistroDemografico(datosPoblacion map[IdentificadorDatos]DatosPoblacion
 		if identificador.NombrePoblacion == "" {
 			return nil, errors.New("el nombre de la población no puede estar vacío")
 		}
+
+		if int(identificador.FechaDeDatos.Dia) > daysIn(identificador.FechaDeDatos.Mes, identificador.FechaDeDatos.Anio) {
+			return nil, errors.New("día de mes no válido")
+		}
 	}
 
 	if len(datosPoblacion) == 0 {
