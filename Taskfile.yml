@@ -1,0 +1,10 @@
+version: '3'
+
+tasks:
+  check:
+    cmds:
+      - "gofmt -e ./.."
+
+  test:
+    cmds:
+      - "go test ./.. -v"
