@@ -30,6 +30,24 @@ Consiste en la definición de módulos, un módulo es una colección de paquetes
 
 ---
 
+## Instrucciones para las tareas automatizadas:
+
+Se debe tener **Taskfile** instalado en tu entorno. Si no se tiene, se puede instalar siguiendo lo indicado en su [documentación oficial](https://taskfile.dev/installation).
+
+* **Ejecutar la tarea `check`**: para detectar errores de sintáxis, malas prácticas y garantizar que es funcional.
+
+```console
+task check
+```
+  
+* **Ejecutar la tarea `test`**: ejecutar los tests que serán implementados en el futuro para validar que funcione correctamente y el comportamiento sea el esperado.
+
+```console
+task test
+```
+  
+---
+
 ## Lenguaje:
 
 - **Lenguaje de Programación**: Go
