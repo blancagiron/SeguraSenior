@@ -26,7 +26,7 @@ El sistema de `Go Modules` fue introducido por primera vez en `Go 1.1` y en la v
 
 Consiste en la definición de módulos, un módulo es una colección de paquetes que se organiza en un directorio que tiene el archivo de configuración `go.mod` en el que se especifica el nombre del módulo, las dependencias externas y sus versiones. 
 
-- [Archivo go.mod](/go.mod)
+- [Archivo go.mod]
 
 ---
 
