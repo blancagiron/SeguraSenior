@@ -8,7 +8,7 @@ Los criterios que se han seguido para escoger el gestor de tareas más adecuado 
 
 - Frecuencia de versiones: debe estar actualizado y mantenido con regularidad, para minimizar la deuda técnica. Aun así, en casos en los que la herramienta ya sea estable y no requiera actualizaciones constantes porque ya cumple su propósito y cumpla el criterio de comunidad y soporte, también se puede elegir.
 
-- Compatibilidad con Go: buscamos que el gestor de tareas esté diseñado para proyectos escritos en Go. Debe permitir el uso de herramientas de Go, como go build o go fmt, y tener compatibilidad con el sistema de módulos de Go (Go Modules).
+- Dirigido a Go: buscamos que el gestor de tareas esté diseñado para proyectos escritos en Go. Debe permitir el uso de herramientas de Go, como go build o go fmt, y tener compatibilidad con el sistema de módulos de Go (Go Modules).
 
 - Comunidad y soporte: el gestor de tareas escogido debe contar con una comunidad activa, también en foros como Reddit o StackOverflow, para que la resolución de problemas sea más rápida, ya que cuando se tenga que hacer frente a un inconveniente es probable que existan usuarios que ya hayan tenido experiencias similares y puedan ofrecer respuestas. Por otro lado debe tener una documentación bien estructurada.
 
