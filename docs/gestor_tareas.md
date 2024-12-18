@@ -8,26 +8,26 @@ Los criterios que se han seguido para escoger el gestor de tareas más adecuado 
 
 - Frecuencia de versiones: 
 
-Debe haber actualizaciones regulares publicadas en los últimos 12 meses para considerar que la herramienta está activa y mantenida, para minimizar la deuda técnica. El intervalo entre actualizaciones no debe ser superior a 3 meses.
+Debe haber actualizaciones regulares publicadas en los últimos 12 meses para considerar que la herramienta está activa y mantenida. El intervalo entre actualizaciones no debe ser superior a 3 meses ya que un intervalo mayor podría indicar falta de mantenimiento, lo que aumentaría la deuda técnica.
 
 - Comunidad y soporte: 
 
-Debe tener un número significativo de estrellas en su repositorio de GitHub y un número significativo de forks/colaboradores activos.
-Debe haber discusiones relacionadas con la herramienta en foros relevantes (por ejemplo, StackOverflow o Reddit). Esto se debe cumplir para que la resolución de problemas sea más rápida, ya que cuando se tenga que hacer frente a un inconveniente es probable que existan usuarios que ya hayan tenido experiencias similares y puedan ofrecer respuestas.
+Debe tener una comunidad amplia y activa ya que una herramienta utilizada por un número significativo de usuarios suele ser un indicativo de su utilidad y estabilidad.
+Debe haber discusiones relacionadas con la herramienta en foros relevantes (por ejemplo, StackOverflow o Reddit). Esto se debe cumplir para que la resolución de problemas sea más rápida, ya que cuando se tenga que hacer frente a un inconveniente es probable que existan usuarios que ya hayan tenido experiencias similares y puedan ofrecer respuestas. Además, la presencia de discusiones en foros  también ayuda a agilizar la resolución de inconvenientes.
 
 ---
 
 ## Candidatos:
 
-- **Mage:** Si bien su comunidad es grande y cuenta con más de 4.2k estrellas y 256 forks, las actualizaciones de este gestor cuentan con largos períodos de inactividad en su desarrollo, esto causa dudas sobre si podría incrementar la deuda técnica en proyectos que dependan de la herramienta. Estos datos junto a su documentación se puede consultar en su [Repositorio oficial](https://github.com/magefile/mage)
+- **Mage:** Si bien su comunidad es grande, las actualizaciones de este gestor cuentan con largos períodos de inactividad en su desarrollo, esto causa dudas sobre si podría incrementar la deuda técnica en proyectos que dependan de la herramienta. Estos datos junto a su documentación se puede consultar en su [Repositorio oficial](https://github.com/magefile/mage)
 
-- **Gotaskr:** Esta diseñado para facilitar la ejecución de tareas automatizadas desde la línea de comandos, permite definir tareas usando código Go de forma directa lo que hace el proceso más accesible y sencillo para los desarrolladores familiarizados con el lenguaje. Tiene una extensión en VSCode, pero su comunidad es muy pequeña, contando sólo con 34 estrellas y 6 forks, y su última actualización fue hace 2 meses. Esto se puede consultar en su [Repositorio oficial](https://github.com/Roemer/gotaskr)
+- **Gotaskr:** Esta diseñado para facilitar la ejecución de tareas automatizadas desde la línea de comandos, permite definir tareas usando código Go de forma directa lo que hace el proceso más accesible y sencillo para los desarrolladores familiarizados con el lenguaje. Tiene una extensión en VSCode, pero su comunidad es muy pequeña y su última actualización fue hace 2 meses. Esto se puede consultar en su [Repositorio oficial](https://github.com/Roemer/gotaskr)
 
 - **Make:** Herramienta muy conocida y consolidada. No recibe actualizaciones desde hace un tiempo pero ya está establecida y cuenta con una gran comunidad. Su documentación se puede consultar en [este enlace](https://www.gnu.org/software/make/manual/make.html).
 
-- **Task:**  Su comunidad es grande, cuenta con más de 11.8k estrellas, y recibe actualizaciones constantes, se utiliza un archivo `Taskfile.yml` en el que se definen las tareas. Se puede ver en el [Repositorio oficial](https://github.com/go-task/task)
+- **Task:**  Su comunidad es grande y recibe actualizaciones constantes, se utiliza un archivo `Taskfile.yml` en el que se definen las tareas. Se puede ver en el [Repositorio oficial](https://github.com/go-task/task)
 
-- **Gilbert:** Gilbert es un sistema de construcción y gestor de tareas para proyectos en Go. Permite definir y ejecutar tareas de forma declarativa utilizando un archivo gilbert.yaml. No se actualiza desde 2019 y su comunidad no es grande, tiene 117 estrellas y 7 forks, esto se pueden consultar en el [Repositorio oficial](https://github.com/go-gilbert/gilbert) 
+- **Gilbert:** Gilbert es un sistema de construcción y gestor de tareas para proyectos en Go. Permite definir y ejecutar tareas de forma declarativa utilizando un archivo gilbert.yaml. No se actualiza desde 2019 y su comunidad no es grande, esto se pueden consultar en el [Repositorio oficial](https://github.com/go-gilbert/gilbert) 
 
 - **Just:** Ofrece una manera fácil y flexible de automatizar tareas. Tiene una gran comunidad, con más de 22.7k estrellas y 495 forks, además de actualizaciones constantes. [Repositorio oficial](https://github.com/casey/just)
 
