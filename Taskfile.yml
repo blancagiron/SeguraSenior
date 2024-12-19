@@ -5,6 +5,3 @@ tasks:
     cmds:
       - "gofmt -e ./pkg/segurasenior"
 
-  test:
-    cmds:
-      - "go test ./pkg/segurasenior -v"
