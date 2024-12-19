@@ -10,20 +10,21 @@ Los criterios que se han seguido para escoger el gestor de tareas más adecuado 
 
 Debe haber actualizaciones regulares publicadas en los últimos 12 meses para considerar que la herramienta está activa y mantenida. El intervalo entre actualizaciones no debe ser superior a 3 meses ya que un intervalo mayor podría indicar falta de mantenimiento, lo que aumentaría la deuda técnica.
 
-- Comunidad y soporte: 
+- Comunidad : 
 
-Debe tener una comunidad amplia y activa ya que una herramienta utilizada por un número significativo de usuarios suele ser un indicativo de su utilidad y estabilidad.
+Debe tener una comunidad amplia y activa ya que una herramienta utilizada por un número significativo de usuarios suele ser un indicativo de su utilidad y estabilidad. Esto lo podemos medir mediante en número de estrellas y forks en las plataformas de su repositorio, ya que indican el interés general y cuantos usuarios están contribuyendo o adaptando la herramienta. 
+
 Debe haber discusiones relacionadas con la herramienta en foros relevantes (por ejemplo, StackOverflow o Reddit). Esto se debe cumplir para que la resolución de problemas sea más rápida, ya que cuando se tenga que hacer frente a un inconveniente es probable que existan usuarios que ya hayan tenido experiencias similares y puedan ofrecer respuestas. Además, la presencia de discusiones en foros  también ayuda a agilizar la resolución de inconvenientes.
 
 ---
 
 ## Candidatos:
 
-- **Mage:** Si bien su comunidad es grande, las actualizaciones de este gestor cuentan con largos períodos de inactividad en su desarrollo, esto causa dudas sobre si podría incrementar la deuda técnica en proyectos que dependan de la herramienta. Estos datos junto a su documentación se puede consultar en su [Repositorio oficial](https://github.com/magefile/mage)
+- **Mage:** Si bien su comunidad es grande, las actualizaciones de este gestor cuentan con largos períodos de inactividad en su desarrollo, esto causa dudas sobre si podría incrementar la deuda técnica en proyectos que dependan de la herramienta. Estos datos, las estrellas y los forks junto a su documentación se puede consultar en su [Repositorio oficial](https://github.com/magefile/mage)
 
-- **Gotaskr:** Esta diseñado para facilitar la ejecución de tareas automatizadas desde la línea de comandos, permite definir tareas usando código Go de forma directa lo que hace el proceso más accesible y sencillo para los desarrolladores familiarizados con el lenguaje. Tiene una extensión en VSCode, pero su comunidad es muy pequeña y su última actualización fue hace 2 meses. Esto se puede consultar en su [Repositorio oficial](https://github.com/Roemer/gotaskr)
+- **Gotaskr:** Esta diseñado para facilitar la ejecución de tareas automatizadas desde la línea de comandos, permite definir tareas usando código Go de forma directa lo que hace el proceso más accesible y sencillo para los desarrolladores familiarizados con el lenguaje. Tiene una extensión en VSCode, pero su comunidad es muy pequeña y su última actualización fue hace 2 meses. Esto junto a sus estrellas y número de forks se puede consultar en su [Repositorio oficial](https://github.com/Roemer/gotaskr)
 
-- **Make:** Herramienta muy conocida y consolidada. No recibe actualizaciones desde hace un tiempo pero ya está establecida y cuenta con una gran comunidad. Su documentación se puede consultar en [este enlace](https://www.gnu.org/software/make/manual/make.html).
+- **Make:** Herramienta muy conocida y consolidada. No recibe actualizaciones desde hace un tiempo pero ya está establecida y cuenta con una gran comunidad. Su documentación se puede consultar en [este enlace](https://www.gnu.org/software/make/manual/make.html) y [aquí](https://lists.gnu.org/archive/html/info-gnu/2023-02/msg00011.html) podemos ver cuando fue su última actualización.
 
 - **Task:**  Su comunidad es grande y recibe actualizaciones constantes, se utiliza un archivo `Taskfile.yml` en el que se definen las tareas. Se puede ver en el [Repositorio oficial](https://github.com/go-task/task)
 
