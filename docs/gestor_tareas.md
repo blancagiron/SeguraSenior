@@ -8,7 +8,7 @@ Los criterios que se han seguido para escoger el gestor de tareas más adecuado 
 
 - Última actualización: 
 
-Debe haber actualizaciones regulares publicadas en los últimos 12 meses para considerar que la herramienta está activa y mantenida. El intervalo entre actualizaciones no debe ser superior a 3 meses ya que un intervalo mayor podría indicar falta de mantenimiento, lo que aumentaría la deuda técnica.
+Debe haber actualizaciones regulares publicadas en los últimos 12 meses para considerar que la herramienta está activa y mantenida. El intervalo entre actualizaciones no debe ser superior a 3 meses ya que un intervalo mayor podría indicar falta de mantenimiento, lo que aumentaría la deuda técnica. Esto no es necesario para herramientas que ya sean maduras y estables, como es el caso de Make
 
 - Comunidad : 
 
