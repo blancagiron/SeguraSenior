@@ -28,12 +28,6 @@ Se debe tener **Taskfile** instalado en tu entorno. Si no se tiene, se puede ins
 task check
 ```
   
-* **Ejecutar la tarea `test`**: ejecutar los tests que serán implementados en el futuro para validar que funcione correctamente y el comportamiento sea el esperado.
-
-```console
-task test
-```
-  
 ---
 
 ## Lenguaje:
