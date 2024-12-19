@@ -24,7 +24,7 @@ Debe haber discusiones relacionadas con la herramienta en foros relevantes (por 
 
 ## Candidatos:
 
-- **Mage:** Si bien su comunidad es grande, las actualizaciones de este gestor cuentan con largos períodos de inactividad en su desarrollo, esto causa dudas sobre si podría incrementar la deuda técnica en proyectos que dependan de la herramienta. Estos datos, las estrellas y los forks junto a su documentación se puede consultar en su [Repositorio oficial](https://github.com/magefile/mage)
+- **Mage:** Si bien su comunidad es grande, las actualizaciones de este gestor cuentan con largos períodos de inactividad en su desarrollo, esto causa dudas sobre si podría incrementar la deuda técnica en proyectos que dependan de la herramienta. Su última actualización fue el 11/05/2023. Estos datos, las estrellas y los forks junto a su documentación se puede consultar en su [Repositorio oficial](https://github.com/magefile/mage)
 
 - **Gotaskr:** Esta diseñado para facilitar la ejecución de tareas automatizadas desde la línea de comandos, permite definir tareas usando código Go de forma directa lo que hace el proceso más accesible y sencillo para los desarrolladores familiarizados con el lenguaje. Tiene una extensión en VSCode, pero su comunidad es muy pequeña y su última actualización fue hace 2 meses. Esto junto a sus estrellas y número de forks se puede consultar en su [Repositorio oficial](https://github.com/Roemer/gotaskr)
 
