@@ -18,6 +18,18 @@ Como periodista, existe una creciente preocupación por analizar y reportar sobr
 
 ---
 
+## Instrucciones para las tareas automatizadas:
+
+Se debe tener **Taskfile** instalado en tu entorno. Si no se tiene, se puede instalar siguiendo lo indicado en su [documentación oficial](https://taskfile.dev/installation).
+
+* **Ejecutar la tarea `check`**: para detectar errores de sintáxis, malas prácticas y garantizar que es funcional.
+
+```console
+task check
+```
+  
+---
+
 ## Lenguaje:
 
 - **Lenguaje de Programación**: Go
@@ -30,6 +42,8 @@ Como periodista, existe una creciente preocupación por analizar y reportar sobr
 - [Documentación Adicional](./documentacion_adicional)
 - [Historias de Usuario](./docs/historias.md)
 - [Milestones](./docs/milestones.md)
+- [Gestor de tareas](./docs/gestor_tareas.md)
+- [Gestor de dependencias](./docs/gestor_dependencias.md)
 
 ---
 
