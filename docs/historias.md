@@ -11,7 +11,7 @@ Además, se enfrenta a la inconsistencia de formatos: algunos datos están en PD
 Páginas para consultar la información: 
 
 - [SIMA](https://www.juntadeandalucia.es/institutodeestadisticaycartografia/sima/ficha.htm?mun=23065)
-- [INE](https://ine.es/buscar/searchResults.do?searchString=Orcera&Menu_botonBuscador=&searchType=DEF_SEARCH&startat=0&L=0)
+
 
 	
 	
