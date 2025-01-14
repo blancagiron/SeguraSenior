@@ -79,7 +79,12 @@ Los criterios que se han seguido para escoger el test runner más adecuado son:
 	  - No proporciona soporte directo para mocks, pero se puede combinar con herramientas como `gomock` o `Testify/mock` para realizar pruebas de simulación de dependencias externas.
 
 	Podemos consultar más información en su [repositorio](https://github.com/smartystreets/goconvey)
+	
+---
+
+## Test runner elegido:
 
 
+Tras analizar los criterios establecisos, escojo `Testify` como test runner. `Testify` requiere solo de una dependencia adicional, es compatible con herramientas estándar de Go para la cobertura de código y además incluye soporte nativo para mocks a través de su paquete `mock`. Los demás candidatos no cumplen con todos los requisitos: ninguno tiene soporte nativo para mocks, mientras que `Ginkgo`, `Gomega` y `GoConvey` requieren múltiples dependencias adicionales. Por estas razones, `Testify` se presenta como la opción más adecuada.
  
 
