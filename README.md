@@ -44,6 +44,8 @@ task check
 - [Milestones](./docs/milestones.md)
 - [Gestor de tareas](./docs/gestor_tareas.md)
 - [Gestor de dependencias](./docs/gestor_dependencias.md)
+- [Test runner elegido](./docs/test_runner.md)
+- [Biblioteca de aserciones](./docs/biblioteca_aserciones.md)
 
 ---
 
