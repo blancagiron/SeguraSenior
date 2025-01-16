@@ -34,6 +34,16 @@ func TestCalcularTasas(t *testing.T) {
 			expectedTasaNatalidad: 0.00,
 			expectedTasaMortalidad: 0.00,
 		},
+		{
+			name: "Caso 3: La población total es 0 (dato inválido)",
+			datosEntrada: segurasenior.DatosPoblacion{
+				PoblacionTotal: 0,
+				Nacimientos:    10,
+				Defunciones:    34,
+			},
+			expectedTasaNatalidad: 0.00,
+			expectedTasaMortalidad: 0.00,
+		},
 		
 	}
 
