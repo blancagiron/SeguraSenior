@@ -5,6 +5,7 @@ import (
 	"errors"
 	"os"
 	"time"
+	"math"
 )
 
 type FechaObtencionDeDatos struct {
@@ -33,8 +34,8 @@ type DatosPoblacion struct {
 
 func (d *DatosPoblacion) CalcularTasas() {
 	if d.PoblacionTotal > 0 {
-		d.TasaNatalidadSobre1000 = float64(d.Nacimientos) / float64(d.PoblacionTotal) * 1000
-		d.TasaMortalidadSobre1000 = float64(d.Defunciones) / float64(d.PoblacionTotal) * 1000
+		d.TasaNatalidadSobre1000 = math.Round((float64(d.Nacimientos)/float64(d.PoblacionTotal))*1000*100) / 100
+		d.TasaMortalidadSobre1000 = math.Round((float64(d.Defunciones)/float64(d.PoblacionTotal))*1000*100) / 100
 	}
 }
 
