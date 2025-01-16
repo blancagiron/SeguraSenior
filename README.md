@@ -27,12 +27,30 @@ Se debe tener **Taskfile** instalado en tu entorno. Si no se tiene, se puede ins
 ```console
 task check
 ```
+
+* **Ejecutar la tarea `test`**: para ejecutar todas las pruebas unitarias definidas en el proyecto y verificar que el código funciona correctamente.
+
+```console
+task test
+```
   
 ---
 
 ## Lenguaje:
 
 - **Lenguaje de Programación**: Go
+
+---
+
+## Instalación de dependencias necesarias:
+
+- **Testify:**
+
+Utiliza el comando `go get` para instalar la dependencia de Testify. Esto descargará el paquete necesario y lo añadirá al archivo `go.mod`
+
+```console
+go get github.com/stretchr/testify
+```
 
 ---
 
