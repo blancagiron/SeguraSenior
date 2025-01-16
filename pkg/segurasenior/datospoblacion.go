@@ -64,4 +64,62 @@ func NewDatosPoblacion(poblacion uint32, hombres uint32, mujeres uint32, edadMed
 	}, nil
 }
 
+func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDatos, DatosPoblacion, error) {
+	file, err := os.Open(nombreArchivo)
+	if err != nil {
+		return IdentificadorDatos{}, DatosPoblacion{}, err
+	}
+	defer file.Close()
+
+	var datos map[string]struct {
+		NombrePueblo            string  `json:"NombrePueblo"`
+		FechaDatos              string  `json:"FechaDatos"`
+		PoblacionTotal          uint32  `json:"PoblacionTotal"`
+		Hombres                 uint32  `json:"Hombres"`
+		Mujeres                 uint32  `json:"Mujeres"`
+		EdadMedia               float32  `json:"EdadMedia"`
+		Menor20                 float64 `json:"Menor20"`
+		Mayor65                 float64 `json:"Mayor65"`
+		Nacimientos             uint32  `json:"Nacimientos"`
+		Defunciones             uint32  `json:"Defunciones"`
+	}
+
+	if err := json.NewDecoder(file).Decode(&datos); err != nil {
+		return IdentificadorDatos{}, DatosPoblacion{}, err
+	}
+
+	dato, existe := datos[nombrePoblacion]
+	if !existe {
+		return IdentificadorDatos{}, DatosPoblacion{}, errors.New("población no encontrada en el archivo")
+	}
+
+	fecha, err := time.Parse("02/01/2006", dato.FechaDatos)
+	if err != nil {
+		return IdentificadorDatos{}, DatosPoblacion{}, errors.New("formato de fecha inválido en el archivo JSON")
+	}
+
+	identificador := IdentificadorDatos{
+		NombrePoblacion: dato.NombrePueblo,
+		FechaDeDatos: FechaObtencionDeDatos{
+			Dia:  uint16(fecha.Day()),
+			Mes:  fecha.Month(),
+			Anio: uint16(fecha.Year()),
+		},
+	}
+
+	datosPoblacion := DatosPoblacion{
+		PoblacionTotal:     dato.PoblacionTotal,
+		Hombres:            dato.Hombres,
+		Mujeres:            dato.Mujeres,
+		EdadMedia:          dato.EdadMedia,
+		PorcentajeMenora20: dato.Menor20,
+		PorcentajeMayora65: dato.Mayor65,
+		Nacimientos:        dato.Nacimientos,
+		Defunciones:        dato.Defunciones,
+	}
+
+	datosPoblacion.CalcularTasas()
+
+	return identificador, datosPoblacion, nil
+}
 
