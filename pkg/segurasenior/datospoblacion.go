@@ -31,6 +31,12 @@ type DatosPoblacion struct {
 	TasaMortalidadSobre1000 float64
 }
 
+func (d *DatosPoblacion) CalcularTasas() {
+	if d.PoblacionTotal > 0 {
+		d.TasaNatalidadSobre1000 = float64(d.Nacimientos) / float64(d.PoblacionTotal) * 1000
+		d.TasaMortalidadSobre1000 = float64(d.Defunciones) / float64(d.PoblacionTotal) * 1000
+	}
+}
 
 
 func NewDatosPoblacion(poblacion uint32, hombres uint32, mujeres uint32, edadMedia float32,
