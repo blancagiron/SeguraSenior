@@ -6,85 +6,41 @@
 
 Los criterios que se han seguido para escoger el test runner más adecuado son:
 
-- **Instalación de dependencias:** Se evaluará si el test runner requiere instalación adicional de paquetes o bibliotecas externas, priorizando aquellos que minimicen las dependencias externas.
+- **Instalación de dependencias:** Se evaluará si el test runner requiere instalación adicional de paquetes o bibliotecas externas, priorizando aquellos que minimicen las dependencias externas. Go incentiva a la no dependencia de librerías externas, por lo que se dará prioridad a herramientas que formen parte de su [librería estándar](https://pkg.go.dev/std)
+
+- **Última actualización:** Se valorará que haya actualizaciones regulares publicadas en los últimos 12 meses y que el intervalo entre ellas no sea superior a 3 meses, ya que un intervalo mayor puede indicar falta de mantenimiento, lo que aumentaría la deuda técnica.
+
+- **Madurez y estabilidad:** Se considerará si la herramienta es madura y adoptada dentro de la comunidad de Go. En el caso de herramientas que ya sean maduras, estables e integradas como sucede con `testing`, no es necesario que tengan actualizaciones regulares. Una herramienta madura ya ha alcanzado un nivel de estabilidad en el que los cambios y mejoras son menos frecuentes, ya que ha sido suficientemente probada y utilizada, por lo tanto, su funcionalidad es confiable.
 
 - **Cobertura de código:** Verificaremos si el test runner facilita la generación de métricas de cobertura.
 
-- **Soporte para mocks:** Evaluaremos si el test runner incluye soporte para la simulación de servicios externos mediante mocks, lo cuál es importante para facilitar la simulación de servicios externos como solicitudes HTTP.
 
 ---
 
 ## Candidatos:
 
 - **Go Testing:** 
-	- **Instalación de dependencias:**  
-	  - `Go Testing` forma parte de la biblioteca estándar de Go, por lo que no se necesita ninguna instalación adicional.
-	  
-	- **Cobertura de código:**  
-	  - Compatible con herramientas estándar de Go para cobertura, como el comando `go test -cover`, que genera métricas de cobertura.
-	  
-	- **Soporte para mocks:**  
-	  - No incluye soporte nativo para mocks. Sin embargo, se puede usar con bibliotecas externas como `Testify/mock` o `gomock`.
-	 
-	Podemos consultar más información [aquí](https://pkg.go.dev/testing)
-	
-	
-- **Testify**
-	- **Instalación de dependencias:**  
-	  - Hay que instalar el paquete `testify` (`go get github.com/stretchr/testify`), lo cual es una dependencia adicional.
-	  
-	- **Cobertura de código:**  
-	  - No genera métricas de cobertura directamente, pero es compatible con herramientas de cobertura de Go, como `go test -cover`.
-	  
-	- **Soporte para mocks:**  
-	  - Incluye soporte nativo para mocks a través del paquete `mock`.
+	- `Go Testing`forma parte de la biblioteca estándar de Go, por lo que no requiere ninguna instalación adicional y es mantenida junto al lenguaje. Su última actualización fue hace un mes y es compatible con herramientas estándar de Go para cobertura, como el comando `go test -cover`, el cuál genera métricas de cobertura.
 
-	Podemos consultar más información en su [repositorio](https://github.com/stretchr/testify)
+	Podemos consultar más información [aquí](https://pkg.go.dev/testing) y en su [repositorio](https://github.com/golang/go/blob/master/src/testing/testing.go)
 	
  
 - **Ginkgo**
-	- **Instalación de dependencias:**  
-	  - Requiere la instalación de varias dependencias, como `github.com/onsi/ginkgo` y `github.com/onsi/gomega` para su funcionalidad completa, lo que puede hacer que el proyecto dependa de más bibliotecas.
+	- Requiere la instalación de varias dependencias, como `github.com/onsi/ginkgo` y `github.com/onsi/gomega` para su funcionalidad completa, lo que puede hacer que el proyecto dependa de más bibliotecas. Es compatible con herramientas de cobertura estándar de Go, como `go test -cover`. 
 	  
-	- **Cobertura de código:**  
-	  - Compatible con herramientas de cobertura estándar de Go, como `go test -cover`. 
-	  
-	- **Soporte para mocks:**   
-	  - Requiere configuración adicional para mocks. Se puede usar con bibliotecas externas como `Testify/mock` o `gomock`
-	  
-	Podemos consultar más información en su [repositorio](https://github.com/onsi/ginkgo)
-  
-- **Gomega**
-	- **Instalación de dependencias:**  
-	  - Se instala como dependencia de Ginkgo, pero también puede usarse de forma independiente (`go get github.com/onsi/gomega`).
-	  
-	- **Cobertura de código:**  
-	  - Compatible con herramientas de cobertura estándar de Go, como `go test -cover`. 
-	  
-	- **Soporte para mocks:**  
-	  - No proporciona soporte directo para mocks, pero se puede combinar con herramientas como `gomock` o `Testify/mock` para realizar pruebas de simulación de dependencias externas.
-	  
-	  Podemos consultar más información en su [repositorio](https://github.com/onsi/gomega)
-	  
+	Podemos consultar más información en su [repositorio](https://github.com/onsi/ginkgo), como que su última actualización fue hace menos de un mes.
 
 
 - **GoConvey**
-	- **Instalación de dependencias:**  
-	  - Requiere la instalación de la librería `GoConvey` (`go get github.com/smartystreets/goconvey`), lo que aumenta las dependencias externas en el proyecto.
+	
+	Requiere la instalación de la librería `GoConvey` (`go get github.com/smartystreets/goconvey`), lo que aumenta las dependencias externas en el proyecto. Además, su última actualización fue hace casi un año. Al igual que los otros candidatos, es compatible con herramientas de cobertura estándar de Go, como `go test -cover`. 
 	  
-	- **Cobertura de código:**  
-	  - Compatible con herramientas de cobertura estándar de Go, como `go test -cover`. 
-	  
-	- **Soporte para mocks:**  
-	  - No proporciona soporte directo para mocks, pero se puede combinar con herramientas como `gomock` o `Testify/mock` para realizar pruebas de simulación de dependencias externas.
-
 	Podemos consultar más información en su [repositorio](https://github.com/smartystreets/goconvey)
 	
 ---
 
 ## Test runner elegido:
 
+El test runner seleccionado es `Go Testing` ya que el propio lenguaje incentiva el uso de la biblioteca estándar para reducir las dependencias de bibliotecas externas, además de que se trata de una herramienta madura. 
 
-Tras analizar los criterios establecisos, escojo `Testify` como test runner. `Testify` requiere solo de una dependencia adicional, es compatible con herramientas estándar de Go para la cobertura de código y además incluye soporte nativo para mocks a través de su paquete `mock`. Los demás candidatos no cumplen con todos los requisitos: ninguno tiene soporte nativo para mocks, mientras que `Ginkgo`, `Gomega` y `GoConvey` requieren múltiples dependencias adicionales. Por estas razones, `Testify` se presenta como la opción más adecuada.
- 
 
