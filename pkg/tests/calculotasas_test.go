@@ -44,6 +44,16 @@ func TestCalcularTasas(t *testing.T) {
 			expectedTasaNatalidad: 0.00,
 			expectedTasaMortalidad: 0.00,
 		},
+		{
+			name: "Caso 4: Hay datos erróneos ",
+			datosEntrada: segurasenior.DatosPoblacion{
+				PoblacionTotal: 200,
+				Nacimientos:    201,
+				Defunciones:    34,
+			},
+			expectedTasaNatalidad: 0.00,
+			expectedTasaMortalidad: 0.00,
+		},	
 		
 	}
 
