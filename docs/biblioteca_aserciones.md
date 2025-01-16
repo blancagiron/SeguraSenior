@@ -11,6 +11,8 @@
 
 - **Madurez:** Se considerará si la herramienta es madura y adoptada dentro de la comunidad de Go. Una herramienta madura ya ha alcanzado un nivel de estabilidad en el que los cambios y mejoras son menos frecuentes, ya que ha sido suficientemente probada y utilizada, por lo tanto, su funcionalidad es confiable y no necesita actualizaciones regulares.
 
+- **Utilidad para comparar datos:** Se considerará que la biblioteca ofrezca funcionalidades específicas como métodos para la comparación de datos.
+
 - **Compatibilidad:** La biblioteca debe ser totalmente compatible con el test runner escogido, en este caso, el test runner estándar de Go `testing`.
 
 ---
@@ -34,8 +36,7 @@
 
 ## Biblioteca de aserciones elegida:
 
-La herramienta elegida finalmente es `Go Testing` ya que cumple con todos los criterios de evaluación sin añadir dependencias externas al proyecto,
-
+La herramienta elegida finalmente es `Testify`, ya que aunque añada una dependencia externa al proyecto, proporciona métodos como `assert.Equal` o `assert.JSONEq`que permiten hacer comparaciones entre estructuras de datos, lo cual es particularmente relevante para mi proyecto. 
 
 
 
