@@ -4,37 +4,38 @@
 
 ## Criterios:
 
-- **Compatibilidad con el test runner escogido:** Debe ser compatible con el test runner escogido, en este caso `Testify`, sin necesidad de configuraciones adicionales, garantizando que las aserciones funcionen sin inconvenientes al usarlas junto al test runner.
 
-- **Instalación de dependencias:** Minimizar el número de dependencias del proyecto. Si el test runner elegido proporciona las aserciones necesarias y cubre los criterios mencionados, no se deberían añadir más bibliotecas externas.
+- **Instalación de dependencias:** Se evaluará si la biblioteca de aserciones requiere instalación adicional de paquetes o bibliotecas externas, priorizando aquellos que minimicen las dependencias externas. Go incentiva a la no dependencia de librerías externas, por lo que se dará prioridad a herramientas que formen parte de su [librería estándar](https://pkg.go.dev/std)
+
+- **Estabilidad:** Debe tener una versión estable lanzada al menos hace un año. Esto asegura que la biblioteca está mantenida y que sigue recibiendo soporte.
+
+- **Madurez:** Se considerará si la herramienta es madura y adoptada dentro de la comunidad de Go. Una herramienta madura ya ha alcanzado un nivel de estabilidad en el que los cambios y mejoras son menos frecuentes, ya que ha sido suficientemente probada y utilizada, por lo tanto, su funcionalidad es confiable y no necesita actualizaciones regulares.
+
+- **Compatibilidad:** La biblioteca debe ser totalmente compatible con el test runner escogido, en este caso, el test runner estándar de Go `testing`.
 
 ---
 
 ## Candidatos:
 
-- **Testify Assertions:** Al ser parte del paquete `Testify` está completamente integrado con su test runner y no requiere configuraciones adicionales, además de que tampoco añade dependencias extra.  Esta información se puede consultar en su [repositorio](https://github.com/stretchr/testify)
+- **Testify:** Es ampliamente adoptada en la comunidad de Go y compatible con el test runner estánadr `testing`. Requiere instalar una dependencia adicional. Su última versión salió hace 3 meses. Esta información se puede consultar en su [repositorio](https://github.com/stretchr/testify)
 
-- **Gomega:** No es parte de `Testify`pero se puede usar junto a este test runner, es más común usarlo con `Ginkgo`. Requiere instalar `Gomega`como dependencia adicional lo que aumenta la carga de dependencias del proyecto. Se puede consultar más información en su [repositorio](https://github.com/onsi/gomega)
+- **GoMega:** Es más común usarlo con `Ginkgo`. Requiere instalar `GoMega`como dependencia adicional lo que aumenta la carga de dependencias del proyecto. Su última actualización fue hace 2 semanas. Se puede consultar más información en su [repositorio](https://github.com/onsi/gomega)
 
-- **GoCheck:**  No tiene integración directa con `Testify`por lo que se requiere una configuración adicional y añadir dependencias externas. Se puede consultar más información en este [repositorio](https://github.com/go-check/check)
+- **GoCheck:**  Requiere una configuración adicional y añadir dependencias externas. Por lo que se puede consultar en su repositorio no se actualiza desde hace más de 5 años. Se puede consultar más información en este [repositorio](https://github.com/go-check/check)
 
-- **Is:** Su repositorio es [este](https://github.com/matryer/is). No requiere dependencias adicionales y es compatible con el test runner estándar de Go y Testify sin necesidad de configuraciones adicionales. 
+- **Is:** Su repositorio es [este](https://github.com/matryer/is). No requiere dependencias adicionales y es compatible con el test runner estándar de Go sin necesidad de configuraciones adicionales. Su última actualización fue hace 2 años.
+
+- **Ghost:** Su repositorio es [este](https://github.com/rliebz/ghost). Su última actualización fue hace 2 semanas. No requiere instalaciones adicionales ya que se integra de forma directa con el paquete estándar de Go `testing`. 
+
+- **Caso especial. Go Testing:** No se trata de una biblioteca de aserciones pero permite la comprobación directa de condiciones y el manejo de errores. Se puede registrar un error usando `t.Error` personalizando el mensaje.  No requiere dependencias externas y es mantenida junto al lenguaje. Se puede consultar más información [aquí](https://pkg.go.dev/testing).
+
+
 ---
 
 ## Biblioteca de aserciones elegida:
 
-Cómo estamos utilizando `Testify` como test runner, se elige `Testify Assertions`como biblioteca de aserciones ya que ofrece compatibilidad completa con el test runners y no introduce dependencias adicionales innecesarias.
+La herramienta elegida finalmente es `Go Testing` ya que cumple con todos los criterios de evaluación sin añadir dependencias externas al proyecto,
 
-
-
-
-
-
-
-
-
-
----
 
 
 
