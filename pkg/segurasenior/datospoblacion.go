@@ -1,7 +1,9 @@
 package segurasenior
 
 import (
+	"encoding/json"
 	"errors"
+	"os"
 	"time"
 )
 
@@ -17,38 +19,43 @@ type IdentificadorDatos struct {
 }
 
 type DatosPoblacion struct {
-	PoblacionTotal     uint32
-	PoblacionJoven     uint32
-	PoblacionAdulta    uint32
-	PoblacionAnciana   uint32
-	TasaNatalidad      float64
-	TasaEnvejecimiento float64
-	TasaMortalidad     float64
+	PoblacionTotal          uint32
+	Hombres                 uint32
+	Mujeres                 uint32
+	EdadMedia               float32
+	PorcentajeMenora20      float64
+	PorcentajeMayora65      float64
+	Nacimientos             uint32
+	Defunciones             uint32
+	TasaNatalidadSobre1000  float64
+	TasaMortalidadSobre1000 float64
 }
 
-func NewDatosPoblacion(poblacion uint32, poblacionMenor18 uint32, poblacionEntre18Y64 uint32, poblacionMayor64 uint32,
-	tasaNatalidadSobre1000 float64, tasaEnvejecimientoSobre1000 float64, tasaMortalidadSobre1000 float64) (*DatosPoblacion, error) {
 
-	if poblacionMenor18+poblacionEntre18Y64+poblacionMayor64 != poblacion {
-		return nil, errors.New("valor de poblacion total erróneo, debe ser la suma de la población menor a 18, entre 18 y 64 y mayor a 64")
+
+func NewDatosPoblacion(poblacion uint32, hombres uint32, mujeres uint32, edadMedia float32,
+	porcentajeMenora20 float64, porcentajeMayora65 float64, nacimientos uint32, defunciones uint32) (*DatosPoblacion, error) {
+
+	if hombres+mujeres != poblacion {
+		return nil, errors.New("la población total no coincide con la suma de hombres y mujeres")
+	}
+	if porcentajeMenora20 < 0 || porcentajeMenora20 > 100 {
+		return nil, errors.New("el porcentaje de menores de 20 años debe estar entre 0 y 100")
+	}
+	if porcentajeMayora65 < 0 || porcentajeMayora65 > 100 {
+		return nil, errors.New("el porcentaje de mayores de 65 años debe estar entre 0 y 100")
 	}
 
-	if (tasaNatalidadSobre1000 < 0.0) || (tasaNatalidadSobre1000 > 1000.0) {
-		return nil, errors.New("valor de tasa de natalidada erróneo, debe estar comprendido entre 0 y 1000")
-	}
-	if (tasaEnvejecimientoSobre1000 < 0.0) || (tasaEnvejecimientoSobre1000 > 1000.0) {
-		return nil, errors.New("valor de tasa de envejecimiento erróneo, debe estar comprendido entre 0 y 1000")
-	}
-	if (tasaMortalidadSobre1000 < 0.0) || (tasaMortalidadSobre1000 > 1000.0) {
-		return nil, errors.New("valor de tasa de mortalidad erróneo, debe estar comprendido entre 0 y 1000")
-	}
 	return &DatosPoblacion{
 		PoblacionTotal:     poblacion,
-		PoblacionJoven:     poblacionMenor18,
-		PoblacionAdulta:    poblacionEntre18Y64,
-		PoblacionAnciana:   poblacionMayor64,
-		TasaNatalidad:      tasaNatalidadSobre1000,
-		TasaEnvejecimiento: tasaEnvejecimientoSobre1000,
-		TasaMortalidad:     tasaMortalidadSobre1000,
+		Hombres:            hombres,
+		Mujeres:            mujeres,
+		EdadMedia:          edadMedia,
+		PorcentajeMenora20: porcentajeMenora20,
+		PorcentajeMayora65: porcentajeMayora65,
+		Nacimientos:        nacimientos,
+		Defunciones:        defunciones,
 	}, nil
 }
+
+
