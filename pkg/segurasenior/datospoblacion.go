@@ -1,12 +1,13 @@
 package segurasenior
 
+
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
+	"math"
 	"os"
 	"time"
-	"math"
-	"fmt"
 )
 
 type FechaObtencionDeDatos struct {
@@ -39,7 +40,6 @@ func (d *DatosPoblacion) CalcularTasas() {
 		d.TasaMortalidadSobre1000 = math.Round((float64(d.Defunciones)/float64(d.PoblacionTotal))*1000*100) / 100
 	}
 }
-
 
 func NewDatosPoblacion(poblacion uint32, hombres uint32, mujeres uint32, edadMedia float32,
 	porcentajeMenora20 float64, porcentajeMayora65 float64, nacimientos uint32, defunciones uint32) (*DatosPoblacion, error) {
@@ -76,7 +76,6 @@ func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDat
 	var identificador IdentificadorDatos
 	var datosPoblacion DatosPoblacion
 
-	
 	file, err := os.Open(nombreArchivo)
 	if err != nil {
 		return identificador, datosPoblacion, fmt.Errorf("no se pudo abrir el archivo: %w", err)
@@ -133,7 +132,6 @@ func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDat
 		return identificador, datosPoblacion, fmt.Errorf("formato de fecha inválido ('%s'): %w", dato.FechaDatos, err)
 	}
 
-	
 	identificador = IdentificadorDatos{
 		NombrePoblacion: dato.NombrePueblo,
 		FechaDeDatos: FechaObtencionDeDatos{
