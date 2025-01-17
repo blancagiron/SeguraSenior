@@ -62,8 +62,19 @@ func TestLecturaCorrectaDatosDesdeJSON(t *testing.T) {
         _, _, err := segurasenior.LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion)
 
         assert.Error(t, err)
-        assert.Contains(t, err.Error(), "No existe el archivo")
+        assert.Contains(t, err.Error(), "no such file or directory")
     })
+
+	t.Run("Población No Encontrada", func(t *testing.T) {
+		nombreArchivo := "../testdata/data.json"
+		nombrePoblacion := "Granada"
+
+		_, _, err := segurasenior.LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion)
+
+		assert.Error(t, err)
+		assert.Contains(t, err.Error(), "población '"+nombrePoblacion+"' no encontrada en el archivo")
+	})
+
 
 
 }
