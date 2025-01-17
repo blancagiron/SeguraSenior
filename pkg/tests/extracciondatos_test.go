@@ -2,9 +2,9 @@ package segurasenior
 
 import (
 	"SeguraSenior/pkg/segurasenior"
-	"github.com/stretchr/testify/assert"
 	"math"
 	"testing"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestLecturaCorrectaDatosDesdeJSON(t *testing.T) {
@@ -56,14 +56,14 @@ func TestLecturaCorrectaDatosDesdeJSON(t *testing.T) {
 		assert.Equal(t, expectedDatos, datosExtraidos)
 	})
 	t.Run("Archivo No Encontrado", func(t *testing.T) {
-        nombreArchivo := "../testdata/no_existe.json"
-        nombrePoblacion := "Orcera"
+		nombreArchivo := "../testdata/no_existe.json"
+		nombrePoblacion := "Orcera"
 
-        _, _, err := segurasenior.LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion)
+		_, _, err := segurasenior.LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion)
 
-        assert.Error(t, err)
-        assert.Contains(t, err.Error(), "no such file or directory")
-    })
+		assert.Error(t, err)
+		assert.Contains(t, err.Error(), "no such file or directory")
+	})
 
 	t.Run("Población No Encontrada", func(t *testing.T) {
 		nombreArchivo := "../testdata/data.json"
@@ -75,6 +75,16 @@ func TestLecturaCorrectaDatosDesdeJSON(t *testing.T) {
 		assert.Contains(t, err.Error(), "población '"+nombrePoblacion+"' no encontrada en el archivo")
 	})
 
+	t.Run("JSON inválido", func(t *testing.T) {
+		nombreArchivo := "../testdata/data_invalido.json"
+		nombrePoblacion := "Orcera"
 
+		_, _, err := segurasenior.LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion)
+
+		assert.Error(t, err)
+		assert.Contains(t, err.Error(), "invalid character")
+	})
+
+	
 
 }
