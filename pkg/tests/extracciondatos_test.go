@@ -75,6 +75,7 @@ func TestLecturaCorrectaDatosDesdeJSON(t *testing.T) {
 		assert.Contains(t, err.Error(), "población '"+nombrePoblacion+"' no encontrada en el archivo")
 	})
 
+	
 	t.Run("JSON inválido", func(t *testing.T) {
 		nombreArchivo := "../testdata/data_invalido.json"
 		nombrePoblacion := "Orcera"
@@ -84,7 +85,4 @@ func TestLecturaCorrectaDatosDesdeJSON(t *testing.T) {
 		assert.Error(t, err)
 		assert.Contains(t, err.Error(), "invalid character")
 	})
-
-	
-
 }
