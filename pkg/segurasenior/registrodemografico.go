@@ -1,5 +1,5 @@
-
 package segurasenior
+
 
 type EstadoPoblacion string
 
@@ -19,9 +19,9 @@ func CrearRegistroDesdeDatos(identificador IdentificadorDatos, datos DatosPoblac
 		estado = Decreciente
 	}
 
+
 	return &RegistroDemografico{
 		EstadisticasPoblacion: map[IdentificadorDatos]DatosPoblacion{identificador: datos},
 		EstadoDeLaPoblacion:   estado,
 	}, nil
 }
-
