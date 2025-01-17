@@ -4,16 +4,15 @@
 
 ## Criterios:
 
-Los criterios que se han seguido para escoger el test runner más adecuado son:
+Los criterios seguidos para escoger el test runner más adecuado son:
 
 - **Instalación de dependencias:** Se evaluará si el test runner requiere instalación adicional de paquetes o bibliotecas externas, priorizando aquellos que minimicen las dependencias externas. Go incentiva a la no dependencia de librerías externas, por lo que se dará prioridad a herramientas que formen parte de su [librería estándar](https://pkg.go.dev/std)
 
 - **Última actualización:** Se valorará que haya actualizaciones regulares publicadas en los últimos 12 meses y que el intervalo entre ellas no sea superior a 3 meses, ya que un intervalo mayor puede indicar falta de mantenimiento, lo que aumentaría la deuda técnica.
 
-- **Madurez y estabilidad:** Se considerará si la herramienta es madura y adoptada dentro de la comunidad de Go. En el caso de herramientas que ya sean maduras, estables e integradas como sucede con `testing`, no es necesario que tengan actualizaciones regulares. Una herramienta madura ya ha alcanzado un nivel de estabilidad en el que los cambios y mejoras son menos frecuentes, ya que ha sido suficientemente probada y utilizada, por lo tanto, su funcionalidad es confiable.
+- **Madurez y estabilidad:** Se considerará si la herramienta es madura y adoptada dentro de la comunidad de Go. En el caso de herramientas que ya sean maduras, estables e integradas no es necesario que tengan actualizaciones regulares. Una herramienta madura ya ha alcanzado un nivel de estabilidad en el que los cambios y mejoras son menos frecuentes, ya que ha sido suficientemente probada y utilizada, por lo tanto, su funcionalidad es confiable.
 
 - **Cobertura de código:** Verificaremos si el test runner facilita la generación de métricas de cobertura.
-
 
 ---
 
