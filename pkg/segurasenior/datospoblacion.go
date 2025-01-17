@@ -6,6 +6,7 @@ import (
 	"os"
 	"time"
 	"math"
+	"fmt"
 )
 
 type FechaObtencionDeDatos struct {
@@ -33,7 +34,7 @@ type DatosPoblacion struct {
 }
 
 func (d *DatosPoblacion) CalcularTasas() {
-	if d.PoblacionTotal > 0 {
+	if d.PoblacionTotal > 0 && d.Nacimientos < d.PoblacionTotal && d.Defunciones < d.PoblacionTotal {
 		d.TasaNatalidadSobre1000 = math.Round((float64(d.Nacimientos)/float64(d.PoblacionTotal))*1000*100) / 100
 		d.TasaMortalidadSobre1000 = math.Round((float64(d.Defunciones)/float64(d.PoblacionTotal))*1000*100) / 100
 	}
@@ -52,6 +53,12 @@ func NewDatosPoblacion(poblacion uint32, hombres uint32, mujeres uint32, edadMed
 	if porcentajeMayora65 < 0 || porcentajeMayora65 > 100 {
 		return nil, errors.New("el porcentaje de mayores de 65 años debe estar entre 0 y 100")
 	}
+	if nacimientos > poblacion {
+		return nil, errors.New("el número de nacimientos no puede ser mayor que la población total")
+	}
+	if defunciones > poblacion {
+		return nil, errors.New("el número de defunciones no puede ser mayor que la población total")
+	}
 
 	return &DatosPoblacion{
 		PoblacionTotal:     poblacion,
@@ -66,40 +73,68 @@ func NewDatosPoblacion(poblacion uint32, hombres uint32, mujeres uint32, edadMed
 }
 
 func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDatos, DatosPoblacion, error) {
+	var identificador IdentificadorDatos
+	var datosPoblacion DatosPoblacion
+
+	
 	file, err := os.Open(nombreArchivo)
 	if err != nil {
-		return IdentificadorDatos{}, DatosPoblacion{}, err
+		return identificador, datosPoblacion, fmt.Errorf("no se pudo abrir el archivo: %w", err)
 	}
 	defer file.Close()
 
 	var datos map[string]struct {
-		NombrePueblo            string  `json:"NombrePueblo"`
-		FechaDatos              string  `json:"FechaDatos"`
-		PoblacionTotal          uint32  `json:"PoblacionTotal"`
-		Hombres                 uint32  `json:"Hombres"`
-		Mujeres                 uint32  `json:"Mujeres"`
-		EdadMedia               float32  `json:"EdadMedia"`
-		Menor20                 float64 `json:"Menor20"`
-		Mayor65                 float64 `json:"Mayor65"`
-		Nacimientos             uint32  `json:"Nacimientos"`
-		Defunciones             uint32  `json:"Defunciones"`
+		NombrePueblo   string  `json:"NombrePueblo"`
+		FechaDatos     string  `json:"FechaDatos"`
+		PoblacionTotal uint32  `json:"PoblacionTotal"`
+		Hombres        uint32  `json:"Hombres"`
+		Mujeres        uint32  `json:"Mujeres"`
+		EdadMedia      float32 `json:"EdadMedia"`
+		Menor20        float64 `json:"Menor20"`
+		Mayor65        float64 `json:"Mayor65"`
+		Nacimientos    uint32  `json:"Nacimientos"`
+		Defunciones    uint32  `json:"Defunciones"`
 	}
 
 	if err := json.NewDecoder(file).Decode(&datos); err != nil {
-		return IdentificadorDatos{}, DatosPoblacion{}, err
+		return identificador, datosPoblacion, fmt.Errorf("error al decodificar JSON: %w", err)
 	}
 
 	dato, existe := datos[nombrePoblacion]
 	if !existe {
-		return IdentificadorDatos{}, DatosPoblacion{}, errors.New("población no encontrada en el archivo")
+		return identificador, datosPoblacion, fmt.Errorf("población '%s' no encontrada en el archivo", nombrePoblacion)
+	}
+
+	var validacionErr error
+	if dato.NombrePueblo == "" {
+		validacionErr = errors.New("nombre de la población está vacío")
+	} else if dato.FechaDatos == "" {
+		validacionErr = errors.New("la fecha de datos está vacía")
+	} else if dato.PoblacionTotal == 0 {
+		validacionErr = errors.New("la población total no puede ser 0")
+	} else if dato.Hombres+dato.Mujeres != dato.PoblacionTotal {
+		validacionErr = errors.New("la población total no coincide con la suma de hombres y mujeres")
+	} else if dato.Menor20 < 0 || dato.Menor20 > 100 {
+		validacionErr = errors.New("el porcentaje de menores de 20 años debe estar entre 0 y 100")
+	} else if dato.Mayor65 < 0 || dato.Mayor65 > 100 {
+		validacionErr = errors.New("el porcentaje de mayores de 65 años debe estar entre 0 y 100")
+	} else if dato.Nacimientos > dato.PoblacionTotal {
+		validacionErr = errors.New("el número de nacimientos no puede ser mayor que la población total")
+	} else if dato.Defunciones > dato.PoblacionTotal {
+		validacionErr = errors.New("el número de defunciones no puede ser mayor que la población total")
+	}
+
+	if validacionErr != nil {
+		return identificador, datosPoblacion, validacionErr
 	}
 
 	fecha, err := time.Parse("02/01/2006", dato.FechaDatos)
 	if err != nil {
-		return IdentificadorDatos{}, DatosPoblacion{}, errors.New("formato de fecha inválido en el archivo JSON")
+		return identificador, datosPoblacion, fmt.Errorf("formato de fecha inválido ('%s'): %w", dato.FechaDatos, err)
 	}
 
-	identificador := IdentificadorDatos{
+	
+	identificador = IdentificadorDatos{
 		NombrePoblacion: dato.NombrePueblo,
 		FechaDeDatos: FechaObtencionDeDatos{
 			Dia:  uint16(fecha.Day()),
@@ -108,7 +143,7 @@ func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDat
 		},
 	}
 
-	datosPoblacion := DatosPoblacion{
+	datosPoblacion = DatosPoblacion{
 		PoblacionTotal:     dato.PoblacionTotal,
 		Hombres:            dato.Hombres,
 		Mujeres:            dato.Mujeres,
@@ -123,4 +158,3 @@ func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDat
 
 	return identificador, datosPoblacion, nil
 }
-
