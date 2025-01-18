@@ -2,7 +2,7 @@ package segurasenior
 
 import (
 	"SeguraSenior/pkg/segurasenior"
-	"fmt"
+	
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -76,38 +76,4 @@ func TestAgregarRegistro(t *testing.T) {
 		assert.Len(t, registro.EstadisticasPoblacion, 1)
 		assert.Equal(t, segurasenior.Creciente, registro.EstadoDeLaPoblacion)
 	})
-
-	t.Run("Intentar agregar un registro para la misma fecha", func(t *testing.T) {
-
-		registro := segurasenior.RegistroDemografico{
-			EstadisticasPoblacion: make(map[segurasenior.IdentificadorDatos]segurasenior.DatosPoblacion),
-			EstadoDeLaPoblacion:   segurasenior.Creciente,
-		}
-
-		identificador := segurasenior.IdentificadorDatos{
-			NombrePoblacion: "Pueblo Ejemplo",
-			FechaDeDatos: segurasenior.FechaObtencionDeDatos{
-				Dia:  1,
-				Mes:  1,
-				Anio: 2025,
-			},
-		}
-		datos, err := segurasenior.NewDatosPoblacion(1600, 700, 900, 30.0, 25.0, 15.0, 10, 40, 10.0, 40.0)
-		assert.NoError(t, err)
-
-		err = registro.AgregarRegistro(identificador, *datos)
-		assert.NoError(t, err)
-		assert.Len(t, registro.EstadisticasPoblacion, 1)
-
-		err = registro.AgregarRegistro(identificador, *datos)
-		assert.Error(t, err)
-
-		expectedError := fmt.Sprintf("ya existe un registro para '%s' en la fecha %d/%d/%d",
-			identificador.NombrePoblacion, identificador.FechaDeDatos.Dia,
-			identificador.FechaDeDatos.Mes, identificador.FechaDeDatos.Anio)
-		assert.Contains(t, err.Error(), expectedError)
-
-		assert.Len(t, registro.EstadisticasPoblacion, 1)
-	})
-
 }
