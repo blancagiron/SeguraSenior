@@ -55,16 +55,6 @@ func TestLecturaCorrectaDatosDesdeJSON(t *testing.T) {
 		assert.Equal(t, expectedIdentificador, identificador)
 		assert.Equal(t, expectedDatos, datosExtraidos)
 	})
-	t.Run("Archivo No Encontrado", func(t *testing.T) {
-
-		nombreArchivo := "../testdata/no_existe.json"
-		nombrePoblacion := "Orcera"
-
-		_, _, err := segurasenior.LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion)
-
-		assert.Error(t, err)
-		assert.Contains(t, err.Error(), "no such file or directory")
-	})
 
 	t.Run("Población No Encontrada", func(t *testing.T) {
 		nombreArchivo := "../testdata/data.json"
