@@ -8,6 +8,7 @@ import (
 	"math"
 	"os"
 	"time"
+	"strings"
 )
 
 type FechaObtencionDeDatos struct {
@@ -104,27 +105,8 @@ func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDat
 		return identificador, datosPoblacion, fmt.Errorf("población '%s' no encontrada en el archivo", nombrePoblacion)
 	}
 
-	var validacionErr error
-	if dato.NombrePueblo == "" {
-		validacionErr = errors.New("nombre de la población está vacío")
-	} else if dato.FechaDatos == "" {
-		validacionErr = errors.New("la fecha de datos está vacía")
-	} else if dato.PoblacionTotal == 0 {
-		validacionErr = errors.New("la población total no puede ser 0")
-	} else if dato.Hombres+dato.Mujeres != dato.PoblacionTotal {
-		validacionErr = errors.New("la población total no coincide con la suma de hombres y mujeres")
-	} else if dato.Menor20 < 0 || dato.Menor20 > 100 {
-		validacionErr = errors.New("el porcentaje de menores de 20 años debe estar entre 0 y 100")
-	} else if dato.Mayor65 < 0 || dato.Mayor65 > 100 {
-		validacionErr = errors.New("el porcentaje de mayores de 65 años debe estar entre 0 y 100")
-	} else if dato.Nacimientos > dato.PoblacionTotal {
-		validacionErr = errors.New("el número de nacimientos no puede ser mayor que la población total")
-	} else if dato.Defunciones > dato.PoblacionTotal {
-		validacionErr = errors.New("el número de defunciones no puede ser mayor que la población total")
-	}
-
-	if validacionErr != nil {
-		return identificador, datosPoblacion, validacionErr
+	if err := ValidarDatos(dato); err != nil {
+		return identificador, datosPoblacion, err
 	}
 
 	fecha, err := time.Parse("02/01/2006", dato.FechaDatos)
@@ -155,4 +137,51 @@ func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDat
 	datosPoblacion.CalcularTasas()
 
 	return identificador, datosPoblacion, nil
+}
+
+
+func ValidarDatos(dato struct {
+	NombrePueblo   string  `json:"NombrePueblo"`
+	FechaDatos     string  `json:"FechaDatos"`
+	PoblacionTotal uint32  `json:"PoblacionTotal"`
+	Hombres        uint32  `json:"Hombres"`
+	Mujeres        uint32  `json:"Mujeres"`
+	EdadMedia      float32 `json:"EdadMedia"`
+	Menor20        float64 `json:"Menor20"`
+	Mayor65        float64 `json:"Mayor65"`
+	Nacimientos    uint32  `json:"Nacimientos"`
+	Defunciones    uint32  `json:"Defunciones"`
+}) error {
+	var errores []string
+
+	if dato.NombrePueblo == "" {
+		errores = append(errores, "nombre de la población está vacío")
+	}
+	if dato.FechaDatos == "" {
+		errores = append(errores, "la fecha de datos está vacía")
+	}
+	if dato.PoblacionTotal == 0 {
+		errores = append(errores, "la población total no puede ser 0")
+	}
+	if dato.Hombres+dato.Mujeres != dato.PoblacionTotal {
+		errores = append(errores, "la población total no coincide con la suma de hombres y mujeres")
+	}
+	if dato.Menor20 < 0 || dato.Menor20 > 100 {
+		errores = append(errores, "el porcentaje de menores de 20 años debe estar entre 0 y 100")
+	}
+	if dato.Mayor65 < 0 || dato.Mayor65 > 100 {
+		errores = append(errores, "el porcentaje de mayores de 65 años debe estar entre 0 y 100")
+	}
+	if dato.Nacimientos > dato.PoblacionTotal {
+		errores = append(errores, "el número de nacimientos no puede ser mayor que la población total")
+	}
+	if dato.Defunciones > dato.PoblacionTotal {
+		errores = append(errores, "el número de defunciones no puede ser mayor que la población total")
+	}
+
+	if len(errores) > 0 {
+		return fmt.Errorf("errores de validación: %s", strings.Join(errores, ", "))
+	}
+
+	return nil
 }
