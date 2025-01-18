@@ -4,6 +4,7 @@ import (
 	"SeguraSenior/pkg/segurasenior"
 	"math"
 	"testing"
+
 	"github.com/stretchr/testify/assert"
 )
 
@@ -66,8 +67,6 @@ func TestLecturaCorrectaDatosDesdeJSON(t *testing.T) {
 		assert.Contains(t, err.Error(), "población '"+nombrePoblacion+"' no encontrada en el archivo")
 	})
 
-
-	
 	t.Run("JSON inválido", func(t *testing.T) {
 		nombreArchivo := "../testdata/data_invalido.json"
 		nombrePoblacion := "Orcera"
@@ -78,4 +77,42 @@ func TestLecturaCorrectaDatosDesdeJSON(t *testing.T) {
 		assert.Contains(t, err.Error(), "invalid character")
 	})
 
+}
+
+func TestValidarDatos(t *testing.T) {
+	t.Run("Datos inválidos ", func(t *testing.T) {
+		dato := struct {
+			NombrePueblo   string  `json:"NombrePueblo"`
+			FechaDatos     string  `json:"FechaDatos"`
+			PoblacionTotal uint32  `json:"PoblacionTotal"`
+			Hombres        uint32  `json:"Hombres"`
+			Mujeres        uint32  `json:"Mujeres"`
+			EdadMedia      float32 `json:"EdadMedia"`
+			Menor20        float64 `json:"Menor20"`
+			Mayor65        float64 `json:"Mayor65"`
+			Nacimientos    uint32  `json:"Nacimientos"`
+			Defunciones    uint32  `json:"Defunciones"`
+		}{
+			NombrePueblo:   "",
+			FechaDatos:     "01/01/2023",
+			PoblacionTotal: 0,
+			Hombres:        500,
+			Mujeres:        400,
+			EdadMedia:      45.3,
+			Menor20:        110,
+			Mayor65:        -5,
+			Nacimientos:    2000,
+			Defunciones:    0,
+		}
+
+		err := segurasenior.ValidarDatos(dato)
+		assert.Error(t, err)
+		assert.Contains(t, err.Error(), "nombre de la población está vacío")
+		assert.NotContains(t, err.Error(), "la fecha de datos está vacía")
+		assert.NotContains(t, err.Error(), "el número de defunciones no puede ser mayor que la población total")
+		assert.Contains(t, err.Error(), "el porcentaje de menores de 20 años debe estar entre 0 y 100")
+		assert.Contains(t, err.Error(), "el porcentaje de mayores de 65 años debe estar entre 0 y 100")
+		assert.Contains(t, err.Error(), "el número de nacimientos no puede ser mayor que la población total")
+		assert.Contains(t, err.Error(), "la población total no puede ser 0")
+	})
 }
