@@ -1,5 +1,6 @@
 package segurasenior
 
+import "fmt"
 
 type EstadoPoblacion string
 
@@ -19,9 +20,25 @@ func CrearRegistroDesdeDatos(identificador IdentificadorDatos, datos DatosPoblac
 		estado = Decreciente
 	}
 
-
 	return &RegistroDemografico{
 		EstadisticasPoblacion: map[IdentificadorDatos]DatosPoblacion{identificador: datos},
 		EstadoDeLaPoblacion:   estado,
 	}, nil
+}
+
+func (r *RegistroDemografico) AgregarRegistro(identificador IdentificadorDatos, datos DatosPoblacion) error {
+	if _, existe := r.EstadisticasPoblacion[identificador]; existe {
+		return fmt.Errorf("ya existe un registro para '%s' en la fecha %d/%d/%d",
+			identificador.NombrePoblacion, identificador.FechaDeDatos.Dia,
+			identificador.FechaDeDatos.Mes, identificador.FechaDeDatos.Anio)
+	}
+
+	estado := Creciente
+	if datos.TasaMortalidadSobre1000 > datos.TasaNatalidadSobre1000 {
+		estado = Decreciente
+	}
+
+	r.EstadisticasPoblacion[identificador] = datos
+	r.EstadoDeLaPoblacion = estado
+	return nil
 }
