@@ -7,8 +7,6 @@
 
 - **Instalación de dependencias:** Se evaluará si la biblioteca de aserciones requiere instalación adicional de paquetes o bibliotecas externas, priorizando aquellos que minimicen las dependencias externas. Go incentiva a la no dependencia de librerías externas, por lo que se dará prioridad a herramientas que formen parte de su [librería estándar](https://pkg.go.dev/std)
 
-- **Estabilidad:** Debe tener una versión estable lanzada al menos hace un año. Esto asegura que la biblioteca está mantenida y que sigue recibiendo soporte.
-
 - **Madurez:** Se considerará si la herramienta es madura y adoptada dentro de la comunidad de Go. Una herramienta madura ya ha alcanzado un nivel de estabilidad en el que los cambios y mejoras son menos frecuentes, ya que ha sido suficientemente probada y utilizada, por lo tanto, su funcionalidad es confiable y no necesita actualizaciones regulares.
 
 - **Utilidad para comparar datos:** Se evaluará si la biblioteca ofrece funcionalidades específicas para facilitar la comparación de datos. Esto incluye capacidades para verificar la igualdad entre estructuras complejas y la equivalencia entre representaciones de datos, como objetos JSON. Contar con estas herramientas permite implementar pruebas más claras y adaptadas a las necesidades del proyecto, reduciendo la complejidad en el desarrollo y mantenimiento de las pruebas.
@@ -35,7 +33,7 @@ Su última versión fue lanzada hace 3 meses, y es una de las bibliotecas más u
  
 ---
 
-###GoMega:
+### **GoMega:** 
 
 Su última actualización fue hace 2 semanas pero tiene menor adopción generalizada que Testify para pruebas unitarias. Esta información se puede consultar en su [repositorio](https://github.com/onsi/gomega).
 
