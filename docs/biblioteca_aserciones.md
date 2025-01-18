@@ -13,7 +13,6 @@
 
 - **Utilidad para comparar datos:** Se considerará que la biblioteca ofrezca funcionalidades específicas como métodos para la comparación de datos. Por ejemplo, métodos como `assert.Equal` permiten verificar la igualdad entre estructuras de datos, mientras que funciones como `assert.JSONEq` facilita la comparación de objetos JSON. La elección de una biblioteca con estas capacidades garantiza que podamos implementar pruebas adaptadas a las necesidades de mi proyecto.
 
-- **Compatibilidad:** La biblioteca debe ser totalmente compatible con el test runner escogido, en este caso, el test runner estándar de Go `testing`.
 
 ---
 
