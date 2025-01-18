@@ -43,7 +43,7 @@ func (d *DatosPoblacion) CalcularTasas() {
 }
 
 func NewDatosPoblacion(poblacion uint32, hombres uint32, mujeres uint32, edadMedia float32,
-	porcentajeMenora20 float64, porcentajeMayora65 float64, nacimientos uint32, defunciones uint32) (*DatosPoblacion, error) {
+	porcentajeMenora20 float64, porcentajeMayora65 float64, nacimientos uint32, defunciones uint32, tasaNatalidad float64, tasaMortalidad float64) (*DatosPoblacion, error) {
 
 	if hombres+mujeres != poblacion {
 		return nil, errors.New("la población total no coincide con la suma de hombres y mujeres")
@@ -70,6 +70,8 @@ func NewDatosPoblacion(poblacion uint32, hombres uint32, mujeres uint32, edadMed
 		PorcentajeMayora65: porcentajeMayora65,
 		Nacimientos:        nacimientos,
 		Defunciones:        defunciones,
+		TasaNatalidadSobre1000:  tasaNatalidad,
+		TasaMortalidadSobre1000: tasaMortalidad,
 	}, nil
 }
 
