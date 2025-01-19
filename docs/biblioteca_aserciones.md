@@ -23,7 +23,7 @@
 Su última versión fue lanzada hace 3 meses, y es una de las bibliotecas más utilizadas en el ecosistema de Go. Esta información se puede consultar en su [repositorio](https://github.com/stretchr/testify).
 
 - **Instalación de dependencias:**  
-  Requiere la instalación de una dependencia adicional, lo que aumenta la carga inicial del proyecto. Sin embargo, esta dependencia es ampliamente aceptada en la comunidad y fácil de integrar.  
+  Requiere la instalación de una dependencia adicional, el paquete `Testify`, lo que aumenta la carga inicial del proyecto. Sin embargo, esta dependencia es ampliamente aceptada en la comunidad y fácil de integrar.  
 
 - **Utilidad para comparar datos:**  
   Testify proporciona métodos específicos para comparar datos, como `assert.Equal` o `assert.JSONeq`, incluyendo la verificación de igualdad entre estructuras complejas, comparación de colecciones y equivalencia de representaciones en diferentes formatos como JSON. Estas funcionalidades simplifican la creación de pruebas detalladas y se deben tener en cuenta.
