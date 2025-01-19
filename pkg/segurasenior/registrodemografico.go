@@ -33,12 +33,11 @@ func (r *RegistroDemografico) AgregarRegistro(identificador IdentificadorDatos, 
 			identificador.FechaDeDatos.Mes, identificador.FechaDeDatos.Anio)
 	}
 
-	estado := Creciente
-	if datos.TasaMortalidadSobre1000 > datos.TasaNatalidadSobre1000 {
-		estado = Decreciente
-	}
-
 	r.EstadisticasPoblacion[identificador] = datos
-	r.EstadoDeLaPoblacion = estado
+	if datos.TasaMortalidadSobre1000 > datos.TasaNatalidadSobre1000 {
+		r.EstadoDeLaPoblacion = Decreciente
+	} else {
+		r.EstadoDeLaPoblacion = Creciente
+	}
 	return nil
 }
