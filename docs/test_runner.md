@@ -18,8 +18,8 @@ Los criterios seguidos para escoger el test runner más adecuado son:
 
 ## Candidatos:
 
-- **Go Testing:** 
-	- `Go Testing`forma parte de la biblioteca estándar de Go, por lo que no requiere ninguna instalación adicional y es mantenida junto al lenguaje. Su última actualización fue hace un mes y es compatible con herramientas estándar de Go para cobertura, como el comando `go test -cover`, el cuál genera métricas de cobertura.
+- **Testing:** 
+	- `Testing`forma parte de la biblioteca estándar de Go, por lo que no requiere ninguna instalación adicional y es mantenida junto al lenguaje. Su última actualización fue hace un mes y es compatible con herramientas estándar de Go para cobertura, como el comando `go test -cover`, el cuál genera métricas de cobertura.
 
 	Podemos consultar más información [aquí](https://pkg.go.dev/testing) y en su [repositorio](https://github.com/golang/go/blob/master/src/testing/testing.go)
 	
@@ -40,6 +40,6 @@ Los criterios seguidos para escoger el test runner más adecuado son:
 
 ## Test runner elegido:
 
-El test runner seleccionado es `Go Testing` ya que el propio lenguaje incentiva el uso de la biblioteca estándar para reducir las dependencias de bibliotecas externas, además de que se trata de una herramienta madura. 
+El test runner seleccionado es `Testing` ya que el propio lenguaje incentiva el uso de la biblioteca estándar para reducir las dependencias de bibliotecas externas, además de que se trata de una herramienta madura. 
 
 
