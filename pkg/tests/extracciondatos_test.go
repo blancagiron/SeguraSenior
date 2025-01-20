@@ -25,8 +25,8 @@ func TestLecturaCorrectaDatosDesdeJSON(t *testing.T) {
 			defunciones       uint32  = 29
 		)
 
-		tasaNatalidadSobre1000 := math.Round((float64(nacimientos)/float64(poblacionTotal))*1000*100) / 100
-		tasaMortalidadSobre1000 := math.Round((float64(defunciones)/float64(poblacionTotal))*1000*100) / 100
+		tasaNatalidadSobre1000 := math.Round((float64(nacimientos)/float64(poblacionTotal))*segurasenior.FactorTasasPorMil*segurasenior.PrecisionRedondeo) / segurasenior.PrecisionRedondeo
+		tasaMortalidadSobre1000 := math.Round((float64(defunciones)/float64(poblacionTotal))*segurasenior.FactorTasasPorMil*segurasenior.PrecisionRedondeo) / segurasenior.PrecisionRedondeo
 
 		expectedIdentificador := segurasenior.IdentificadorDatos{
 			NombrePoblacion: nombrePoblacion,
