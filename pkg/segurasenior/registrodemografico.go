@@ -26,18 +26,18 @@ func CrearRegistroDesdeDatos(identificador IdentificadorDatos, datos DatosPoblac
 	}, nil
 }
 
-func (r *RegistroDemografico) AgregarRegistro(identificador IdentificadorDatos, datos DatosPoblacion) error {
-	if _, existe := r.EstadisticasPoblacion[identificador]; existe {
+func (registro *RegistroDemografico) AgregarRegistro(identificador IdentificadorDatos, datos DatosPoblacion) error {
+	if _, existe := registro.EstadisticasPoblacion[identificador]; existe {
 		return fmt.Errorf("ya existe un registro para '%s' en la fecha %d/%d/%d",
 			identificador.NombrePoblacion, identificador.FechaDeDatos.Dia,
 			identificador.FechaDeDatos.Mes, identificador.FechaDeDatos.Anio)
 	}
 
-	r.EstadisticasPoblacion[identificador] = datos
+	registro.EstadisticasPoblacion[identificador] = datos
 	if datos.TasaMortalidadSobre1000 > datos.TasaNatalidadSobre1000 {
-		r.EstadoDeLaPoblacion = Decreciente
+		registro.EstadoDeLaPoblacion = Decreciente
 	} else {
-		r.EstadoDeLaPoblacion = Creciente
+		registro.EstadoDeLaPoblacion = Creciente
 	}
 	return nil
 }
