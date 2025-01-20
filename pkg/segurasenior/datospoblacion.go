@@ -35,10 +35,15 @@ type DatosPoblacion struct {
 	TasaMortalidadSobre1000 float64
 }
 
-func (d *DatosPoblacion) CalcularTasas() {
-	if d.PoblacionTotal > 0 && d.Nacimientos < d.PoblacionTotal && d.Defunciones < d.PoblacionTotal {
-		d.TasaNatalidadSobre1000 = math.Round((float64(d.Nacimientos)/float64(d.PoblacionTotal))*1000*100) / 100
-		d.TasaMortalidadSobre1000 = math.Round((float64(d.Defunciones)/float64(d.PoblacionTotal))*1000*100) / 100
+const (
+	FactorTasasPorMil = 1000
+	PrecisionRedondeo = 100
+)
+
+func (datosPoblacion *DatosPoblacion) CalcularTasas() {
+	if datosPoblacion.PoblacionTotal > 0 && datosPoblacion.Nacimientos < datosPoblacion.PoblacionTotal && datosPoblacion.Defunciones < datosPoblacion.PoblacionTotal {
+		datosPoblacion.TasaNatalidadSobre1000 = math.Round((float64(datosPoblacion.Nacimientos)/float64(datosPoblacion.PoblacionTotal))*FactorTasasPorMil*PrecisionRedondeo) / PrecisionRedondeo
+		datosPoblacion.TasaMortalidadSobre1000 = math.Round((float64(datosPoblacion.Defunciones)/float64(datosPoblacion.PoblacionTotal))*FactorTasasPorMil*PrecisionRedondeo) / PrecisionRedondeo
 	}
 }
 
