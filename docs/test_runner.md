@@ -12,27 +12,27 @@ Los criterios seguidos para escoger el test runner más adecuado son:
 
 - **Madurez y estabilidad:** Se considerará si la herramienta es madura y adoptada dentro de la comunidad de Go. En el caso de herramientas que ya sean maduras, estables e integradas no es necesario que tengan actualizaciones regulares. Una herramienta madura ya ha alcanzado un nivel de estabilidad en el que los cambios y mejoras son menos frecuentes, ya que ha sido suficientemente probada y utilizada, por lo tanto, su funcionalidad es confiable.
 
-- **Cobertura de código:** Verificaremos si el test runner facilita la generación de métricas de cobertura.
+
 
 ---
 
 ## Candidatos:
 
 - **Testing:** 
-	- `Testing`forma parte de la biblioteca estándar de Go, por lo que no requiere ninguna instalación adicional y es mantenida junto al lenguaje. Su última actualización fue hace un mes y es compatible con herramientas estándar de Go para cobertura, como el comando `go test -cover`, el cuál genera métricas de cobertura.
+	- `Testing`forma parte de la biblioteca estándar de Go, por lo que no requiere ninguna instalación adicional y es mantenida junto al lenguaje. Su última actualización fue hace un mes.
 
 	Podemos consultar más información [aquí](https://pkg.go.dev/testing) y en su [repositorio](https://github.com/golang/go/blob/master/src/testing/testing.go)
 	
  
 - **Ginkgo**
-	- Requiere la instalación de varias dependencias, como `github.com/onsi/ginkgo` y `github.com/onsi/gomega` para su funcionalidad completa, lo que puede hacer que el proyecto dependa de más bibliotecas. Es compatible con herramientas de cobertura estándar de Go, como `go test -cover`. 
+	- Requiere la instalación de varias dependencias, como `github.com/onsi/ginkgo` y `github.com/onsi/gomega` para su funcionalidad completa, lo que puede hacer que el proyecto dependa de más bibliotecas. 
 	  
 	Podemos consultar más información en su [repositorio](https://github.com/onsi/ginkgo), como que su última actualización fue hace menos de un mes.
 
 
 - **GoConvey**
 	
-	Requiere la instalación de la librería `GoConvey` (`go get github.com/smartystreets/goconvey`), lo que aumenta las dependencias externas en el proyecto. Además, su última actualización fue hace casi un año. Al igual que los otros candidatos, es compatible con herramientas de cobertura estándar de Go, como `go test -cover`. 
+	Requiere la instalación de la librería `GoConvey` (`go get github.com/smartystreets/goconvey`), lo que aumenta las dependencias externas en el proyecto. Además, su última actualización fue hace casi un año. 
 	  
 	Podemos consultar más información en su [repositorio](https://github.com/smartystreets/goconvey)
 	
