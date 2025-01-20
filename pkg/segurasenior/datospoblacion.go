@@ -41,13 +41,10 @@ func NewIdentificadorDatos(nombrePoblacion string, fecha FechaObtencionDeDatos) 
 	}
 }
 
-
 const (
 	FactorTasasPorMil = 1000
 	PrecisionRedondeo = 100
 )
-
-
 
 func (datosPoblacion *DatosPoblacion) CalcularTasas() {
 	if datosPoblacion.PoblacionTotal > 0 && datosPoblacion.Nacimientos < datosPoblacion.PoblacionTotal && datosPoblacion.Defunciones < datosPoblacion.PoblacionTotal {
@@ -90,16 +87,51 @@ func NewDatosPoblacion(poblacion uint32, hombres uint32, mujeres uint32, edadMed
 }
 
 func LeerIdentificadorDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDatos, error) {
-	
+	var identificador IdentificadorDatos
+
+	file, err := os.Open(nombreArchivo)
+	if err != nil {
+		return identificador, fmt.Errorf("no se pudo abrir el archivo: %w", err)
+	}
+	defer file.Close()
+
+	var datos map[string]struct {
+		NombrePueblo string `json:"NombrePueblo"`
+		FechaDatos   string `json:"FechaDatos"`
+	}
+
+	if err := json.NewDecoder(file).Decode(&datos); err != nil {
+		return identificador, fmt.Errorf("error al decodificar JSON: %w", err)
+	}
+
+	dato, existe := datos[nombrePoblacion]
+	if !existe {
+		return identificador, fmt.Errorf("población '%s' no encontrada en el archivo", nombrePoblacion)
+	}
+
+	fecha, err := time.Parse("02/01/2006", dato.FechaDatos)
+	if err != nil {
+		return identificador, fmt.Errorf("formato de fecha inválido ('%s'): %w", dato.FechaDatos, err)
+	}
+
+	identificador = IdentificadorDatos{
+		NombrePoblacion: dato.NombrePueblo,
+		FechaDeDatos: FechaObtencionDeDatos{
+			Dia:  uint16(fecha.Day()),
+			Mes:  fecha.Month(),
+			Anio: uint16(fecha.Year()),
+		},
+	}
+
+	return identificador, nil
 }
 
-func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDatos, DatosPoblacion, error) {
-	var identificador IdentificadorDatos
+func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (DatosPoblacion, error) {
 	var datosPoblacion DatosPoblacion
 
 	file, err := os.Open(nombreArchivo)
 	if err != nil {
-		return identificador, datosPoblacion, fmt.Errorf("no se pudo abrir el archivo: %w", err)
+		return  datosPoblacion, fmt.Errorf("no se pudo abrir el archivo: %w", err)
 	}
 	defer file.Close()
 
@@ -117,30 +149,16 @@ func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDat
 	}
 
 	if err := json.NewDecoder(file).Decode(&datos); err != nil {
-		return identificador, datosPoblacion, fmt.Errorf("error al decodificar JSON: %w", err)
+		return datosPoblacion, fmt.Errorf("error al decodificar JSON: %w", err)
 	}
 
 	dato, existe := datos[nombrePoblacion]
 	if !existe {
-		return identificador, datosPoblacion, fmt.Errorf("población '%s' no encontrada en el archivo", nombrePoblacion)
+		return  datosPoblacion, fmt.Errorf("población '%s' no encontrada en el archivo", nombrePoblacion)
 	}
 
 	if err := ValidarDatos(dato); err != nil {
-		return identificador, datosPoblacion, err
-	}
-
-	fecha, err := time.Parse("02/01/2006", dato.FechaDatos)
-	if err != nil {
-		return identificador, datosPoblacion, fmt.Errorf("formato de fecha inválido ('%s'): %w", dato.FechaDatos, err)
-	}
-
-	identificador = IdentificadorDatos{
-		NombrePoblacion: dato.NombrePueblo,
-		FechaDeDatos: FechaObtencionDeDatos{
-			Dia:  uint16(fecha.Day()),
-			Mes:  fecha.Month(),
-			Anio: uint16(fecha.Year()),
-		},
+		return datosPoblacion, err
 	}
 
 	datosPoblacion = DatosPoblacion{
@@ -156,7 +174,7 @@ func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDat
 
 	datosPoblacion.CalcularTasas()
 
-	return identificador, datosPoblacion, nil
+	return datosPoblacion, nil
 }
 
 func ValidarDatos(dato struct {
