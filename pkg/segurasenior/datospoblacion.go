@@ -1,14 +1,13 @@
 package segurasenior
 
-
 import (
 	"encoding/json"
 	"errors"
 	"fmt"
 	"math"
 	"os"
-	"time"
 	"strings"
+	"time"
 )
 
 type FechaObtencionDeDatos struct {
@@ -23,16 +22,16 @@ type IdentificadorDatos struct {
 }
 
 type DatosPoblacion struct {
-	PoblacionTotal          uint32
-	Hombres                 uint32
-	Mujeres                 uint32
-	EdadMedia               float32
-	PorcentajeMenora20      float64
-	PorcentajeMayora65      float64
-	Nacimientos             uint32
-	Defunciones             uint32
-	TasaNatalidadSobre1000  float64
-	TasaMortalidadSobre1000 float64
+	PoblacionTotal          uint32 `json:"PoblacionTotal"`
+	Hombres                 uint32 `json:"Hombres"`
+	Mujeres                 uint32 `json:"Mujeres"`
+	EdadMedia               float32 `json:"EdadMedia"`
+	PorcentajeMenora20      float64 `json:"Menor20"`
+	PorcentajeMayora65      float64 `json:"Mayor65"`
+	Nacimientos             uint32 `json:"Nacimientos"`
+	Defunciones             uint32 `json:"Defunciones"`
+	TasaNatalidadSobre1000  float64 `json:"TasaNatalidadSobre1000"`
+	TasaMortalidadSobre1000 float64 `json:"TasaMortalidadSobre1000"`
 }
 
 const (
@@ -67,14 +66,14 @@ func NewDatosPoblacion(poblacion uint32, hombres uint32, mujeres uint32, edadMed
 	}
 
 	return &DatosPoblacion{
-		PoblacionTotal:     poblacion,
-		Hombres:            hombres,
-		Mujeres:            mujeres,
-		EdadMedia:          edadMedia,
-		PorcentajeMenora20: porcentajeMenorA20,
-		PorcentajeMayora65: porcentajeMayorA65,
-		Nacimientos:        nacimientos,
-		Defunciones:        defunciones,
+		PoblacionTotal:          poblacion,
+		Hombres:                 hombres,
+		Mujeres:                 mujeres,
+		EdadMedia:               edadMedia,
+		PorcentajeMenora20:      porcentajeMenorA20,
+		PorcentajeMayora65:      porcentajeMayorA65,
+		Nacimientos:             nacimientos,
+		Defunciones:             defunciones,
 		TasaNatalidadSobre1000:  tasaNatalidad,
 		TasaMortalidadSobre1000: tasaMortalidad,
 	}, nil
@@ -145,7 +144,6 @@ func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDat
 
 	return identificador, datosPoblacion, nil
 }
-
 
 func ValidarDatos(dato struct {
 	NombrePueblo   string  `json:"NombrePueblo"`
