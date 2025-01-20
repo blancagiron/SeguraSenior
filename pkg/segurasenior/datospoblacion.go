@@ -17,27 +17,37 @@ type FechaObtencionDeDatos struct {
 }
 
 type IdentificadorDatos struct {
-	NombrePoblacion string
-	FechaDeDatos    FechaObtencionDeDatos
+	NombrePoblacion string                `json:"NombrePoblacion"`
+	FechaDeDatos    FechaObtencionDeDatos `json:"FechaDeDatos"`
 }
 
 type DatosPoblacion struct {
-	PoblacionTotal          uint32 `json:"PoblacionTotal"`
-	Hombres                 uint32 `json:"Hombres"`
-	Mujeres                 uint32 `json:"Mujeres"`
+	PoblacionTotal          uint32  `json:"PoblacionTotal"`
+	Hombres                 uint32  `json:"Hombres"`
+	Mujeres                 uint32  `json:"Mujeres"`
 	EdadMedia               float32 `json:"EdadMedia"`
 	PorcentajeMenora20      float64 `json:"Menor20"`
 	PorcentajeMayora65      float64 `json:"Mayor65"`
-	Nacimientos             uint32 `json:"Nacimientos"`
-	Defunciones             uint32 `json:"Defunciones"`
+	Nacimientos             uint32  `json:"Nacimientos"`
+	Defunciones             uint32  `json:"Defunciones"`
 	TasaNatalidadSobre1000  float64 `json:"TasaNatalidadSobre1000"`
 	TasaMortalidadSobre1000 float64 `json:"TasaMortalidadSobre1000"`
 }
+
+func NewIdentificadorDatos(nombrePoblacion string, fecha FechaObtencionDeDatos) IdentificadorDatos {
+	return IdentificadorDatos{
+		NombrePoblacion: nombrePoblacion,
+		FechaDeDatos:    fecha,
+	}
+}
+
 
 const (
 	FactorTasasPorMil = 1000
 	PrecisionRedondeo = 100
 )
+
+
 
 func (datosPoblacion *DatosPoblacion) CalcularTasas() {
 	if datosPoblacion.PoblacionTotal > 0 && datosPoblacion.Nacimientos < datosPoblacion.PoblacionTotal && datosPoblacion.Defunciones < datosPoblacion.PoblacionTotal {
@@ -77,6 +87,10 @@ func NewDatosPoblacion(poblacion uint32, hombres uint32, mujeres uint32, edadMed
 		TasaNatalidadSobre1000:  tasaNatalidad,
 		TasaMortalidadSobre1000: tasaMortalidad,
 	}, nil
+}
+
+func LeerIdentificadorDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDatos, error) {
+	
 }
 
 func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDatos, DatosPoblacion, error) {
