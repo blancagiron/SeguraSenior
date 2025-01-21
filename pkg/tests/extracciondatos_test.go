@@ -1,11 +1,9 @@
 package segurasenior_test
 
 import (
-	//"encoding/json"
-	//"os"
+	
 	"testing"
-	//"time"
-
+	
 	"github.com/stretchr/testify/assert"
 	"SeguraSenior/pkg/segurasenior"
 )
