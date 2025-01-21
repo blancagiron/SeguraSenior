@@ -26,8 +26,28 @@ func TestCargarDatosDesdeJSON(test *testing.T) {
 	})	
 }
 
-func TestValidarDatos(t *testing.T) {
-	t.Run("Datos válidos", func(t *testing.T) {
+func TestLeerIdentificadorDesdeJSON(test *testing.T) {
+	test.Run("Leer identificador válido", func(test *testing.T) {
+		identificador, err := segurasenior.LeerIdentificadorDesdeJSON(archivoPruebas, "Orcera")
+		assert.NoError(test, err)
+		assert.Equal(test, "Orcera", identificador.NombrePoblacion)
+	})
+
+	test.Run("Leer identificador inválido", func(test *testing.T) {
+		_, err := segurasenior.LeerIdentificadorDesdeJSON(archivoPruebas, "Pueblo Inexistente")
+		assert.Error(test, err)
+	})
+
+	test.Run("Leer identificador con fecha inválida", func(test *testing.T) {
+		_, err := segurasenior.LeerIdentificadorDesdeJSON(archivoPruebas, "Siles")
+		assert.Error(test, err)
+	})
+
+}
+
+
+func TestValidarDatos(test *testing.T) {
+	test.Run("Datos válidos", func(test *testing.T) {
 		err := segurasenior.ValidarDatos(struct {
 			PoblacionTotal uint32  `json:"PoblacionTotal"`
 			Hombres        uint32  `json:"Hombres"`
@@ -47,10 +67,10 @@ func TestValidarDatos(t *testing.T) {
 			Nacimientos:    10,
 			Defunciones:    5,
 		})
-		assert.NoError(t, err)
+		assert.NoError(test, err)
 	})
 
-	t.Run("Errores múltiples", func(t *testing.T) {
+	test.Run("Errores múltiples", func(test *testing.T) {
 		err := segurasenior.ValidarDatos(struct {
 			PoblacionTotal uint32  `json:"PoblacionTotal"`
 			Hombres        uint32  `json:"Hombres"`
@@ -69,6 +89,6 @@ func TestValidarDatos(t *testing.T) {
 			Nacimientos:    200,  // Error: mayor que población
 			Defunciones:    5,
 		})
-		assert.Error(t, err)
+		assert.Error(test, err)
 	})
 }
