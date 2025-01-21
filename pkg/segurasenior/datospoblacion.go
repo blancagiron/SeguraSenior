@@ -17,21 +17,21 @@ type FechaObtencionDeDatos struct {
 }
 
 type IdentificadorDatos struct {
-	NombrePoblacion string                
-	FechaDeDatos    FechaObtencionDeDatos 
+	NombrePoblacion string
+	FechaDeDatos    FechaObtencionDeDatos
 }
 
 type DatosPoblacion struct {
-	PoblacionTotal          uint32  
-	Hombres                 uint32  
-	Mujeres                 uint32  
-	EdadMedia               float32 
-	PorcentajeMenora20      float64 
-	PorcentajeMayora65      float64 
-	Nacimientos             uint32  
-	Defunciones             uint32  
-	TasaNatalidadSobre1000  float64 
-	TasaMortalidadSobre1000 float64 
+	PoblacionTotal          uint32
+	Hombres                 uint32
+	Mujeres                 uint32
+	EdadMedia               float32
+	PorcentajeMenora20      float64
+	PorcentajeMayora65      float64
+	Nacimientos             uint32
+	Defunciones             uint32
+	TasaNatalidadSobre1000  float64
+	TasaMortalidadSobre1000 float64
 }
 
 func NewIdentificadorDatos(nombrePoblacion string, fecha FechaObtencionDeDatos) IdentificadorDatos {
@@ -86,59 +86,58 @@ func NewDatosPoblacion(poblacion uint32, hombres uint32, mujeres uint32, edadMed
 	}, nil
 }
 
-func CargarDatosDesdeJSON[T any](nombreArchivo string) (map[string]T, error) {
-    
-	var datos map[string]T
+func CargarDatosDesdeJSON[Tipo any](nombreArchivo string) (map[string]Tipo, error) {
 
-    file, err := os.Open(nombreArchivo)
-    if err != nil {
-        return nil, fmt.Errorf("no se pudo abrir el archivo: %w", err)
-    }
-    defer file.Close()
+	var datos map[string]Tipo
 
-    if err := json.NewDecoder(file).Decode(&datos); err != nil {
-        return nil, fmt.Errorf("error al decodificar JSON: %w", err)
-    }
+	file, err := os.Open(nombreArchivo)
+	if err != nil {
+		return nil, fmt.Errorf("no se pudo abrir el archivo: %w", err)
+	}
+	defer file.Close()
 
-    return datos, nil
+	if err := json.NewDecoder(file).Decode(&datos); err != nil {
+		return nil, fmt.Errorf("error al decodificar JSON: %w", err)
+	}
+
+	return datos, nil
 }
 
 func LeerIdentificadorDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDatos, error) {
 
-    datos, err := CargarDatosDesdeJSON[struct {
-        NombrePueblo string `json:"NombrePueblo"`
-        FechaDatos   string `json:"FechaDatos"`
-    }](nombreArchivo)
-    if err != nil {
-        return IdentificadorDatos{}, fmt.Errorf("error al cargar datos desde JSON: %w", err)
-    }
+	datos, err := CargarDatosDesdeJSON[struct {
+		NombrePueblo string `json:"NombrePueblo"`
+		FechaDatos   string `json:"FechaDatos"`
+	}](nombreArchivo)
+	if err != nil {
+		return IdentificadorDatos{}, fmt.Errorf("error al cargar datos desde JSON: %w", err)
+	}
 
-    dato, existe := datos[nombrePoblacion]
-    if !existe {
-        return IdentificadorDatos{}, fmt.Errorf("población '%s' no encontrada en el archivo", nombrePoblacion)
-    }
+	dato, existe := datos[nombrePoblacion]
+	if !existe {
+		return IdentificadorDatos{}, fmt.Errorf("población '%s' no encontrada en el archivo", nombrePoblacion)
+	}
 
-	
-    fecha, err := time.Parse("02/01/2006", dato.FechaDatos)
-    if err != nil {
-        return IdentificadorDatos{}, fmt.Errorf("formato de fecha inválido ('%s'): %w", dato.FechaDatos, err)
-    }
+	fecha, err := time.Parse("02/01/2006", dato.FechaDatos)
+	if err != nil {
+		return IdentificadorDatos{}, fmt.Errorf("formato de fecha inválido ('%s'): %w", dato.FechaDatos, err)
+	}
 
-    return IdentificadorDatos{
-        NombrePoblacion: dato.NombrePueblo,
-        FechaDeDatos: FechaObtencionDeDatos{
-            Dia:  uint16(fecha.Day()),
-            Mes:  fecha.Month(),
-            Anio: uint16(fecha.Year()),
-        },
-    }, nil
+	return IdentificadorDatos{
+		NombrePoblacion: dato.NombrePueblo,
+		FechaDeDatos: FechaObtencionDeDatos{
+			Dia:  uint16(fecha.Day()),
+			Mes:  fecha.Month(),
+			Anio: uint16(fecha.Year()),
+		},
+	}, nil
 }
 
 func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (DatosPoblacion, error) {
 
 	var datosPoblacion DatosPoblacion
 
-	datos, err := CargarDatosDesdeJSON[struct {		
+	datos, err := CargarDatosDesdeJSON[struct {
 		PoblacionTotal uint32  `json:"PoblacionTotal"`
 		Hombres        uint32  `json:"Hombres"`
 		Mujeres        uint32  `json:"Mujeres"`
