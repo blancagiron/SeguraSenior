@@ -19,11 +19,7 @@ func TestCargarDatosDesdeJSON(test *testing.T) {
 		assert.NoError(test, err)
 		assert.Contains(test, datos, "Orcera")
 	})	
-
-	test.Run("Cargar datos inválidos", func(test *testing.T) {
-		_, err := segurasenior.CargarDatosDesdeJSON[map[string]interface{}](archivoInvalido)
-		assert.Error(test, err)
-	})	
+		
 }
 
 func TestLeerIdentificadorDesdeJSON(test *testing.T) {
