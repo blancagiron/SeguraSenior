@@ -86,6 +86,22 @@ func NewDatosPoblacion(poblacion uint32, hombres uint32, mujeres uint32, edadMed
 	}, nil
 }
 
+func CargarDatosDesdeJSON[T any](nombreArchivo string) (map[string]T, error) {
+    var datos map[string]T
+
+    file, err := os.Open(nombreArchivo)
+    if err != nil {
+        return nil, fmt.Errorf("no se pudo abrir el archivo: %w", err)
+    }
+    defer file.Close()
+
+    if err := json.NewDecoder(file).Decode(&datos); err != nil {
+        return nil, fmt.Errorf("error al decodificar JSON: %w", err)
+    }
+
+    return datos, nil
+}
+
 func LeerIdentificadorDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDatos, error) {
 	var identificador IdentificadorDatos
 
