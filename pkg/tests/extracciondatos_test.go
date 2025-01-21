@@ -10,8 +10,10 @@ import (
 	"SeguraSenior/pkg/segurasenior"
 )
 
-const archivoPruebas = "../testdata/data.json"
-const archivoInvalido = "../testdata/data_invalido.json"
+const (
+	archivoPruebas = "../testdata/data.json"
+	archivoInvalido = "../testdata/data_invalido.json"
+)
 
 func TestCargarDatosDesdeJSON(test *testing.T) {
 	test.Run("Cargar datos válidos", func(test *testing.T) {
@@ -44,6 +46,43 @@ func TestLeerIdentificadorDesdeJSON(test *testing.T) {
 	})
 
 }
+
+func TestLeerDatosDesdeJSON(test *testing.T) {
+	test.Run("Leer JSON no válido", func(test *testing.T) {
+		_, err := segurasenior.LeerDatosDesdeJSON(archivoInvalido, "Orcera")
+		assert.Error(test, err)
+	})
+
+	test.Run("Lectura correcta - Caso válido", func(test *testing.T) {
+		const (
+			poblacionTotal    uint32  = 1735
+			hombres           uint32  = 868
+			mujeres           uint32  = 867
+			edadMedia         float32 = 42.2
+			porcentajeMenor20 float64 = 15.6
+			porcentajeMayor65 float64 = 22.1
+			nacimientos       uint32  = 6
+			defunciones       uint32  = 29
+			tasaNatalidadEsperada float64 = 3.46
+			tasaMortalidadEsperada float64 = 16.71
+		)
+
+		datos, err := segurasenior.LeerDatosDesdeJSON(archivoPruebas, "Orcera")
+		assert.NoError(test, err)
+
+		assert.Equal(test, poblacionTotal, datos.PoblacionTotal)
+		assert.Equal(test, hombres, datos.Hombres)
+		assert.Equal(test, mujeres, datos.Mujeres)
+		assert.Equal(test, edadMedia, datos.EdadMedia)
+		assert.Equal(test, porcentajeMenor20, datos.PorcentajeMenorA20)
+		assert.Equal(test, porcentajeMayor65, datos.PorcentajeMayorA65)
+		assert.Equal(test, nacimientos, datos.Nacimientos)
+		assert.Equal(test, defunciones, datos.Defunciones)
+		assert.Equal(test, tasaNatalidadEsperada, datos.TasaNatalidadSobre1000)
+		assert.Equal(test, tasaMortalidadEsperada, datos.TasaMortalidadSobre1000)
+	})
+}
+
 
 
 func TestValidarDatos(test *testing.T) {
@@ -81,12 +120,12 @@ func TestValidarDatos(test *testing.T) {
 			Nacimientos    uint32  `json:"Nacimientos"`
 			Defunciones    uint32  `json:"Defunciones"`
 		}{
-			PoblacionTotal: 0,    // Error: población 0
-			Hombres:        50,   // Error: suma incorrecta
+			PoblacionTotal: 0,    
+			Hombres:        50,  
 			Mujeres:        40,
-			Menor20:        -10,  // Error: porcentaje inválido
-			Mayor65:        110,  // Error: porcentaje inválido
-			Nacimientos:    200,  // Error: mayor que población
+			Menor20:        -10,  
+			Mayor65:        110,  
+			Nacimientos:    200,  
 			Defunciones:    5,
 		})
 		assert.Error(test, err)
