@@ -27,7 +27,7 @@ Su última versión fue lanzada hace 3 meses, y es una de las bibliotecas más u
 Su última actualización fue hace 2 semanas pero tiene menor adopción generalizada que Testify para pruebas unitarias. Esta información se puede consultar en su [repositorio](https://github.com/onsi/gomega).
 
 - **Instalación de dependencias:**  
-  Requiere la instalación de `GoMega` como dependencia adicional, lo que incrementa la carga de dependencias del proyecto. Es comúnmente usado en conjunto con `Ginkgo`, añadiendo una capa adicional de configuración.  
+  Requiere la instalación de `GoMega` como dependencia adicional, lo que incrementa la carga de dependencias del proyecto. 
    
 ---
 
