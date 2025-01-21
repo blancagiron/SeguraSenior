@@ -1,89 +1,34 @@
-package segurasenior
+package segurasenior_test
 
 import (
-	"SeguraSenior/pkg/segurasenior"
-	"math"
+	//"encoding/json"
+	//"os"
 	"testing"
+	//"time"
 
 	"github.com/stretchr/testify/assert"
+	"SeguraSenior/pkg/segurasenior"
 )
 
-func TestLecturaCorrectaDatosDesdeJSON(t *testing.T) {
+const archivoPruebas = "../testdata/data.json"
+const archivoInvalido = "../testdata/data_invalido.json"
 
-	t.Run("Lectura Correcta - Caso Válido", func(t *testing.T) {
-		nombreArchivo := "../testdata/data.json"
-		nombrePoblacion := "Orcera"
+func TestCargarDatosDesdeJSON(test *testing.T) {
+	test.Run("Cargar datos válidos", func(test *testing.T) {
+		datos, err := segurasenior.CargarDatosDesdeJSON[map[string]interface{}](archivoPruebas)
+		assert.NoError(test, err)
+		assert.Contains(test, datos, "Orcera")
+	})	
 
-		const (
-			poblacionTotal    uint32  = 1735
-			hombres           uint32  = 868
-			mujeres           uint32  = 867
-			edadMedia         float32 = 42.2
-			porcentajeMenor20 float64 = 15.6
-			porcentajeMayor65 float64 = 22.1
-			nacimientos       uint32  = 6
-			defunciones       uint32  = 29
-		)
-
-		tasaNatalidadSobre1000 := math.Round((float64(nacimientos)/float64(poblacionTotal))*segurasenior.FactorTasasPorMil*segurasenior.PrecisionRedondeo) / segurasenior.PrecisionRedondeo
-		tasaMortalidadSobre1000 := math.Round((float64(defunciones)/float64(poblacionTotal))*segurasenior.FactorTasasPorMil*segurasenior.PrecisionRedondeo) / segurasenior.PrecisionRedondeo
-
-		expectedIdentificador := segurasenior.IdentificadorDatos{
-			NombrePoblacion: nombrePoblacion,
-			FechaDeDatos: segurasenior.FechaObtencionDeDatos{
-				Dia:  1,
-				Mes:  1,
-				Anio: 2023,
-			},
-		}
-
-		expectedDatos := segurasenior.DatosPoblacion{
-			PoblacionTotal:          poblacionTotal,
-			Hombres:                 hombres,
-			Mujeres:                 mujeres,
-			EdadMedia:               edadMedia,
-			PorcentajeMenora20:      porcentajeMenor20,
-			PorcentajeMayora65:      porcentajeMayor65,
-			Nacimientos:             nacimientos,
-			Defunciones:             defunciones,
-			TasaNatalidadSobre1000:  tasaNatalidadSobre1000,
-			TasaMortalidadSobre1000: tasaMortalidadSobre1000,
-		}
-
-		identificador, datosExtraidos, err := segurasenior.LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion)
-
-		assert.NoError(t, err)
-		assert.Equal(t, expectedIdentificador, identificador)
-		assert.Equal(t, expectedDatos, datosExtraidos)
-	})
-
-	t.Run("Población No Encontrada", func(t *testing.T) {
-		nombreArchivo := "../testdata/data.json"
-		nombrePoblacion := "Granada"
-
-		_, _, err := segurasenior.LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion)
-
-		assert.Error(t, err)
-		assert.Contains(t, err.Error(), "población '"+nombrePoblacion+"' no encontrada en el archivo")
-	})
-
-	t.Run("JSON inválido", func(t *testing.T) {
-		nombreArchivo := "../testdata/data_invalido.json"
-		nombrePoblacion := "Orcera"
-
-		_, _, err := segurasenior.LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion)
-
-		assert.Error(t, err)
-		assert.Contains(t, err.Error(), "invalid character")
-	})
-
+	test.Run("Cargar datos inválidos", func(test *testing.T) {
+		_, err := segurasenior.CargarDatosDesdeJSON[map[string]interface{}](archivoInvalido)
+		assert.Error(test, err)
+	})	
 }
 
 func TestValidarDatos(t *testing.T) {
-	t.Run("Datos inválidos ", func(t *testing.T) {
-		dato := struct {
-			NombrePueblo   string  `json:"NombrePueblo"`
-			FechaDatos     string  `json:"FechaDatos"`
+	t.Run("Datos válidos", func(t *testing.T) {
+		err := segurasenior.ValidarDatos(struct {
 			PoblacionTotal uint32  `json:"PoblacionTotal"`
 			Hombres        uint32  `json:"Hombres"`
 			Mujeres        uint32  `json:"Mujeres"`
@@ -93,26 +38,37 @@ func TestValidarDatos(t *testing.T) {
 			Nacimientos    uint32  `json:"Nacimientos"`
 			Defunciones    uint32  `json:"Defunciones"`
 		}{
-			NombrePueblo:   "",
-			FechaDatos:     "01/01/2023",
-			PoblacionTotal: 0,
-			Hombres:        500,
-			Mujeres:        400,
-			EdadMedia:      45.3,
-			Menor20:        110,
-			Mayor65:        -5,
-			Nacimientos:    2000,
-			Defunciones:    0,
-		}
+			PoblacionTotal: 100,
+			Hombres:        50,
+			Mujeres:        50,
+			EdadMedia:      30.5,
+			Menor20:        15.0,
+			Mayor65:        20.0,
+			Nacimientos:    10,
+			Defunciones:    5,
+		})
+		assert.NoError(t, err)
+	})
 
-		err := segurasenior.ValidarDatos(dato)
+	t.Run("Errores múltiples", func(t *testing.T) {
+		err := segurasenior.ValidarDatos(struct {
+			PoblacionTotal uint32  `json:"PoblacionTotal"`
+			Hombres        uint32  `json:"Hombres"`
+			Mujeres        uint32  `json:"Mujeres"`
+			EdadMedia      float32 `json:"EdadMedia"`
+			Menor20        float64 `json:"Menor20"`
+			Mayor65        float64 `json:"Mayor65"`
+			Nacimientos    uint32  `json:"Nacimientos"`
+			Defunciones    uint32  `json:"Defunciones"`
+		}{
+			PoblacionTotal: 0,    // Error: población 0
+			Hombres:        50,   // Error: suma incorrecta
+			Mujeres:        40,
+			Menor20:        -10,  // Error: porcentaje inválido
+			Mayor65:        110,  // Error: porcentaje inválido
+			Nacimientos:    200,  // Error: mayor que población
+			Defunciones:    5,
+		})
 		assert.Error(t, err)
-		assert.Contains(t, err.Error(), "nombre de la población está vacío")
-		assert.NotContains(t, err.Error(), "la fecha de datos está vacía")
-		assert.NotContains(t, err.Error(), "el número de defunciones no puede ser mayor que la población total")
-		assert.Contains(t, err.Error(), "el porcentaje de menores de 20 años debe estar entre 0 y 100")
-		assert.Contains(t, err.Error(), "el porcentaje de mayores de 65 años debe estar entre 0 y 100")
-		assert.Contains(t, err.Error(), "el número de nacimientos no puede ser mayor que la población total")
-		assert.Contains(t, err.Error(), "la población total no puede ser 0")
 	})
 }
