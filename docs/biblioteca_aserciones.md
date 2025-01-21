@@ -5,9 +5,9 @@
 ## Criterios:
 
 
-- **Instalación de dependencias:** Se evaluará si la biblioteca de aserciones requiere instalación adicional de paquetes o bibliotecas externas, priorizando aquellos que minimicen las dependencias externas. Go incentiva a la no dependencia de librerías externas, por lo que se dará prioridad a herramientas que formen parte de su [librería estándar](https://pkg.go.dev/std)
+- **Instalación de dependencias:** Se evaluará si la biblioteca de aserciones requiere instalación adicional de paquetes, priorizando aquellas que minimicen las dependencias externas. 
 
-- **Madurez:** Se considerará si la herramienta es madura y adoptada dentro de la comunidad de Go. Una herramienta madura ya ha alcanzado un nivel de estabilidad en el que los cambios y mejoras son menos frecuentes, ya que ha sido suficientemente probada y utilizada, por lo tanto, su funcionalidad es confiable y no necesita actualizaciones regulares.
+- **Última actualización y mantenimiento:** Se valorará que la herramienta tenga actualizaciones regulares publicadas en los últimos 12 meses. Si no hay actualizaciones regulares y recientes puede significar una falta de mantenimiento, lo que en un futuro aumentaría la deuda técnica.
 
 ---
 
@@ -15,7 +15,7 @@
 
 ### **Testify**
 
-Su última versión fue lanzada hace 3 meses, y es una de las bibliotecas más utilizadas en el ecosistema de Go. Esta información se puede consultar en su [repositorio](https://github.com/stretchr/testify).
+Su última versión fue lanzada hace 3 meses. Esta información se puede consultar en su [repositorio](https://github.com/stretchr/testify).
 
 Requiere la instalación de una dependencia adicional, el paquete `Testify`, lo que aumenta la carga inicial del proyecto. 
  
@@ -31,14 +31,14 @@ Requiere instalar la biblioteca como dependencia adicional. Su última actualiza
 
 ### **Is**  
 
-No requiere dependencias adicionales y es completamente compatible con el test runner estándar de Go. Su última actualización fue hace dos años y es menos conocida y usada que otras alternativas como Testify. Esta información se puede consultar en su [repositorio](https://github.com/matryer/is)
+No requiere dependencias adicionales Go. Su última actualización fue hace dos años. Esta información se puede consultar en su [repositorio](https://github.com/matryer/is)
 
 
 ---
 
 ### **Ghost**
 
-No requiere dependencias adicionales y se integra directamente con el paquete estándar de Go `testing`. Su repositorio es [este](https://github.com/rliebz/ghost). Su última actualización fue hace 2 semanas, lo que refleja actividad reciente. Es una herramienta menos conocida dentro de la comunidad de Go. Ghost no ofrece métodos directos para comparar datos. En cambio, utiliza métodos generales de aserción como Must, MustNot, NoError, Should y ShouldNot, que evalúan resultados de manera booleana. 
+No requiere dependencias adicionales y se integra directamente con el paquete estándar de Go `testing`. Su repositorio es [este](https://github.com/rliebz/ghost). Su última actualización fue hace 2 semanas, lo que refleja actividad reciente. Ghost no ofrece métodos directos para comparar datos. En cambio, utiliza métodos generales de aserción como Must, MustNot, NoError, Should y ShouldNot, que evalúan resultados de manera booleana. 
 
 ---
 
