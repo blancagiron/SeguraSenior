@@ -17,21 +17,21 @@ type FechaObtencionDeDatos struct {
 }
 
 type IdentificadorDatos struct {
-	NombrePoblacion string                `json:"NombrePoblacion"`
-	FechaDeDatos    FechaObtencionDeDatos `json:"FechaDeDatos"`
+	NombrePoblacion string                
+	FechaDeDatos    FechaObtencionDeDatos 
 }
 
 type DatosPoblacion struct {
-	PoblacionTotal          uint32  `json:"PoblacionTotal"`
-	Hombres                 uint32  `json:"Hombres"`
-	Mujeres                 uint32  `json:"Mujeres"`
-	EdadMedia               float32 `json:"EdadMedia"`
-	PorcentajeMenora20      float64 `json:"Menor20"`
-	PorcentajeMayora65      float64 `json:"Mayor65"`
-	Nacimientos             uint32  `json:"Nacimientos"`
-	Defunciones             uint32  `json:"Defunciones"`
-	TasaNatalidadSobre1000  float64 `json:"TasaNatalidadSobre1000"`
-	TasaMortalidadSobre1000 float64 `json:"TasaMortalidadSobre1000"`
+	PoblacionTotal          uint32  
+	Hombres                 uint32  
+	Mujeres                 uint32  
+	EdadMedia               float32 
+	PorcentajeMenora20      float64 
+	PorcentajeMayora65      float64 
+	Nacimientos             uint32  
+	Defunciones             uint32  
+	TasaNatalidadSobre1000  float64 
+	TasaMortalidadSobre1000 float64 
 }
 
 func NewIdentificadorDatos(nombrePoblacion string, fecha FechaObtencionDeDatos) IdentificadorDatos {
