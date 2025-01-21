@@ -84,10 +84,24 @@ func TestLeerDatosDesdeJSON(test *testing.T) {
 }
 
 
+func TestValidarDatos(t *testing.T) {
+	const (
+		PorcentajeInvalidoMayorA60 = 110.0
+		PorcentajeInvalidoMenorA20 = -5.0
+		PorcentajeValidoMayorA60   = 60.0
+		PorcentajeValidoMenorA20   = 20.0
+		PoblacionCero           = 0
+		PoblacionTotalValida    = 1000
+		HombresValidos          = 500
+		MujeresValidas          = 500
+		NacimientosInvalidos    = 2000
+		DefuncionesValidas      = 10
+		NacimientosValidos      = 20
 
-func TestValidarDatos(test *testing.T) {
-	test.Run("Datos válidos", func(test *testing.T) {
-		err := segurasenior.ValidarDatos(struct {
+	)
+
+	t.Run("Datos inválidos", func(t *testing.T) {
+		dato := struct {
 			PoblacionTotal uint32  `json:"PoblacionTotal"`
 			Hombres        uint32  `json:"Hombres"`
 			Mujeres        uint32  `json:"Mujeres"`
@@ -97,20 +111,28 @@ func TestValidarDatos(test *testing.T) {
 			Nacimientos    uint32  `json:"Nacimientos"`
 			Defunciones    uint32  `json:"Defunciones"`
 		}{
-			PoblacionTotal: 100,
-			Hombres:        50,
-			Mujeres:        50,
-			EdadMedia:      30.5,
-			Menor20:        15.0,
-			Mayor65:        20.0,
-			Nacimientos:    10,
-			Defunciones:    5,
-		})
-		assert.NoError(test, err)
+			PoblacionTotal: PoblacionCero,
+			Hombres:        HombresValidos,
+			Mujeres:        MujeresValidas,
+			EdadMedia:      45.3,
+			Menor20:        PorcentajeInvalidoMayorA60,
+			Mayor65:        PorcentajeInvalidoMenorA20,
+			Nacimientos:    NacimientosInvalidos,
+			Defunciones:    DefuncionesValidas,
+		}
+
+		err := segurasenior.ValidarDatos(dato)
+		assert.Error(t, err)
+		assert.Contains(t, err.Error(), "la población total no puede ser 0")
+		assert.NotContains(t, err.Error(), "el numero de hombres no puede ser 0")
+		assert.NotContains(t, err.Error(), "el numero de mujeres no puede ser 0")
+		assert.Contains(t, err.Error(), "el porcentaje de menores de 20 años debe estar entre 0 y 100")
+		assert.Contains(t, err.Error(), "el porcentaje de mayores de 65 años debe estar entre 0 y 100")
+		assert.Contains(t, err.Error(), "el número de nacimientos no puede ser mayor que la población total")
 	})
 
-	test.Run("Errores múltiples", func(test *testing.T) {
-		err := segurasenior.ValidarDatos(struct {
+	t.Run("Datos válidos", func(t *testing.T) {
+		dato := struct {
 			PoblacionTotal uint32  `json:"PoblacionTotal"`
 			Hombres        uint32  `json:"Hombres"`
 			Mujeres        uint32  `json:"Mujeres"`
@@ -120,14 +142,18 @@ func TestValidarDatos(test *testing.T) {
 			Nacimientos    uint32  `json:"Nacimientos"`
 			Defunciones    uint32  `json:"Defunciones"`
 		}{
-			PoblacionTotal: 0,    
-			Hombres:        50,  
-			Mujeres:        40,
-			Menor20:        -10,  
-			Mayor65:        110,  
-			Nacimientos:    200,  
-			Defunciones:    5,
-		})
-		assert.Error(test, err)
+			PoblacionTotal: PoblacionTotalValida,
+			Hombres:        HombresValidos,
+			Mujeres:        MujeresValidas,
+			EdadMedia:      45.3,
+			Menor20:        PorcentajeValidoMenorA20,
+			Mayor65:        PorcentajeValidoMayorA60,
+			Nacimientos:    NacimientosValidos,
+			Defunciones:    DefuncionesValidas,
+		}
+
+		err := segurasenior.ValidarDatos(dato)
+		assert.NoError(t, err)
 	})
 }
+
