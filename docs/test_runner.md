@@ -24,14 +24,14 @@ Los criterios seguidos para escoger el test runner más adecuado son:
 	
  
 - **Ginkgo**
-	- Requiere la instalación de varias dependencias, como `github.com/onsi/ginkgo` y `github.com/onsi/gomega` para su funcionalidad completa, lo que puede hacer que el proyecto dependa de más bibliotecas. 
+	- No minimiza las dependencias externas. Requiere su instalación y la de `github.com/onsi/gomega` para su funcionalidad completa.
 	  
 	Podemos consultar más información en su [repositorio](https://github.com/onsi/ginkgo), como que su última actualización fue hace menos de un mes.
 
 
 - **GoConvey**
 	
-	Requiere la instalación de la librería `GoConvey` (`go get github.com/smartystreets/goconvey`), lo que aumenta las dependencias externas en el proyecto. Además, su última actualización fue hace casi un año. 
+	Requiere la instalación de dependencias adicionales. Además, su última actualización fue hace casi un año. 
 	  
 	Podemos consultar más información en su [repositorio](https://github.com/smartystreets/goconvey)
 	
@@ -39,6 +39,6 @@ Los criterios seguidos para escoger el test runner más adecuado son:
 
 ## Test runner elegido:
 
-El test runner seleccionado es `Testing` porque forma parte de la biblioteca estándar de Go.
+El test runner seleccionado es `Testing`, forma parte de la biblioteca estándar de Go.
 
 
