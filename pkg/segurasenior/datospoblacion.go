@@ -103,43 +103,33 @@ func CargarDatosDesdeJSON[T any](nombreArchivo string) (map[string]T, error) {
 }
 
 func LeerIdentificadorDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDatos, error) {
-	var identificador IdentificadorDatos
 
-	file, err := os.Open(nombreArchivo)
-	if err != nil {
-		return identificador, fmt.Errorf("no se pudo abrir el archivo: %w", err)
-	}
-	defer file.Close()
+    datos, err := CargarDatosDesdeJSON[struct {
+        NombrePueblo string `json:"NombrePueblo"`
+        FechaDatos   string `json:"FechaDatos"`
+    }](nombreArchivo)
+    if err != nil {
+        return IdentificadorDatos{}, fmt.Errorf("error al cargar datos desde JSON: %w", err)
+    }
 
-	var datos map[string]struct {
-		NombrePueblo string `json:"NombrePueblo"`
-		FechaDatos   string `json:"FechaDatos"`
-	}
+    dato, existe := datos[nombrePoblacion]
+    if !existe {
+        return IdentificadorDatos{}, fmt.Errorf("población '%s' no encontrada en el archivo", nombrePoblacion)
+    }
 
-	if err := json.NewDecoder(file).Decode(&datos); err != nil {
-		return identificador, fmt.Errorf("error al decodificar JSON: %w", err)
-	}
+    fecha, err := time.Parse("02/01/2006", dato.FechaDatos)
+    if err != nil {
+        return IdentificadorDatos{}, fmt.Errorf("formato de fecha inválido ('%s'): %w", dato.FechaDatos, err)
+    }
 
-	dato, existe := datos[nombrePoblacion]
-	if !existe {
-		return identificador, fmt.Errorf("población '%s' no encontrada en el archivo", nombrePoblacion)
-	}
-
-	fecha, err := time.Parse("02/01/2006", dato.FechaDatos)
-	if err != nil {
-		return identificador, fmt.Errorf("formato de fecha inválido ('%s'): %w", dato.FechaDatos, err)
-	}
-
-	identificador = IdentificadorDatos{
-		NombrePoblacion: dato.NombrePueblo,
-		FechaDeDatos: FechaObtencionDeDatos{
-			Dia:  uint16(fecha.Day()),
-			Mes:  fecha.Month(),
-			Anio: uint16(fecha.Year()),
-		},
-	}
-
-	return identificador, nil
+    return IdentificadorDatos{
+        NombrePoblacion: dato.NombrePueblo,
+        FechaDeDatos: FechaObtencionDeDatos{
+            Dia:  uint16(fecha.Day()),
+            Mes:  fecha.Month(),
+            Anio: uint16(fecha.Year()),
+        },
+    }, nil
 }
 
 func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (DatosPoblacion, error) {
