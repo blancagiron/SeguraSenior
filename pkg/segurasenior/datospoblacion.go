@@ -87,7 +87,8 @@ func NewDatosPoblacion(poblacion uint32, hombres uint32, mujeres uint32, edadMed
 }
 
 func CargarDatosDesdeJSON[T any](nombreArchivo string) (map[string]T, error) {
-    var datos map[string]T
+    
+	var datos map[string]T
 
     file, err := os.Open(nombreArchivo)
     if err != nil {
