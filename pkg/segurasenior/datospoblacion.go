@@ -117,6 +117,7 @@ func LeerIdentificadorDesdeJSON(nombreArchivo, nombrePoblacion string) (Identifi
         return IdentificadorDatos{}, fmt.Errorf("población '%s' no encontrada en el archivo", nombrePoblacion)
     }
 
+	
     fecha, err := time.Parse("02/01/2006", dato.FechaDatos)
     if err != nil {
         return IdentificadorDatos{}, fmt.Errorf("formato de fecha inválido ('%s'): %w", dato.FechaDatos, err)
@@ -133,17 +134,10 @@ func LeerIdentificadorDesdeJSON(nombreArchivo, nombrePoblacion string) (Identifi
 }
 
 func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (DatosPoblacion, error) {
+
 	var datosPoblacion DatosPoblacion
 
-	file, err := os.Open(nombreArchivo)
-	if err != nil {
-		return  datosPoblacion, fmt.Errorf("no se pudo abrir el archivo: %w", err)
-	}
-	defer file.Close()
-
-	var datos map[string]struct {
-		NombrePueblo   string  `json:"NombrePueblo"`
-		FechaDatos     string  `json:"FechaDatos"`
+	datos, err := CargarDatosDesdeJSON[struct {		
 		PoblacionTotal uint32  `json:"PoblacionTotal"`
 		Hombres        uint32  `json:"Hombres"`
 		Mujeres        uint32  `json:"Mujeres"`
@@ -152,19 +146,18 @@ func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (DatosPoblacion, 
 		Mayor65        float64 `json:"Mayor65"`
 		Nacimientos    uint32  `json:"Nacimientos"`
 		Defunciones    uint32  `json:"Defunciones"`
-	}
-
-	if err := json.NewDecoder(file).Decode(&datos); err != nil {
-		return datosPoblacion, fmt.Errorf("error al decodificar JSON: %w", err)
+	}](nombreArchivo)
+	if err != nil {
+		return DatosPoblacion{}, fmt.Errorf("error al cargar datos desde JSON: %w", err)
 	}
 
 	dato, existe := datos[nombrePoblacion]
 	if !existe {
-		return  datosPoblacion, fmt.Errorf("población '%s' no encontrada en el archivo", nombrePoblacion)
+		return DatosPoblacion{}, fmt.Errorf("población '%s' no encontrada en el archivo", nombrePoblacion)
 	}
 
 	if err := ValidarDatos(dato); err != nil {
-		return datosPoblacion, err
+		return DatosPoblacion{}, fmt.Errorf("datos inválidos: %w", err)
 	}
 
 	datosPoblacion = DatosPoblacion{
@@ -184,8 +177,6 @@ func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (DatosPoblacion, 
 }
 
 func ValidarDatos(dato struct {
-	NombrePueblo   string  `json:"NombrePueblo"`
-	FechaDatos     string  `json:"FechaDatos"`
 	PoblacionTotal uint32  `json:"PoblacionTotal"`
 	Hombres        uint32  `json:"Hombres"`
 	Mujeres        uint32  `json:"Mujeres"`
@@ -196,13 +187,6 @@ func ValidarDatos(dato struct {
 	Defunciones    uint32  `json:"Defunciones"`
 }) error {
 	var errores []string
-
-	if dato.NombrePueblo == "" {
-		errores = append(errores, "nombre de la población está vacío")
-	}
-	if dato.FechaDatos == "" {
-		errores = append(errores, "la fecha de datos está vacía")
-	}
 	if dato.PoblacionTotal == 0 {
 		errores = append(errores, "la población total no puede ser 0")
 	}
