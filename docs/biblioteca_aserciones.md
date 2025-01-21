@@ -81,9 +81,9 @@ Su última actualización fue hace dos años y es menos conocida y usada que otr
 
 ---
 
-### **Go Testing (caso especial)**  
+### **Testing (caso especial)**  
 
-Aunque Go Testing no es una biblioteca de aserciones, se incluye en la evaluación porque es parte de la librería estándar de Go y ofrece funcionalidades básicas para comprobar condiciones y manejar errores. Permite registrar errores y personalizar mensajes, lo que lo convierte en una opción válida en proyectos que prefieren no agregar dependencias externas. Aunque no proporciona métodos avanzados para comparar datos complejos, puede ser suficiente para pruebas más simples. 
+Aunque Testing no es una biblioteca de aserciones, se incluye en la evaluación porque es parte de la librería estándar de Go y ofrece funcionalidades básicas para comprobar condiciones y manejar errores. Permite registrar errores y personalizar mensajes, lo que lo convierte en una opción válida en proyectos que prefieren no agregar dependencias externas. Aunque no proporciona métodos avanzados para comparar datos complejos, puede ser suficiente para pruebas más simples. 
 
 Se puede consultar más información en [este enlace](https://pkg.go.dev/testing)
 
@@ -91,10 +91,10 @@ Se puede consultar más información en [este enlace](https://pkg.go.dev/testing
   No requiere dependencias adicionales, ya que forma parte de la librería estándar de Go.  
 
 - **Utilidad para comparar datos:**  
-  Go Testing no incluye métodos predefinidos para comparar datos. La verificación de condiciones debe realizarse manualmente mediante `t.Error` o `t.Errorf`, lo que puede ser más incómodo y propenso a errores en comparación con las bibliotecas mencionadas. Para casos complejos, es necesario escribir lógica adicional.  
+   Testing no incluye métodos predefinidos para comparar datos. La verificación de condiciones debe realizarse manualmente mediante `t.Error` o `t.Errorf`, lo que puede ser más incómodo y propenso a errores en comparación con las bibliotecas mencionadas. Para casos complejos, es necesario escribir lógica adicional.  
 
 - **Puntuación en Snyk Advisor:**  
-  Go Testing no está listado en Snyk Advisor, pero su fiabilidad está garantizada como parte del lenguaje.  
+ Testing no está listado en Snyk Advisor, pero su fiabilidad está garantizada como parte del lenguaje.  
 
 ---
 
