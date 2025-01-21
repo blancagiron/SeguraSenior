@@ -26,8 +26,8 @@ type DatosPoblacion struct {
 	Hombres                 uint32
 	Mujeres                 uint32
 	EdadMedia               float32
-	PorcentajeMenora20      float64
-	PorcentajeMayora65      float64
+	PorcentajeMenorA20      float64
+	PorcentajeMayorA65      float64
 	Nacimientos             uint32
 	Defunciones             uint32
 	TasaNatalidadSobre1000  float64
@@ -77,8 +77,8 @@ func NewDatosPoblacion(poblacion uint32, hombres uint32, mujeres uint32, edadMed
 		Hombres:                 hombres,
 		Mujeres:                 mujeres,
 		EdadMedia:               edadMedia,
-		PorcentajeMenora20:      porcentajeMenorA20,
-		PorcentajeMayora65:      porcentajeMayorA65,
+		PorcentajeMenorA20:      porcentajeMenorA20,
+		PorcentajeMayorA65:      porcentajeMayorA65,
 		Nacimientos:             nacimientos,
 		Defunciones:             defunciones,
 		TasaNatalidadSobre1000:  tasaNatalidad,
@@ -165,8 +165,8 @@ func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (DatosPoblacion, 
 		Hombres:            dato.Hombres,
 		Mujeres:            dato.Mujeres,
 		EdadMedia:          dato.EdadMedia,
-		PorcentajeMenora20: dato.Menor20,
-		PorcentajeMayora65: dato.Mayor65,
+		PorcentajeMenorA20: dato.Menor20,
+		PorcentajeMayorA65: dato.Mayor65,
 		Nacimientos:        dato.Nacimientos,
 		Defunciones:        dato.Defunciones,
 	}
