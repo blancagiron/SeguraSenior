@@ -87,7 +87,7 @@ func NewDatosPoblacion(poblacion uint32, hombres uint32, mujeres uint32, edadMed
 	}, nil
 }
 
-func CargarDatosDesdeJSON[Tipo any](nombreArchivo string) (map[string]Tipo, error) {
+func CargarDatosDesdeArchivo[Tipo any](nombreArchivo string) (map[string]Tipo, error) {
 
 	var datos map[string]Tipo
 
@@ -106,7 +106,7 @@ func CargarDatosDesdeJSON[Tipo any](nombreArchivo string) (map[string]Tipo, erro
 
 func LeerIdentificadorDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDatos, error) {
 
-	datos, err := CargarDatosDesdeJSON[struct {
+	datos, err := CargarDatosDesdeArchivo[struct {
 		NombrePueblo string `json:"NombrePueblo"`
 		FechaDatos   string `json:"FechaDatos"`
 	}](nombreArchivo)
@@ -140,7 +140,7 @@ func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (DatosPoblacion, 
 
 	var datosPoblacion DatosPoblacion
 
-	datos, err := CargarDatosDesdeJSON[struct {
+	datos, err := CargarDatosDesdeArchivo[struct {
 		PoblacionTotal uint32  `json:"PoblacionTotal"`
 		Hombres        uint32  `json:"Hombres"`
 		Mujeres        uint32  `json:"Mujeres"`
