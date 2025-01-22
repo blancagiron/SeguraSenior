@@ -108,12 +108,11 @@ func CargarDatosDesdeArchivo[Tipo any](nombreArchivo string) (map[string]Tipo, e
 	contenido, err := LeerArchivo(nombreArchivo)
 	
 	if err != nil {
-
 		return nil, fmt.Errorf("error al leer datos desde el archivo: %w", err)
-
 	}
 	datosDecodificados, err := DecodificarJSON[Tipo](contenido)
-	if err != nil {
+	
+	if err !=  nil {
 		return nil, fmt.Errorf("error al decodificar datos desde JSON: %w", err)
 	}
 	return datosDecodificados, nil
@@ -158,8 +157,7 @@ func LeerIdentificadorDatosDesdeJSON(nombreArchivoDatos, nombrePoblacion string)
 		return IdentificadorDatos{}, fmt.Errorf("error al cargar datos desde el archivo: %w", fallo)
 	}
 
-	
-	datoPoblacion, fallo  := ValidarPoblacionExiste(datos, nombrePoblacion)
+		datoPoblacion, fallo  := ValidarPoblacionExiste(datos, nombrePoblacion)
 	if fallo != nil {
 		return IdentificadorDatos{}, fallo
 	}
