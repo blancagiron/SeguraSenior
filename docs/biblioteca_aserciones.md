@@ -5,7 +5,7 @@
 ## Criterios:
 
 
-- **Evitar dependencias adicionales:** Se evaluará si la biblioteca de aserciones requiere instalación adicional de paquetes, priorizando aquellas que minimicen las dependencias externas. 
+- **Evitar dependencias adicionales al lenguaje base:** La filosofía de Go incentiva a la no dependencia de librerías externas. Se evaluará si la biblioteca de aserciones requiere instalación adicional de paquetes, priorizando aquellas que minimicen las dependencias externas. 
 
 - **Última actualización y mantenimiento:** Se valorará que la herramienta tenga actualizaciones regulares publicadas en los últimos 12 meses. Si no hay actualizaciones regulares y recientes puede significar una falta de mantenimiento, lo que en un futuro aumentaría la deuda técnica.
 
@@ -17,7 +17,7 @@
 
 ### [**Testify**](https://github.com/stretchr/testify)
 
-Su última versión fue lanzada hace 3 meses. Esta información se puede consultar en su [repositorio]
+Su última versión fue lanzada hace 3 meses. 
 Requiere la instalación de una dependencia adicional. Permite realizar comparaciones sin necesidad de sentencias condicionales adicionales con funciones como `assert.Equal`.
  
 ---
