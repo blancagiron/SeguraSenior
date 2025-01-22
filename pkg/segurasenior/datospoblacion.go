@@ -128,7 +128,7 @@ func ValidarPoblacionExiste[Tipo any](datos map[string]Tipo, nombrePoblacion str
 func ParsearFecha(fechaEnString string) (time.Time, error) {
 	fecha, err := time.Parse("02/01/2006", fechaEnString)
 	if err != nil {
-		return time.Time{}, fmt.Errorf("formato de fecha inválido ('%s'): %w", fechaStr, err)
+		return time.Time{}, fmt.Errorf("formato de fecha inválido ('%s'): %w", fechaEnString, err)
 	}
 	return fecha, nil
 }
@@ -144,41 +144,27 @@ func CrearIdentificadorDatos(nombre string, fecha time.Time) IdentificadorDatos 
 	}
 }
 
-
-
-
-
-
-func LeerIdentificadorDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDatos, error) {
-
+func LeerIdentificadorDatosDesdeArchivo(nombreArchivo, nombrePoblacion string) (IdentificadorDatos, error) {
 	datos, err := CargarDatosDesdeArchivo[struct {
 		NombrePueblo string `json:"NombrePueblo"`
 		FechaDatos   string `json:"FechaDatos"`
 	}](nombreArchivo)
 	if err != nil {
-		return IdentificadorDatos{}, fmt.Errorf("error al cargar datos desde JSON: %w", err)
+		return IdentificadorDatos{}, fmt.Errorf("error al cargar datos desde el archivo: %w", err)
 	}
 
-	datoPoblacionEspecifica, existe := datos[nombrePoblacion]
-
-	if !existe {
-
-		return IdentificadorDatos{}, fmt.Errorf("población '%s' no encontrada en el archivo JSON", nombrePoblacion)
-	}
-
-	fecha, err := time.Parse("02/01/2006", datoPoblacionEspecifica.FechaDatos)
+	datoPoblacionEspecifica, err := ValidarPoblacionExiste(datos, nombrePoblacion)
 	if err != nil {
-		return IdentificadorDatos{}, fmt.Errorf("formato de fecha inválido ('%s'): %w", datoPoblacionEspecifica.FechaDatos, err)
+		return IdentificadorDatos{}, err
 	}
 
-	return IdentificadorDatos{
-		NombrePoblacion: datoPoblacionEspecifica.NombrePueblo,
-		FechaDeDatos: FechaObtencionDeDatos{
-			Dia:  uint16(fecha.Day()),
-			Mes:  fecha.Month(),
-			Anio: uint16(fecha.Year()),
-		},
-	}, nil
+	fechaDatos, err := ParsearFecha(datoPoblacionEspecifica.FechaDatos)
+	if err != nil {
+		return IdentificadorDatos{}, err
+	}
+
+	return CrearIdentificadorDatos(datoPoblacionEspecifica.NombrePueblo, fechaDatos), nil
+	
 }
 
 func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (DatosPoblacion, error) {
