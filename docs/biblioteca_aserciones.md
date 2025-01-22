@@ -18,28 +18,28 @@
 ### [**Testify**](https://github.com/stretchr/testify)
 
 Su última versión fue lanzada hace 3 meses. 
-Requiere la instalación de una dependencia adicional. Permite realizar comparaciones sin necesidad de sentencias condicionales adicionales con funciones como `assert.Equal`.
+Se debe instalar, es una dependencia adicional que no forma parte de la biblioteca estándar de Go . Permite realizar comparaciones sin necesidad de sentencias condicionales adicionales con funciones como `assert.Equal`.
  
 ---
 
 ### [**GoMega:**](https://github.com/onsi/gomega)
 
 
-Requiere instalar la biblioteca como dependencia adicional y depende usualmente del framework Ginkgo, por lo que habría que instalar otra dependencia. Su última actualización fue hace 2 semanas y proporciona funciones para comparación directa como `Expect().To(Equal(...))`. 
+Se debe instalar la biblioteca por separado. Usualmente depende del framework Ginkgo, por lo que habría que instalar otra dependencia más en vez de sólo una. Su última actualización fue hace 2 semanas y proporciona funciones para comparación directa como `Expect().To(Equal(...))`. 
 
   
 ---
 
 ### [**Is**](https://github.com/matryer/is) 
 
-No requiere dependencias adicionales Go. Su última actualización fue hace dos años. Proporciona métodos para comparaciones de datos como `is.Equal`. 
+No requiere instalar dependencias externas adicionales a la biblioteca estándar de Go. Sin embargo, su última actualización fue hace dos años, lo que podría indicar una falta de mantenimiento activo. Ofrece métodos básicos para realizar comparaciones, como is.Equal.
 
 
 ---
 
 ### [**Ghost**](https://github.com/rliebz/ghost)
 
-No requiere dependencias adicionales. Su última actualización fue hace 2 semanas, lo que refleja actividad reciente. Ghost no ofrece métodos directos para comparar datos. 
+No requiere instalar dependencias externas adicionales a la biblioteca estándar de Go. Su última actualización fue hace 2 semanas, lo que refleja actividad reciente. Sin embargo, Ghost no ofrece métodos específicos para comparar estructuras de datos.
 
 
 ---
