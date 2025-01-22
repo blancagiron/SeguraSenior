@@ -152,24 +152,24 @@ func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (DatosPoblacion, 
 		return DatosPoblacion{}, fmt.Errorf("error al cargar datos desde JSON: %w", err)
 	}
 
-	dato, existe := datos[nombrePoblacion]
+	datoPoblacionEspecifica, existe := datos[nombrePoblacion]
 	if !existe {
 		return DatosPoblacion{}, fmt.Errorf("población '%s' no encontrada en el archivo", nombrePoblacion)
 	}
 
-	if err := ValidarDatos(dato); err != nil {
+	if err := ValidarDatos(datoPoblacionEspecifica); err != nil {
 		return DatosPoblacion{}, fmt.Errorf("datos inválidos: %w", err)
 	}
 
 	datosPoblacion = DatosPoblacion{
-		PoblacionTotal:     dato.PoblacionTotal,
-		Hombres:            dato.Hombres,
-		Mujeres:            dato.Mujeres,
-		EdadMedia:          dato.EdadMedia,
-		PorcentajeMenorA20: dato.Menor20,
-		PorcentajeMayorA65: dato.Mayor65,
-		Nacimientos:        dato.Nacimientos,
-		Defunciones:        dato.Defunciones,
+		PoblacionTotal:     datoPoblacionEspecifica.PoblacionTotal,
+		Hombres:            datoPoblacionEspecifica.Hombres,
+		Mujeres:            datoPoblacionEspecifica.Mujeres,
+		EdadMedia:          datoPoblacionEspecifica.EdadMedia,
+		PorcentajeMenorA20: datoPoblacionEspecifica.Menor20,
+		PorcentajeMayorA65: datoPoblacionEspecifica.Mayor65,
+		Nacimientos:        datoPoblacionEspecifica.Nacimientos,
+		Defunciones:        datoPoblacionEspecifica.Defunciones,
 	}
 
 	datosPoblacion.CalcularTasas()
