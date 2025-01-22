@@ -119,8 +119,8 @@ func CargarDatosDesdeArchivo[Tipo any](nombreArchivo string) (map[string]Tipo, e
 }
 
 func ValidarPoblacionExiste[Tipo any](datos map[string]Tipo, nombrePoblacion string) (Tipo, error) {
-	datoPoblacionEspecifica, existe := datos[nombrePoblacion]
-	if !existe {
+	datoPoblacionEspecifica, poblacionExiste := datos[nombrePoblacion]
+	if !poblacionExiste {
 		return datoPoblacionEspecifica, fmt.Errorf("población '%s' no encontrada", nombrePoblacion)
 	}
 	return datoPoblacionEspecifica, nil
