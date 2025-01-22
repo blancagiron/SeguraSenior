@@ -8,6 +8,7 @@ import (
 	"os"
 	"strings"
 	"time"
+	"io"
 )
 
 type FechaObtencionDeDatos struct {
@@ -87,18 +88,40 @@ func NewDatosPoblacion(poblacion uint32, hombres uint32, mujeres uint32, edadMed
 	}, nil
 }
 
-func CargarDatosDesdeArchivo[Tipo any](nombreArchivo string) (map[string]Tipo, error) {
-
-	var datos map[string]Tipo
-
+func LeerArchivo(nombreArchivo string) ([]byte, error) {
 	file, err := os.Open(nombreArchivo)
 	if err != nil {
 		return nil, fmt.Errorf("no se pudo abrir el archivo: %w", err)
 	}
 	defer file.Close()
 
-	if err := json.NewDecoder(file).Decode(&datos); err != nil {
+	contenido, err := io.ReadAll(file)
+	if err != nil {
+		return nil, fmt.Errorf("error al leer el archivo: %w", err)
+	}
+
+	return contenido, nil
+}
+
+func DecodificarJSON[Tipo any](contenido []byte) (map[string]Tipo, error) {
+	var datos map[string]Tipo
+	if err := json.Unmarshal(contenido, &datos); err != nil {
 		return nil, fmt.Errorf("error al decodificar JSON: %w", err)
+	}
+	return datos, nil
+}
+
+
+func CargarDatosDesdeArchivo[Tipo any](nombreArchivo string) (map[string]Tipo, error) {
+
+	contenido, err := LeerArchivo(nombreArchivo)
+	if err != nil {
+		return nil, err
+	}
+
+	datos, err := DecodificarJSON[Tipo](contenido)
+	if err != nil {
+		return nil, err
 	}
 
 	return datos, nil
