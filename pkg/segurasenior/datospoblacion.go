@@ -116,11 +116,13 @@ func CargarDatosDesdeArchivo[Tipo any](nombreArchivo string) (map[string]Tipo, e
 
 	contenido, err := LeerArchivo(nombreArchivo)
 	if err != nil {
+
 		return nil, err
 	}
 
 	datos, err := DecodificarJSON[Tipo](contenido)
 	if err != nil {
+
 		return nil, err
 	}
 
