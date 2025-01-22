@@ -118,6 +118,17 @@ func CargarDatosDesdeArchivo[Tipo any](nombreArchivo string) (map[string]Tipo, e
 	return datosDecodificados, nil
 }
 
+func CrearIdentificadorDatos(nombre string, fecha time.Time) IdentificadorDatos {
+	return IdentificadorDatos{
+		NombrePoblacion: nombre,
+		FechaDeDatos: FechaObtencionDeDatos{
+			Dia:  uint16(fecha.Day()),
+			Mes:  fecha.Month(),
+			Anio: uint16(fecha.Year()),
+		},
+	}
+}
+
 func ValidarPoblacionExiste[Tipo any](datos map[string]Tipo, nombrePoblacion string) (Tipo, error) {
 	datoPoblacionEspecifica, poblacionExiste := datos[nombrePoblacion]
 	if !poblacionExiste {
@@ -134,16 +145,7 @@ func ParsearFecha(fechaEnString string) (time.Time, error) {
 	return fecha, nil
 }
 
-func CrearIdentificadorDatos(nombre string, fecha time.Time) IdentificadorDatos {
-	return IdentificadorDatos{
-		NombrePoblacion: nombre,
-		FechaDeDatos: FechaObtencionDeDatos{
-			Dia:  uint16(fecha.Day()),
-			Mes:  fecha.Month(),
-			Anio: uint16(fecha.Year()),
-		},
-	}
-}
+
 
 func LeerIdentificadorDatosDesdeJSON(nombreArchivoDatos, nombrePoblacion string) (IdentificadorDatos, error) {
 	
