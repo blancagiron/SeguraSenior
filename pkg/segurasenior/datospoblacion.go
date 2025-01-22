@@ -48,8 +48,9 @@ const (
 
 func (datosPoblacion *DatosPoblacion) CalcularTasas() {
 	if datosPoblacion.PoblacionTotal > 0 && datosPoblacion.Nacimientos < datosPoblacion.PoblacionTotal && datosPoblacion.Defunciones < datosPoblacion.PoblacionTotal {
-		datosPoblacion.TasaNatalidadSobre1000 = math.Round((float64(datosPoblacion.Nacimientos)/float64(datosPoblacion.PoblacionTotal))*FactorTasasPorMil*PrecisionRedondeo) / PrecisionRedondeo
-		datosPoblacion.TasaMortalidadSobre1000 = math.Round((float64(datosPoblacion.Defunciones)/float64(datosPoblacion.PoblacionTotal))*FactorTasasPorMil*PrecisionRedondeo) / PrecisionRedondeo
+		poblacionTotalFloat := float64(datosPoblacion.PoblacionTotal)
+		datosPoblacion.TasaNatalidadSobre1000 = math.Round((float64(datosPoblacion.Nacimientos)/poblacionTotalFloat)*FactorTasasPorMil*PrecisionRedondeo) / PrecisionRedondeo
+		datosPoblacion.TasaMortalidadSobre1000 = math.Round((float64(datosPoblacion.Defunciones)/poblacionTotalFloat)*FactorTasasPorMil*PrecisionRedondeo) / PrecisionRedondeo
 	}
 }
 
@@ -136,7 +137,6 @@ func LeerIdentificadorDesdeJSON(nombreArchivo, nombrePoblacion string) (Identifi
 }
 
 func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (DatosPoblacion, error) {
-	
 
 	var datosPoblacion DatosPoblacion
 
@@ -163,7 +163,7 @@ func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (DatosPoblacion, 
 
 	if err := ValidarDatos(datoPoblacionEspecifica); err != nil {
 		return DatosPoblacion{}, fmt.Errorf("datos inválidos: %w", err)
-		
+
 	}
 
 	datosPoblacion = DatosPoblacion{
@@ -177,12 +177,9 @@ func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (DatosPoblacion, 
 		Defunciones:        datoPoblacionEspecifica.Defunciones,
 	}
 
-
-
-	if(datosPoblacion.TasaMortalidadSobre1000 == 0 && datosPoblacion.TasaNatalidadSobre1000 == 0){
+	if datosPoblacion.TasaMortalidadSobre1000 == 0 && datosPoblacion.TasaNatalidadSobre1000 == 0 {
 		datosPoblacion.CalcularTasas()
 	}
-
 
 	return datosPoblacion, nil
 }
