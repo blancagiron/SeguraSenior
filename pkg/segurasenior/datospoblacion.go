@@ -113,18 +113,20 @@ func LeerIdentificadorDesdeJSON(nombreArchivo, nombrePoblacion string) (Identifi
 		return IdentificadorDatos{}, fmt.Errorf("error al cargar datos desde JSON: %w", err)
 	}
 
-	dato, existe := datos[nombrePoblacion]
+	datoPoblacionEspecifica, existe := datos[nombrePoblacion]
+
 	if !existe {
-		return IdentificadorDatos{}, fmt.Errorf("población '%s' no encontrada en el archivo", nombrePoblacion)
+
+		return IdentificadorDatos{}, fmt.Errorf("población '%s' no encontrada en el archivo JSON", nombrePoblacion)
 	}
 
-	fecha, err := time.Parse("02/01/2006", dato.FechaDatos)
+	fecha, err := time.Parse("02/01/2006", datoPoblacionEspecifica.FechaDatos)
 	if err != nil {
-		return IdentificadorDatos{}, fmt.Errorf("formato de fecha inválido ('%s'): %w", dato.FechaDatos, err)
+		return IdentificadorDatos{}, fmt.Errorf("formato de fecha inválido ('%s'): %w", datoPoblacionEspecifica.FechaDatos, err)
 	}
 
 	return IdentificadorDatos{
-		NombrePoblacion: dato.NombrePueblo,
+		NombrePoblacion: datoPoblacionEspecifica.NombrePueblo,
 		FechaDeDatos: FechaObtencionDeDatos{
 			Dia:  uint16(fecha.Day()),
 			Mes:  fecha.Month(),
