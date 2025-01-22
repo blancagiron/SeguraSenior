@@ -4,9 +4,9 @@
 
 ## Criterios:
 
-Los criterios seguidos para escoger el test runner más adecuado son:
+Los criterios a seguir para escoger el test runner más adecuado son:
 
-- **Instalación de dependencias:** Se evaluará si el test runner requiere instalación adicional de paquetes o bibliotecas externas, priorizando aquellos que minimicen las dependencias externas. Go incentiva a la no dependencia de librerías externas, por lo que se dará prioridad a herramientas que formen parte de su [librería estándar](https://pkg.go.dev/std)
+- **Evitar dependencias adicionales:** Se evaluará si el test runner necesita la instalación de paquetes o bibliotecas externas. Se dará prioridad a herramientas que reduzcan al mínimo las dependencias adicionales, alineándose con la filosofía de Go de evitar el uso de librerías externas siempre que sea posible. Por ello, se preferirán herramientas incluidas en su  [librería estándar](https://pkg.go.dev/std). 
 
 - **Última actualización:** Se valorará que la herramienta tenga actualizaciones regulares publicadas en los últimos 12 meses, preferiblemente con intervalos no superiores a 3 meses. Dado que el ciclo de lanzamiento de Go es semestral [(Go Release Cycle)](https://go.dev/wiki/Go-Release-Cycle#:~:text=Go%20is%20released%20every%20six,polishing%20called%20the%20release%20freeze.), actualizaciones más frecuentes permiten a las herramientas mantenerse en sintonía con los cambios en el lenguaje. Un intervalo mayor podría sugerir una menor atención al mantenimiento, lo que incrementa el riesgo de acumulación de deuda técnica y posibles incompatibilidades futuras. Un ciclo de 3 meses garantiza agilidad en la respuesta a nuevas versiones y un soporte constante para los desarrolladores que dependen de la herramienta.
 
@@ -40,5 +40,6 @@ Los criterios seguidos para escoger el test runner más adecuado son:
 ## Test runner elegido:
 
 El test runner seleccionado es `Testing`, forma parte de la biblioteca estándar de Go.
+
 
 
