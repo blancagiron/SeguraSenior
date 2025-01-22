@@ -112,6 +112,22 @@ func DecodificarJSON[Tipo any](contenido []byte) (map[string]Tipo, error) {
 }
 
 
+func CargarDatosDesdeArchivo[Tipo any](nombreArchivo string) (map[string]Tipo, error) {
+
+	contenido, err := LeerArchivo(nombreArchivo)
+	if err != nil {
+		return nil, err
+	}
+
+	datos, err := DecodificarJSON[Tipo](contenido)
+	if err != nil {
+		return nil, err
+	}
+
+	return datos, nil
+}
+
+
 
 func LeerIdentificadorDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDatos, error) {
 
