@@ -35,13 +35,6 @@ type DatosPoblacion struct {
 	TasaMortalidadSobre1000 float64
 }
 
-func NewIdentificadorDatos(nombrePoblacion string, fecha FechaObtencionDeDatos) IdentificadorDatos {
-	return IdentificadorDatos{
-		NombrePoblacion: nombrePoblacion,
-		FechaDeDatos:    fecha,
-	}
-}
-
 const (
 	FactorTasasPorMil = 1000
 	PrecisionRedondeo = 100
@@ -132,13 +125,26 @@ func ValidarPoblacionExiste[Tipo any](datos map[string]Tipo, nombrePoblacion str
 	return datoPoblacionEspecifica, nil
 }
 
-func ParsearFecha(fechaStr string) (time.Time, error) {
-	fecha, err := time.Parse("02/01/2006", fechaStr)
+func ParsearFecha(fechaEnString string) (time.Time, error) {
+	fecha, err := time.Parse("02/01/2006", fechaEnString)
 	if err != nil {
 		return time.Time{}, fmt.Errorf("formato de fecha inválido ('%s'): %w", fechaStr, err)
 	}
 	return fecha, nil
 }
+
+func CrearIdentificadorDatos(nombre string, fecha time.Time) IdentificadorDatos {
+	return IdentificadorDatos{
+		NombrePoblacion: nombre,
+		FechaDeDatos: FechaObtencionDeDatos{
+			Dia:  uint16(fecha.Day()),
+			Mes:  fecha.Month(),
+			Anio: uint16(fecha.Year()),
+		},
+	}
+}
+
+
 
 
 
