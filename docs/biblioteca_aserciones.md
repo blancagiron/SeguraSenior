@@ -5,11 +5,11 @@
 ## Criterios:
 
 
-- **Evitar dependencias adicionales al lenguaje base:** La filosofía de Go incentiva a la no dependencia de librerías externas. Se evaluará si la biblioteca de aserciones requiere instalación adicional de paquetes, priorizando aquellas que minimicen las dependencias externas. 
+- **Evitar dependencias adicionales al lenguaje base:** La filosofía de Go incentiva a la no dependencia de librerías externas. Se evaluará si la biblioteca de aserciones necesita instalarse por separado al no formar parte de la biblioteca estándar de Go.
 
 - **Última actualización y mantenimiento:** Se valorará que la herramienta tenga actualizaciones regulares publicadas en los últimos 12 meses. Si no hay actualizaciones regulares y recientes puede significar una falta de mantenimiento, lo que en un futuro aumentaría la deuda técnica.
 
-- **Comparación de datos sin código adicional:** La biblioteca debe permitir comparar estructuras complejas como mapas, slices o structs sin necesidad de añadir más código (como estructuras condicionales) para validaciones.
+- **Comparación de datos sin código adicional:** La biblioteca debe permitir comparar estructuras complejas como mapas, slices o structs sin necesidad de añadir más código (como estructuras condicionales) para validaciones. Más código añadido es más código que hay que revisar.
 
 ---
 
@@ -39,14 +39,15 @@ No requiere dependencias adicionales Go. Su última actualización fue hace dos 
 
 ### [**Ghost**](https://github.com/rliebz/ghost)
 
-No requiere dependencias adicionales. Su última actualización fue hace 2 semanas, lo que refleja actividad reciente. Ghost no ofrece métodos directos para comparar datos. En cambio, utiliza métodos generales que evalúan resultados de manera booleana. 
+No requiere dependencias adicionales. Su última actualización fue hace 2 semanas, lo que refleja actividad reciente. Ghost no ofrece métodos directos para comparar datos. 
 
 
 ---
 
 ## Biblioteca de aserciones elegida:
 
-Finalmente se elige Testify. Aunque requiere una dependencia adicional, está bien mantenida con actualizaciones recientes y permite realizar comparaciones de datos de manera directa sin necesitar construcciones adicionales.
+Se elige Testify. Es la opción elegida ya que Is no cumple el criterio de actualizaciones regulares, Ghost no proporciona métodos directos para comparar datos y GoMega tiene una dependencia extra en el framework Ginkgo para su uso completo. Aunque no forma parte de la biblioteca estándar de Go y se tiene que instalar por separado, Testify es la opción que cumple un mayor número de criterios.
+
 
 
 
