@@ -163,6 +163,7 @@ func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (DatosPoblacion, 
 
 	if err := ValidarDatos(datoPoblacionEspecifica); err != nil {
 		return DatosPoblacion{}, fmt.Errorf("datos inválidos: %w", err)
+		
 	}
 
 	datosPoblacion = DatosPoblacion{
@@ -176,7 +177,12 @@ func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (DatosPoblacion, 
 		Defunciones:        datoPoblacionEspecifica.Defunciones,
 	}
 
-	datosPoblacion.CalcularTasas()
+
+
+	if(datosPoblacion.TasaMortalidadSobre1000 == 0 && datosPoblacion.TasaNatalidadSobre1000 == 0){
+		datosPoblacion.CalcularTasas()
+	}
+
 
 	return datosPoblacion, nil
 }
