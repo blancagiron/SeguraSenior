@@ -143,7 +143,8 @@ func CrearIdentificadorDatos(nombre string, fecha time.Time) IdentificadorDatos 
 	}
 }
 
-func LeerIdentificadorDatosDesdeArchivo(nombreArchivo, nombrePoblacion string) (IdentificadorDatos, error) {
+
+func LeerIdentificadorDesdeArchivo(nombreArchivo, nombrePoblacion string) (IdentificadorDatos, error) {
 	datos, err := CargarDatosDesdeArchivo[struct {
 		NombrePueblo string `json:"NombrePueblo"`
 		FechaDatos   string `json:"FechaDatos"`
@@ -154,16 +155,15 @@ func LeerIdentificadorDatosDesdeArchivo(nombreArchivo, nombrePoblacion string) (
 
 	datoPoblacionEspecifica, err := ValidarPoblacionExiste(datos, nombrePoblacion)
 	if err != nil {
-		return IdentificadorDatos{}, err
+		return IdentificadorDatos{}, fmt.Errorf("población buscada no existe: %w", err)
 	}
 
 	fechaDatos, err := ParsearFecha(datoPoblacionEspecifica.FechaDatos)
 	if err != nil {
-		return IdentificadorDatos{}, err
+		return IdentificadorDatos{}, fmt.Errorf("error al parsear fecha: %w", err)
 	}
 
 	return CrearIdentificadorDatos(datoPoblacionEspecifica.NombrePueblo, fechaDatos), nil
-	
 }
 
 func LeerDatosPoblacionDesdeArchivo(nombreArchivo, nombrePoblacion string) (*DatosPoblacion, error) {
