@@ -42,18 +42,6 @@ task test
 
 ---
 
-## Instalación de dependencias necesarias:
-
-- **Testify:**
-
-Utiliza el comando `go get` para instalar la dependencia de Testify. Esto descargará el paquete necesario y lo añadirá al archivo `go.mod`
-
-```console
-go get github.com/stretchr/testify
-```
-
----
-
 ## Herramienta CLI para ejecución de los tests
 
 La herramienta CLI que se va a usar es `go test` ya que es la propia del lenguaje, está integrada en el ecosistema de Go y es suficiente para manejar los distintos escenarios de pruebas unitarias.
