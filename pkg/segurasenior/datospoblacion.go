@@ -146,6 +146,33 @@ func CrearIdentificadorDatos(nombre string, fecha time.Time) IdentificadorDatos 
 	}
 }
 
+func LeerIdentificadorDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDatos, error) {
+	
+	datos, err := CargarDatosDesdeArchivo[struct {
+		NombrePueblo string `json:"NombrePueblo"`
+		FechaDatos   string `json:"FechaDatos"`
+	}](nombreArchivo)
+
+	if err !=  nil {
+
+		return IdentificadorDatos{}, fmt.Errorf("error al cargar datos desde el archivo: %w", err)
+	}
+
+	
+	datoPoblacion, err := ValidarPoblacionExiste(datos, nombrePoblacion)
+	if err != nil {
+		return IdentificadorDatos{}, err
+	}
+
+	fecha, err := ParsearFecha(datoPoblacion.FechaDatos)
+	if err != nil {
+		return IdentificadorDatos{}, err
+	}
+
+	return CrearIdentificadorDatos(datoPoblacion.NombrePueblo, fecha), nil
+}
+
+
 func LeerDatosPoblacionDesdeArchivo(nombreArchivo, nombrePoblacion string) (*DatosPoblacion, error) {
 	datos, err := CargarDatosDesdeArchivo[struct {
 		PoblacionTotal uint32  `json:"PoblacionTotal"`
