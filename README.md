@@ -46,13 +46,6 @@ task test
 
 La herramienta CLI que se va a usar es `go test` ya que es la propia del lenguaje, está integrada en el ecosistema de Go y es suficiente para manejar los distintos escenarios de pruebas unitarias.
 
-Forma de uso: 
-```console
-go test ./...
-```
-
-Esto ejecutará todas las pruebas en los paquetes del proyecto.
-
 
 ## Documentación Adicional
 
