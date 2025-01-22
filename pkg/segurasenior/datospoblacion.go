@@ -148,8 +148,10 @@ func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (DatosPoblacion, 
 		Nacimientos    uint32  `json:"Nacimientos"`
 		Defunciones    uint32  `json:"Defunciones"`
 	}](nombreArchivo)
+
 	if err != nil {
-		return DatosPoblacion{}, fmt.Errorf("error al cargar datos desde JSON: %w", err)
+
+		return DatosPoblacion{}, fmt.Errorf("error al cargar datos desde el archivo JSON: %w", err)
 	}
 
 	datoPoblacionEspecifica, existe := datos[nombrePoblacion]
