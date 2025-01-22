@@ -9,7 +9,7 @@
 
 - **Última actualización y mantenimiento:** Se valorará que la herramienta tenga actualizaciones regulares publicadas en los últimos 12 meses. Si no hay actualizaciones regulares y recientes puede significar una falta de mantenimiento, lo que en un futuro aumentaría la deuda técnica.
 
-- **Soporte para comparación de datos:** Debe permitir realizar comparaciones directas entre estructuras de datos más complejos como mapas, slices o structs sin requerir construcciones adicionales (como sentencias condicionales o bloques personalizados), lo que sería igual a tener que añadir más código.
+- **Comparación de datos sin código adicional:** La biblioteca debe permitir comparar estructuras complejas como mapas, slices o structs sin necesidad de añadir más código (como estructuras condicionales) para validaciones.
 
 ---
 
