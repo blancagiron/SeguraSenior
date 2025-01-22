@@ -42,16 +42,6 @@ No requiere dependencias adicionales Go. Su última actualización fue hace dos 
 
 No requiere dependencias adicionales. Su repositorio es [este](https://github.com/rliebz/ghost). Su última actualización fue hace 2 semanas, lo que refleja actividad reciente. Ghost no ofrece métodos directos para comparar datos. En cambio, utiliza métodos generales que evalúan resultados de manera booleana. 
 
----
-
-### **Testing (caso especial)**  
-
-No requiere dependencias adicionales, forma parte de la librería estándar de Go. No es una biblioteca de aserciones, pero se incluye en la evaluación al ofrecer funcionalidades básicas para comprobar condiciones y manejar errores. Permite registrar errores y personalizar mensajes, es una opción válida en proyectos que prefieren no agregar dependencias externas. 
-
-
-No proporciona métodos predefinidos para la comparación de datos, se deben hacer manualmente usando estructuras condicionales y luego invocar `t.Error` o `t.Errorf` si la condición no es exitosa. Es decir, escribir más código.
- 
-Se puede consultar más información en [este enlace](https://pkg.go.dev/testing)
 
 ---
 
