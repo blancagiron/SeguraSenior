@@ -146,27 +146,27 @@ func CrearIdentificadorDatos(nombre string, fecha time.Time) IdentificadorDatos 
 	}
 }
 
-func LeerIdentificadorDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDatos, error) {
+func LeerIdentificadorDatosDesdeJSON(nombreArchivoDatos, nombrePoblacion string) (IdentificadorDatos, error) {
 	
-	datos, err := CargarDatosDesdeArchivo[struct {
+	datos, fallo := CargarDatosDesdeArchivo[struct {
 		NombrePueblo string `json:"NombrePueblo"`
 		FechaDatos   string `json:"FechaDatos"`
-	}](nombreArchivo)
+	}](nombreArchivoDatos)
 
-	if err !=  nil {
+	if fallo != nil {
 
-		return IdentificadorDatos{}, fmt.Errorf("error al cargar datos desde el archivo: %w", err)
+		return IdentificadorDatos{}, fmt.Errorf("error al cargar datos desde el archivo: %w", fallo)
 	}
 
 	
-	datoPoblacion, err := ValidarPoblacionExiste(datos, nombrePoblacion)
-	if err != nil {
-		return IdentificadorDatos{}, err
+	datoPoblacion, fallo  := ValidarPoblacionExiste(datos, nombrePoblacion)
+	if fallo != nil {
+		return IdentificadorDatos{}, fallo
 	}
 
-	fecha, err := ParsearFecha(datoPoblacion.FechaDatos)
-	if err != nil {
-		return IdentificadorDatos{}, err
+	fecha, fallo := ParsearFecha(datoPoblacion.FechaDatos)
+	if fallo != nil {
+		return IdentificadorDatos{}, fallo
 	}
 
 	return CrearIdentificadorDatos(datoPoblacion.NombrePueblo, fecha), nil
