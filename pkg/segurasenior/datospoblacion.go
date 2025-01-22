@@ -88,6 +88,15 @@ func NewDatosPoblacion(poblacion uint32, hombres uint32, mujeres uint32, edadMed
 	}, nil
 }
 
+func DecodificarJSON[Tipo any](contenido []byte) (map[string]Tipo, error) {
+	var datos map[string]Tipo
+	if err := json.Unmarshal(contenido, &datos); err != nil {
+		return nil, fmt.Errorf("error al decodificar JSON: %w", err)
+	}
+	return datos, nil
+}
+
+
 func LeerArchivo(nombreArchivo string) ([]byte, error) {
 	file, err := os.Open(nombreArchivo)
 	if err != nil {
@@ -103,33 +112,18 @@ func LeerArchivo(nombreArchivo string) ([]byte, error) {
 	return contenido, nil
 }
 
-func DecodificarJSON[Tipo any](contenido []byte) (map[string]Tipo, error) {
-	var datos map[string]Tipo
-	if err := json.Unmarshal(contenido, &datos); err != nil {
-		return nil, fmt.Errorf("error al decodificar JSON: %w", err)
-	}
-	return datos, nil
-}
-
-
 func CargarDatosDesdeArchivo[Tipo any](nombreArchivo string) (map[string]Tipo, error) {
-
 	contenido, err := LeerArchivo(nombreArchivo)
 	if err != nil {
 
-		return nil, err
+		return nil, fmt.Errorf("error al leer datos desde el archivo: %w", err)
 	}
-
-	datos, err := DecodificarJSON[Tipo](contenido)
+	datosDecodificados, err := DecodificarJSON[Tipo](contenido)
 	if err != nil {
-
-		return nil, err
+		return nil, fmt.Errorf("error al decodificar datos desde JSON: %w", err)
 	}
-
-	return datos, nil
+	return datosDecodificados, nil
 }
-
-
 
 func LeerIdentificadorDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDatos, error) {
 
