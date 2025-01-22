@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
 	"math"
 	"os"
 	"time"
-	"io"
 )
 
 type FechaObtencionDeDatos struct {
@@ -88,7 +88,6 @@ func DecodificarJSON[Tipo any](contenido []byte) (map[string]Tipo, error) {
 	return datos, nil
 }
 
-
 func LeerArchivo(nombreArchivo string) ([]byte, error) {
 	file, err := os.Open(nombreArchivo)
 	if err != nil {
@@ -106,7 +105,7 @@ func LeerArchivo(nombreArchivo string) ([]byte, error) {
 
 func CargarDatosDesdeArchivo[Tipo any](nombreArchivo string) (map[string]Tipo, error) {
 	contenido, fallo := LeerArchivo(nombreArchivo)
-	
+
 	if fallo != nil {
 		return nil, fmt.Errorf("error al leer datos desde el archivo: %w", fallo)
 	}
@@ -119,14 +118,14 @@ func CargarDatosDesdeArchivo[Tipo any](nombreArchivo string) (map[string]Tipo, e
 }
 
 func CrearIdentificadorDatos(nombre string, fecha time.Time) IdentificadorDatos {
-	return IdentificadorDatos{
-		NombrePoblacion: nombre,
-		FechaDeDatos: FechaObtencionDeDatos{
-			Dia:  uint16(fecha.Day()),
-			Mes:  fecha.Month(),
-			Anio: uint16(fecha.Year()),
-		},
+	var identificador IdentificadorDatos
+	identificador.NombrePoblacion = nombre
+	identificador.FechaDeDatos = FechaObtencionDeDatos{
+		Dia:  uint16(fecha.Day()),
+		Mes:  fecha.Month(),
+		Anio: uint16(fecha.Year()),
 	}
+	return identificador
 }
 
 func ValidarPoblacionExiste[Tipo any](datos map[string]Tipo, nombrePoblacion string) (Tipo, error) {
@@ -145,10 +144,8 @@ func ParsearFecha(fechaEnString string) (time.Time, error) {
 	return fecha, nil
 }
 
-
-
 func LeerIdentificadorDatosDesdeJSON(nombreArchivoDatos, nombrePoblacion string) (IdentificadorDatos, error) {
-	
+
 	datos, fallo := CargarDatosDesdeArchivo[struct {
 		NombrePueblo string `json:"NombrePueblo"`
 		FechaDatos   string `json:"FechaDatos"`
@@ -159,7 +156,7 @@ func LeerIdentificadorDatosDesdeJSON(nombreArchivoDatos, nombrePoblacion string)
 		return IdentificadorDatos{}, fmt.Errorf("error al cargar datos desde el archivo: %w", fallo)
 	}
 
-		datoPoblacion, fallo  := ValidarPoblacionExiste(datos, nombrePoblacion)
+	datoPoblacion, fallo := ValidarPoblacionExiste(datos, nombrePoblacion)
 	if fallo != nil {
 		return IdentificadorDatos{}, fallo
 	}
@@ -171,7 +168,6 @@ func LeerIdentificadorDatosDesdeJSON(nombreArchivoDatos, nombrePoblacion string)
 
 	return CrearIdentificadorDatos(datoPoblacion.NombrePueblo, fecha), nil
 }
-
 
 func LeerDatosPoblacionDesdeArchivo(nombreArchivo, nombrePoblacion string) (*DatosPoblacion, error) {
 	datos, err := CargarDatosDesdeArchivo[struct {
@@ -202,8 +198,8 @@ func LeerDatosPoblacionDesdeArchivo(nombreArchivo, nombrePoblacion string) (*Dat
 		datoPoblacionEspecifica.Mayor65,
 		datoPoblacionEspecifica.Nacimientos,
 		datoPoblacionEspecifica.Defunciones,
-		0, 
-		0, 
+		0,
+		0,
 	)
 	if err != nil {
 		return nil, fmt.Errorf("error al crear instancia de DatosPoblacion: %w", err)
@@ -213,7 +209,3 @@ func LeerDatosPoblacionDesdeArchivo(nombreArchivo, nombrePoblacion string) (*Dat
 
 	return datosPoblacion, nil
 }
-
-
-
-
