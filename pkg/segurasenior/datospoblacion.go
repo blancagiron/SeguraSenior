@@ -143,5 +143,47 @@ func CrearIdentificadorDatos(nombre string, fecha time.Time) IdentificadorDatos 
 	}
 }
 
+func LeerDatosPoblacionDesdeArchivo(nombreArchivo, nombrePoblacion string) (*DatosPoblacion, error) {
+	datos, err := CargarDatosDesdeArchivo[struct {
+		PoblacionTotal uint32  `json:"PoblacionTotal"`
+		Hombres        uint32  `json:"Hombres"`
+		Mujeres        uint32  `json:"Mujeres"`
+		EdadMedia      float32 `json:"EdadMedia"`
+		Menor20        float64 `json:"Menor20"`
+		Mayor65        float64 `json:"Mayor65"`
+		Nacimientos    uint32  `json:"Nacimientos"`
+		Defunciones    uint32  `json:"Defunciones"`
+	}](nombreArchivo)
+	if err != nil {
+		return nil, fmt.Errorf("error al cargar datos desde el archivo JSON: %w", err)
+	}
+
+	datoPoblacionEspecifica, err := ValidarPoblacionExiste(datos, nombrePoblacion)
+	if err != nil {
+		return nil, fmt.Errorf("error al validar población: %w", err)
+	}
+
+	datosPoblacion, err := NewDatosPoblacion(
+		datoPoblacionEspecifica.PoblacionTotal,
+		datoPoblacionEspecifica.Hombres,
+		datoPoblacionEspecifica.Mujeres,
+		datoPoblacionEspecifica.EdadMedia,
+		datoPoblacionEspecifica.Menor20,
+		datoPoblacionEspecifica.Mayor65,
+		datoPoblacionEspecifica.Nacimientos,
+		datoPoblacionEspecifica.Defunciones,
+		0, 
+		0, 
+	)
+	if err != nil {
+		return nil, fmt.Errorf("error al crear instancia de DatosPoblacion: %w", err)
+	}
+
+	datosPoblacion.CalcularTasas()
+
+	return datosPoblacion, nil
+}
+
+
 
 
