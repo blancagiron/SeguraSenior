@@ -115,7 +115,6 @@ func LeerArchivo(nombreArchivo string) ([]byte, error) {
 func CargarDatosDesdeArchivo[Tipo any](nombreArchivo string) (map[string]Tipo, error) {
 	contenido, err := LeerArchivo(nombreArchivo)
 	if err != nil {
-
 		return nil, fmt.Errorf("error al leer datos desde el archivo: %w", err)
 	}
 	datosDecodificados, err := DecodificarJSON[Tipo](contenido)
@@ -124,6 +123,25 @@ func CargarDatosDesdeArchivo[Tipo any](nombreArchivo string) (map[string]Tipo, e
 	}
 	return datosDecodificados, nil
 }
+
+func ValidarPoblacionExiste[Tipo any](datos map[string]Tipo, nombrePoblacion string) (Tipo, error) {
+	datoPoblacionEspecifica, existe := datos[nombrePoblacion]
+	if !existe {
+		return datoPoblacionEspecifica, fmt.Errorf("población '%s' no encontrada", nombrePoblacion)
+	}
+	return datoPoblacionEspecifica, nil
+}
+
+func ParsearFecha(fechaStr string) (time.Time, error) {
+	fecha, err := time.Parse("02/01/2006", fechaStr)
+	if err != nil {
+		return time.Time{}, fmt.Errorf("formato de fecha inválido ('%s'): %w", fechaStr, err)
+	}
+	return fecha, nil
+}
+
+
+
 
 func LeerIdentificadorDesdeJSON(nombreArchivo, nombrePoblacion string) (IdentificadorDatos, error) {
 
