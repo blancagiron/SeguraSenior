@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"math"
 	"os"
-	"strings"
 	"time"
 	"io"
 )
@@ -167,10 +166,7 @@ func LeerIdentificadorDatosDesdeArchivo(nombreArchivo, nombrePoblacion string) (
 	
 }
 
-func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (DatosPoblacion, error) {
-
-	var datosPoblacion DatosPoblacion
-
+func LeerDatosPoblacionDesdeArchivo(nombreArchivo, nombrePoblacion string) (*DatosPoblacion, error) {
 	datos, err := CargarDatosDesdeArchivo[struct {
 		PoblacionTotal uint32  `json:"PoblacionTotal"`
 		Hombres        uint32  `json:"Hombres"`
@@ -181,73 +177,34 @@ func LeerDatosDesdeJSON(nombreArchivo, nombrePoblacion string) (DatosPoblacion, 
 		Nacimientos    uint32  `json:"Nacimientos"`
 		Defunciones    uint32  `json:"Defunciones"`
 	}](nombreArchivo)
-
 	if err != nil {
-
-		return DatosPoblacion{}, fmt.Errorf("error al cargar datos desde el archivo JSON: %w", err)
+		return nil, fmt.Errorf("error al cargar datos desde el archivo JSON: %w", err)
 	}
 
-	datoPoblacionEspecifica, existe := datos[nombrePoblacion]
-	if !existe {
-		return DatosPoblacion{}, fmt.Errorf("población '%s' no encontrada en el archivo", nombrePoblacion)
+	datoPoblacionEspecifica, err := ValidarPoblacionExiste(datos, nombrePoblacion)
+	if err != nil {
+		return nil, fmt.Errorf("error al validar población: %w", err)
 	}
 
-	if err := ValidarDatos(datoPoblacionEspecifica); err != nil {
-		return DatosPoblacion{}, fmt.Errorf("datos inválidos: %w", err)
-
+	datosPoblacion, err := NewDatosPoblacion(
+		datoPoblacionEspecifica.PoblacionTotal,
+		datoPoblacionEspecifica.Hombres,
+		datoPoblacionEspecifica.Mujeres,
+		datoPoblacionEspecifica.EdadMedia,
+		datoPoblacionEspecifica.Menor20,
+		datoPoblacionEspecifica.Mayor65,
+		datoPoblacionEspecifica.Nacimientos,
+		datoPoblacionEspecifica.Defunciones,
+		0, 
+		0, 
+	)
+	if err != nil {
+		return nil, fmt.Errorf("error al crear instancia de DatosPoblacion: %w", err)
 	}
 
-	datosPoblacion = DatosPoblacion{
-		PoblacionTotal:     datoPoblacionEspecifica.PoblacionTotal,
-		Hombres:            datoPoblacionEspecifica.Hombres,
-		Mujeres:            datoPoblacionEspecifica.Mujeres,
-		EdadMedia:          datoPoblacionEspecifica.EdadMedia,
-		PorcentajeMenorA20: datoPoblacionEspecifica.Menor20,
-		PorcentajeMayorA65: datoPoblacionEspecifica.Mayor65,
-		Nacimientos:        datoPoblacionEspecifica.Nacimientos,
-		Defunciones:        datoPoblacionEspecifica.Defunciones,
-	}
-
-	if datosPoblacion.TasaMortalidadSobre1000 == 0 && datosPoblacion.TasaNatalidadSobre1000 == 0 {
-		datosPoblacion.CalcularTasas()
-	}
+	datosPoblacion.CalcularTasas()
 
 	return datosPoblacion, nil
 }
 
-func ValidarDatos(dato struct {
-	PoblacionTotal uint32  `json:"PoblacionTotal"`
-	Hombres        uint32  `json:"Hombres"`
-	Mujeres        uint32  `json:"Mujeres"`
-	EdadMedia      float32 `json:"EdadMedia"`
-	Menor20        float64 `json:"Menor20"`
-	Mayor65        float64 `json:"Mayor65"`
-	Nacimientos    uint32  `json:"Nacimientos"`
-	Defunciones    uint32  `json:"Defunciones"`
-}) error {
-	var errores []string
-	if dato.PoblacionTotal == 0 {
-		errores = append(errores, "la población total no puede ser 0")
-	}
-	if dato.Hombres+dato.Mujeres != dato.PoblacionTotal {
-		errores = append(errores, "la población total no coincide con la suma de hombres y mujeres")
-	}
-	if dato.Menor20 < 0 || dato.Menor20 > 100 {
-		errores = append(errores, "el porcentaje de menores de 20 años debe estar entre 0 y 100")
-	}
-	if dato.Mayor65 < 0 || dato.Mayor65 > 100 {
-		errores = append(errores, "el porcentaje de mayores de 65 años debe estar entre 0 y 100")
-	}
-	if dato.Nacimientos > dato.PoblacionTotal {
-		errores = append(errores, "el número de nacimientos no puede ser mayor que la población total")
-	}
-	if dato.Defunciones > dato.PoblacionTotal {
-		errores = append(errores, "el número de defunciones no puede ser mayor que la población total")
-	}
 
-	if len(errores) > 0 {
-		return fmt.Errorf("errores de validación: %s", strings.Join(errores, ", "))
-	}
-
-	return nil
-}
