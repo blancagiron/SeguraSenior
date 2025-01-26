@@ -14,11 +14,24 @@ type RegistroDemografico struct {
 	EstadoDeLaPoblacion   EstadoPoblacion
 }
 
-func CrearRegistroDesdeDatos(identificador IdentificadorDatos, datos DatosPoblacion) (*RegistroDemografico, error) {
-	estado := Creciente
+func ObtenerEstadoPoblacion(datos DatosPoblacion) EstadoPoblacion {
 	if datos.TasaMortalidadSobre1000 > datos.TasaNatalidadSobre1000 {
-		estado = Decreciente
+		return Decreciente
 	}
+	return Creciente
+}
+
+func ValidarRegistroExiste(estadisticas map[IdentificadorDatos]DatosPoblacion, identificador IdentificadorDatos) error {
+	if _, existe := estadisticas[identificador]; existe {
+		return fmt.Errorf("ya existe un registro para '%s' en la fecha %d/%d/%d",
+			identificador.NombrePoblacion, identificador.FechaDeDatos.Dia,
+			identificador.FechaDeDatos.Mes, identificador.FechaDeDatos.Anio)
+	}
+	return nil
+}
+
+func CrearRegistroDesdeDatos(identificador IdentificadorDatos, datos DatosPoblacion) (*RegistroDemografico, error) {
+	estado := ObtenerEstadoPoblacion(datos)
 
 	return &RegistroDemografico{
 		EstadisticasPoblacion: map[IdentificadorDatos]DatosPoblacion{identificador: datos},
@@ -27,17 +40,10 @@ func CrearRegistroDesdeDatos(identificador IdentificadorDatos, datos DatosPoblac
 }
 
 func (registro *RegistroDemografico) AgregarRegistro(identificador IdentificadorDatos, datos DatosPoblacion) error {
-	if _, existe := registro.EstadisticasPoblacion[identificador]; existe {
-		return fmt.Errorf("ya existe un registro para '%s' en la fecha %d/%d/%d",
-			identificador.NombrePoblacion, identificador.FechaDeDatos.Dia,
-			identificador.FechaDeDatos.Mes, identificador.FechaDeDatos.Anio)
+	if err := ValidarRegistroExiste(registro.EstadisticasPoblacion, identificador); err != nil {
+		return err
 	}
-
 	registro.EstadisticasPoblacion[identificador] = datos
-	if datos.TasaMortalidadSobre1000 > datos.TasaNatalidadSobre1000 {
-		registro.EstadoDeLaPoblacion = Decreciente
-	} else {
-		registro.EstadoDeLaPoblacion = Creciente
-	}
+	registro.EstadoDeLaPoblacion = ObtenerEstadoPoblacion(datos)
 	return nil
 }
