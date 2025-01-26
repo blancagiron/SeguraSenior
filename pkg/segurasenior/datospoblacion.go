@@ -152,7 +152,6 @@ func LeerIdentificadorDatosDesdeJSON(nombreArchivoDatos, nombrePoblacion string)
 	}](nombreArchivoDatos)
 
 	if fallo != nil {
-
 		return IdentificadorDatos{}, fmt.Errorf("error al cargar datos desde el archivo: %w", fallo)
 	}
 
