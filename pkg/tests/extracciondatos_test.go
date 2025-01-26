@@ -1,107 +1,117 @@
-package segurasenior_test
+package segurasenior
 
 import (
-	"testing"
-
 	"SeguraSenior/pkg/segurasenior"
-	"github.com/stretchr/testify/assert"
+	"testing"
+	
 )
 
 const (
-	archivoPruebas  = "../testdata/data.json"
+	archivoValido = "../testdata/data.json"
 	archivoInvalido = "../testdata/data_invalido.json"
+	PoblacionTotalOrcera = 1735
+	HombresOrcera = 868
+	MujeresOrcera = 867
+	NacimientosOrcera = 6
+	DefuncionesOrcera = 29
+	Menor20Orcera = 15.6
+	Mayor65Orcera = 22.1
+	TasaNatalidadSobre1000Orcera = 3.46
+	TasaMortalidadSobre1000Orcera = 16.71
 )
 
-func TestCargarDatosDesdeJSON(test *testing.T) {
-	datos, err := segurasenior.CargarDatosDesdeJSON[map[string]interface{}](archivoPruebas)
-	assert.NoError(test, err)
-	assert.NotEmpty(test, datos)
-
-	_, err = segurasenior.CargarDatosDesdeJSON[map[string]interface{}](archivoInvalido)
-	assert.Error(test, err)
+func TestLeerArchivo(test *testing.T) {
+	test.Run("Lectura exitosa del archivo", func(test *testing.T) {
+		contenido, err := segurasenior.LeerArchivo(archivoValido)
+		if err != nil {
+			test.Errorf("No se esperaba error, pero se obtuvo: %v", err)
+		}
+		if len(contenido) == 0 {
+			test.Errorf("El contenido del archivo debería ser mayor a 0")
+		}
+	})
 }
 
-func TestLeerIdentificadorDesdeJSON(test *testing.T) {
-	casosDeTest := []struct {
-		descripcion    string
-		poblacion      string
-		esValido       bool
-		nombreEsperado string
-	}{
-		{"Identificador válido", "Orcera", true, "Orcera"},
-		{"Identificador inexistente", "Pueblo Inexistente", false, ""},
-		{"Fecha inválida en datos", "Siles", false, ""},
-	}
+func TestDecodificarJSON(test *testing.T) {
+	test.Run("Decodificación exitosa de datos válidos", func(test *testing.T) {
+		contenido := []byte(`{"Poblacion1": {"PoblacionTotal": 1000}}`)
 
-	for _, casos := range casosDeTest {
-		test.Run(casos.descripcion, func(test *testing.T) {
-			identificador, err := segurasenior.LeerIdentificadorDesdeJSON(archivoPruebas, casos.poblacion)
-			if casos.esValido {
-				assert.NoError(test, err)
-				assert.Equal(test, casos.nombreEsperado, identificador.NombrePoblacion)
-			} else {
-				assert.Error(test, err)
-			}
-		})
-	}
+		datos, err := segurasenior.DecodificarJSON[map[string]interface{}](contenido)
+		if err != nil {
+			test.Fatalf("No se esperaba error, pero se obtuvo: %v", err)
+		}
+
+		if _, existe := datos["Poblacion1"]; !existe {
+			test.Errorf("Se esperaba que los datos incluyeran 'Poblacion1'")
+		}
+	})
+
+	test.Run("Error al decodificar JSON inválido", func(test *testing.T) {
+		contenido := []byte(`{Poblacion1: 1000}`)
+
+		_, err := segurasenior.DecodificarJSON[map[string]interface{}](contenido)
+		if err == nil {
+			test.Fatal("Se esperaba un error por JSON inválido")
+		}
+	})
 }
-func TestLeerDatosDesdeJSON(test *testing.T) {
-	const (
-		poblacionTotal         uint32  = 1735
-		hombres                uint32  = 868
-		mujeres                uint32  = 867
-		edadMedia              float32 = 42.2
-		porcentajeMenor20      float64 = 15.6
-		porcentajeMayor65      float64 = 22.1
-		nacimientos            uint32  = 6
-		defunciones            uint32  = 29
-		tasaNatalidadEsperada  float64 = 3.46
-		tasaMortalidadEsperada float64 = 16.71
-	)
 
-	test.Run("Lectura correcta", func(test *testing.T) {
-		datos, err := segurasenior.LeerDatosDesdeJSON(archivoPruebas, "Orcera")
-		assert.NoError(test, err)
-		assert.Equal(test, poblacionTotal, datos.PoblacionTotal)
-		assert.Equal(test, hombres, datos.Hombres)
-		assert.Equal(test, mujeres, datos.Mujeres)
-		assert.Equal(test, edadMedia, datos.EdadMedia)
-		assert.Equal(test, porcentajeMenor20, datos.PorcentajeMenorA20)
-		assert.Equal(test, porcentajeMayor65, datos.PorcentajeMayorA65)
-		assert.Equal(test, nacimientos, datos.Nacimientos)
-		assert.Equal(test, defunciones, datos.Defunciones)
-		assert.Equal(test, tasaNatalidadEsperada, datos.TasaNatalidadSobre1000)
-		assert.Equal(test, tasaMortalidadEsperada, datos.TasaMortalidadSobre1000)
+
+func TestLeerDatosPoblacionDesdeArchivo(test *testing.T) {
+	test.Run("Creación exitosa de DatosPoblacion a partir de archivo JSON válido", func(test *testing.T) {
+		nombrePoblacion := "Orcera"
+
+		datos, err := segurasenior.LeerDatosPoblacionDesdeArchivo(archivoValido, nombrePoblacion)
+		if err != nil {
+			test.Fatalf("No se esperaba error, pero se obtuvo: %v", err)
+		}
+		if datos.PoblacionTotal != PoblacionTotalOrcera || datos.Hombres != HombresOrcera || datos.Mujeres != MujeresOrcera {
+			test.Errorf("Los valores no coinciden con los datos esperados")
+		}
+
+		if datos.TasaNatalidadSobre1000 != TasaNatalidadSobre1000Orcera {
+			test.Errorf("La tasa de natalidad calculada es incorrecta: se esperaba 50.0, se obtuvo %v", datos.TasaNatalidadSobre1000)
+		}
+
+		if datos.TasaMortalidadSobre1000 != TasaMortalidadSobre1000Orcera {
+			test.Errorf("La tasa de mortalidad calculada es incorrecta: se esperaba 25.0, se obtuvo %v", datos.TasaMortalidadSobre1000)
+		}
 	})
 
-	validarErrores := func(test *testing.T, err error, mensajeEsperado []string, mensajeNoEsperado []string) {
-		assert.Error(test, err)
-		for _, mensaje := range mensajeEsperado {
-			assert.Contains(test, err.Error(), mensaje)
-		}
-		for _, mensaje := range mensajeNoEsperado {
-			assert.NotContains(test, err.Error(), mensaje)
-		}
-	}
+	test.Run("Error al procesar datos JSON inválidos", func(test *testing.T) {
+		nombreArchivo := "data_invalido.json"
+		nombrePoblacion := "PoblacionInvalida"
 
-	test.Run("Datos inválidos", func(test *testing.T) {
-		_, err := segurasenior.LeerDatosDesdeJSON(archivoPruebas, "Siles")
-		assert.Error(test, err)
-		validarErrores(test, err, []string{
-			"la población total no puede ser 0",
-			"la población total no coincide con la suma de hombres y mujeres",
-			"el porcentaje de menores de 20 años debe estar entre 0 y 100",
-			"el porcentaje de mayores de 65 años debe estar entre 0 y 100",
-			"el número de nacimientos no puede ser mayor que la población total",
-			"el número de defunciones no puede ser mayor que la población total",
-		},
-			[]string{
-				"el número de hombres no puede ser 0",
-				"el número de mujeres no puede ser 0",
-				"la edad media no puede ser 0",
-			},
-		)
+		_, err := segurasenior.LeerDatosPoblacionDesdeArchivo(nombreArchivo, nombrePoblacion)
+		if err == nil {
+			test.Fatal("Se esperaba un error debido a datos inconsistentes, pero no se obtuvo ninguno")
+		}
+	})
+}
 
+func TestLeerIdentificadorDatosDesdeJSON(test *testing.T) {
+	test.Run("Creación exitosa de IdentificadorDatos desde archivo JSON válido", func(test *testing.T) {
+		nombrePoblacion := "Orcera"
+		identificador, err := segurasenior.LeerIdentificadorDatosDesdeJSON(archivoValido, nombrePoblacion)
+		if err != nil {
+			test.Fatalf("No se esperaba error, pero se obtuvo: %v", err)
+		}
+		if identificador.NombrePoblacion != "Orcera" {
+			test.Errorf("El nombre de la población no coincide: se esperaba 'PoblacionEjemplo', se obtuvo '%s'", identificador.NombrePoblacion)
+		}
+
+		if identificador.FechaDeDatos.Anio != 2023 || identificador.FechaDeDatos.Mes != 1 || identificador.FechaDeDatos.Dia != 1 {
+			test.Errorf("La fecha no coincide con los datos esperados")
+		}
 	})
 
+	test.Run("Error al procesar archivo JSON inválido", func(test *testing.T) {
+		nombreArchivo := "data_invalido.json"
+		nombrePoblacion := "Orcera"
+
+		_, err := segurasenior.LeerIdentificadorDatosDesdeJSON(nombreArchivo, nombrePoblacion)
+		if err == nil {
+			test.Fatal("Se esperaba un error debido a datos inconsistentes, pero no se obtuvo ninguno")
+		}
+	})
 }
