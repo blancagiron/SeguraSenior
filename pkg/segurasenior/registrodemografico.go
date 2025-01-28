@@ -1,8 +1,6 @@
 package segurasenior
 
-import (
-	"errors"
-)
+import "fmt"
 
 type EstadoPoblacion string
 
@@ -16,17 +14,30 @@ type RegistroDemografico struct {
 	EstadoDeLaPoblacion   EstadoPoblacion
 }
 
-func NewRegistroDemografico(datosPoblacion map[IdentificadorDatos]DatosPoblacion, estadoPoblacion EstadoPoblacion) (*RegistroDemografico, error) {
-	for identificador := range datosPoblacion {
-		if identificador.NombrePoblacion == "" {
-			return nil, errors.New("el nombre de la población no puede estar vacío")
-		}
+func CrearRegistroDesdeDatos(identificador IdentificadorDatos, datos DatosPoblacion) (*RegistroDemografico, error) {
+	estado := Creciente
+	if datos.TasaMortalidadSobre1000 > datos.TasaNatalidadSobre1000 {
+		estado = Decreciente
 	}
-	if len(datosPoblacion) == 0 {
-		return nil, errors.New("los datos de población no pueden estar vacíos")
-	}
+
 	return &RegistroDemografico{
-		EstadisticasPoblacion: datosPoblacion,
-		EstadoDeLaPoblacion:   estadoPoblacion,
+		EstadisticasPoblacion: map[IdentificadorDatos]DatosPoblacion{identificador: datos},
+		EstadoDeLaPoblacion:   estado,
 	}, nil
+}
+
+func (r *RegistroDemografico) AgregarRegistro(identificador IdentificadorDatos, datos DatosPoblacion) error {
+	if _, existe := r.EstadisticasPoblacion[identificador]; existe {
+		return fmt.Errorf("ya existe un registro para '%s' en la fecha %d/%d/%d",
+			identificador.NombrePoblacion, identificador.FechaDeDatos.Dia,
+			identificador.FechaDeDatos.Mes, identificador.FechaDeDatos.Anio)
+	}
+
+	r.EstadisticasPoblacion[identificador] = datos
+	if datos.TasaMortalidadSobre1000 > datos.TasaNatalidadSobre1000 {
+		r.EstadoDeLaPoblacion = Decreciente
+	} else {
+		r.EstadoDeLaPoblacion = Creciente
+	}
+	return nil
 }
