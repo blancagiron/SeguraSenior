@@ -26,8 +26,6 @@ RUN adduser -D -h /app tester \
     && mkdir -p /app/.cache \
     && chown -R tester:tester /app/.cache
 
-
-
 USER tester
 
 
