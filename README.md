@@ -46,6 +46,32 @@ task test
 
 La herramienta CLI que se va a usar es `go test` ya que es la propia del lenguaje, está integrada en el ecosistema de Go y es suficiente para manejar los distintos escenarios de pruebas unitarias.
 
+---
+
+## Docker:
+
+Se dockeriza la aplicación para que los tests unitarios se ejecuten en un entorno completamente controlado y reproducible. Esto significa que, independientemente del sistema operativo o la configuración local de cada desarrollador, se pueden ejecutar los tests de forma automática, segura y consistente en cualquier máquina o servicio en la nube.
+
+- **Ejecución del contenedor de Docker Hub:**
+
+```console
+docker run -u 1001 -t -v `pwd`:/app/test blancagiron/segurasenior
+```
+
+- **Ejecución del contenedor en local**
+  - Primero construimos la imagen:
+   ```console 
+    docker build -t alpine-test .  
+    ```
+  - Después ejecutamos el contenedor:
+  ```console 
+    docker run -t -u 1001 -v "$(pwd)":/app/test alpine-test
+  ```
+
+
+---
+
+
 
 ## Documentación Adicional
 
@@ -57,6 +83,7 @@ La herramienta CLI que se va a usar es `go test` ya que es la propia del lenguaj
 - [Gestor de dependencias](./docs/gestor_dependencias.md)
 - [Test runner elegido](./docs/test_runner.md)
 - [Biblioteca de aserciones](./docs/biblioteca_aserciones.md)
+- [Imagen Docker](./docs/docker_images.md)
 
 ---
 
