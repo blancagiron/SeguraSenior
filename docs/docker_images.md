@@ -8,7 +8,9 @@
 
 - **Imágenes Oficiales y Verificadas:**  Las imágenes oficiales y de usuarios verificados ofrecen mayor confianza en términos de seguridad y mantenimiento. En Docker Hub esto se puede consultar viendo cuáles tienen las insignias de `Docker Official Image` o de `Verified Publisher`.
 
-- **Soporte y actualizaciones regulares:**  Se valorará que las imágenes reciban actualizaciones frecuentes, ya que esto es importante para corregir posibles vulnerabilidades y mejorar funcionalidades.
+- **Soporte y actualizaciones regulares:**  Se valorará que las imágenes reciban actualizaciones frecuentes, ya que esto es importante para corregir posibles vulnerabilidades y mejorar funcionalidades. Además se deben evitar imágenes experimentales o sin soporte oficial, ya que pueden presentar problemas de estabilidad o falta de actualizaciones.
+  
+- **No ser versión específica:** Elegir una versión fija puede generar problemas de mantenimiento, se preferirán aquellas con etiquetas flotantes para asegurar que siempre se utilice la versión más reciente y segura.
 
 ---
 
@@ -41,4 +43,4 @@ Aunque todas las opciones cuentan con soporte y actualizaciones constantes, adem
 
 ![Comparación de tamaños](../documentacion_adicional/comparacion_tamanios.png)
 
-Si bien `golang:alpine` es la que ocupa menos espacio, no cuenta con soporte oficial directo de Go y es experimental. Por lo tanto, optamos por utilizar `alpine` como imagen base, ya que nos permite tener un entorno más ligero, controlado y con mayor flexibilidad para instalar solo las herramientas necesarias, manteniendo el tamaño de la imagen reducido.
+Aunque `golang:alpine` es la opción que ocupa menos espacio, es una variante experimental y no cuenta con soporte oficial directo del equipo de Go. Por este motivo, se ha decidido utilizar `alpine` como imagen base, ya que permite tener entorno más ligero, controlado y flexible, permitiendo instalar únicamente las herramientas necesarias y mantener el tamaño del contenedor reducido.
