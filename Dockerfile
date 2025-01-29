@@ -3,6 +3,7 @@ FROM alpine:latest
 
 WORKDIR /app/test
 
+
 RUN apk update && apk add --no-cache \
     curl \
     wget \
