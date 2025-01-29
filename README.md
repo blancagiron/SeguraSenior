@@ -55,7 +55,7 @@ Se dockeriza la aplicación para que los tests unitarios se ejecuten en un entor
 - **Ejecución del contenedor de Docker Hub:**
 
 ```console
-docker run -u 1001 -t -v `pwd`:/app/test blancagiron/segurasenior
+docker run -u 1001 -t -v `pwd`:/app/test blancagiron/segurasenior:latest
 ```
 
 - **Ejecución del contenedor en local**
