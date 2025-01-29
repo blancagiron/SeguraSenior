@@ -16,7 +16,7 @@ RUN apk update && apk add --no-cache \
     && apk del curl wget tar
 
 ENV PATH=$PATH:/usr/local/go/bin \
-    GOCACHE=/app/.cache \
+    GOCACHE=/tmp/go-cache \
     GO111MODULE=on \
     CGO_ENABLED=0 \
     GOOS=linux \
@@ -24,7 +24,8 @@ ENV PATH=$PATH:/usr/local/go/bin \
 
 RUN adduser -D -h /app tester \
     && mkdir -p /app/.cache \
-    && chown -R tester:tester /app
+    && chown -R tester:tester /app/.cache
+
 
 
 USER tester
