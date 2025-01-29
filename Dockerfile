@@ -1,0 +1,28 @@
+
+FROM alpine:latest
+
+WORKDIR /app/test
+
+RUN apk update && apk add --no-cache \
+    curl \
+    wget \
+    tar \
+    bash \
+    && apk del curl wget tar
+
+ENV PATH=$PATH:/usr/local/go/bin \
+    GOCACHE=/app/.cache \
+    GO111MODULE=on \
+    CGO_ENABLED=0 \
+    GOOS=linux \
+    GOARCH=amd64
+
+RUN adduser -D -h /app tester \
+    && mkdir -p /app/.cache \
+    && chown -R tester:tester /app
+
+
+USER tester
+
+
+ENTRYPOINT ["task", "test"]
