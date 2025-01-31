@@ -2,15 +2,12 @@ FROM alpine:latest
 
 WORKDIR /app/test
 
-
-RUN apk update && apk add --no-cache \
-    curl \
-    && GO_VERSION=$(curl -sL https://go.dev/VERSION?m=text | head -n 1) \
-    && wget https://go.dev/dl/${GO_VERSION}.linux-amd64.tar.gz \
+RUN apk update && apk add --no-cache wget tar \
+    && GO_VERSION=$(wget -qO- https://go.dev/VERSION?m=text | head -n 1) \
+    && wget -q https://go.dev/dl/${GO_VERSION}.linux-amd64.tar.gz \
     && tar -C /usr/local -xzf ${GO_VERSION}.linux-amd64.tar.gz \
     && rm ${GO_VERSION}.linux-amd64.tar.gz \
-    && curl -sL https://taskfile.dev/install.sh | sh -s -- -b /usr/local/bin \
-    && apk del curl wget tar
+    && wget -qO- https://taskfile.dev/install.sh | sh -s -- -b /usr/local/bin 
 
 ENV PATH=$PATH:/usr/local/go/bin \
     GOCACHE=/tmp/go-cache \
