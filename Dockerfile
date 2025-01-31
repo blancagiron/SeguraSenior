@@ -10,11 +10,11 @@ RUN apk update && apk add --no-cache wget tar \
     && wget -qO- https://taskfile.dev/install.sh | sh -s -- -b /usr/local/bin 
 
 ENV PATH=$PATH:/usr/local/go/bin \
-    GOCACHE=/tmp/go-cache 
+    GOCACHE=/app/.cache
 
 RUN adduser -D -h /app tester \
     && mkdir -p /app/.cache \
-    && chown -R tester:tester /app/.cache
+    && chmod -R a+w /app/.cache 
 
 USER tester
 
