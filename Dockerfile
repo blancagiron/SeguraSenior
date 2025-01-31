@@ -10,11 +10,7 @@ RUN apk update && apk add --no-cache wget tar \
     && wget -qO- https://taskfile.dev/install.sh | sh -s -- -b /usr/local/bin 
 
 ENV PATH=$PATH:/usr/local/go/bin \
-    GOCACHE=/tmp/go-cache \
-    GO111MODULE=on \
-    CGO_ENABLED=0 \
-    GOOS=linux \
-    GOARCH=amd64
+    GOCACHE=/tmp/go-cache 
 
 RUN adduser -D -h /app tester \
     && mkdir -p /app/.cache \
