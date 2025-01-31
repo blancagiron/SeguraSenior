@@ -13,7 +13,7 @@ ENV PATH=$PATH:/usr/local/go/bin \
     GOCACHE=/app/.cache
 
 RUN adduser -D -h /app tester \
-    && mkdir -p /app/.cache \
+    && mkdir -p  /app/.cache \
     && chmod -R a+w /app/.cache 
 
 USER tester
