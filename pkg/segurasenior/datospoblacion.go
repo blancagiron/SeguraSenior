@@ -17,6 +17,7 @@ type IdentificadorDatos struct {
 	FechaDeDatos    FechaObtencionDeDatos
 }
 
+
 type DatosPoblacion struct {
 	PoblacionTotal          uint32
 	Hombres                 uint32
@@ -72,4 +73,13 @@ func CrearIdentificadorDatos(nombre string, fecha time.Time) IdentificadorDatos 
 		Anio: uint16(fecha.Year()),
 	}
 	return identificador
+}
+
+
+func (datosPoblacion *DatosPoblacion) CalcularTasas() {
+	if datosPoblacion.PoblacionTotal > 0 && datosPoblacion.Nacimientos < datosPoblacion.PoblacionTotal && datosPoblacion.Defunciones < datosPoblacion.PoblacionTotal {
+		poblacionTotalFloat := float64(datosPoblacion.PoblacionTotal)
+		datosPoblacion.TasaNatalidadSobre1000 = math.Round((float64(datosPoblacion.Nacimientos)/poblacionTotalFloat)*FactorTasasPorMil*PrecisionRedondeo) / PrecisionRedondeo
+		datosPoblacion.TasaMortalidadSobre1000 = math.Round((float64(datosPoblacion.Defunciones)/poblacionTotalFloat)*FactorTasasPorMil*PrecisionRedondeo) / PrecisionRedondeo
+	}
 }
