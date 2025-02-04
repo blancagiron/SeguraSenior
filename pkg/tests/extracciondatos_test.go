@@ -11,6 +11,7 @@ const (
 	PoblacionTotalOrcera = 1735
 	HombresOrcera = 868
 	MujeresOrcera = 867
+	EdadMediaOrcera = 42.2
 	NacimientosOrcera = 6
 	DefuncionesOrcera = 29
 	Menor20Orcera = 15.6
@@ -32,6 +33,18 @@ func TestLeerDatosPoblacionDesdeArchivo(test *testing.T) {
 			test.Errorf("Los valores no coinciden con los datos esperados")
 		}
 
+		if datos.EdadMedia != EdadMediaOrcera {
+			test.Errorf("La edad media calculada es incorrecta: se esperaba 42.2, se obtuvo %v", datos.EdadMedia)
+		}
+
+		if datos.PorcentajeMenorA20 != Menor20Orcera {
+			test.Errorf("El porcentaje de menores de 20 años calculado es incorrecto: se esperaba 15.6, se obtuvo %v", datos.PorcentajeMenorA20)
+		}
+
+		if datos.PorcentajeMayorA65 != Mayor65Orcera {
+			test.Errorf("El porcentaje de mayores de 65 años calculado es incorrecto: se esperaba 22.1, se obtuvo %v", datos.PorcentajeMayorA65)
+		}
+		
 		if datos.TasaNatalidadSobre1000 != TasaNatalidadSobre1000Orcera {
 			test.Errorf("La tasa de natalidad calculada es incorrecta: se esperaba 50.0, se obtuvo %v", datos.TasaNatalidadSobre1000)
 		}
@@ -43,7 +56,7 @@ func TestLeerDatosPoblacionDesdeArchivo(test *testing.T) {
 
 	test.Run("Error al procesar datos JSON inválidos", func(test *testing.T) {
 		nombreArchivo := "data_invalido.json"
-		nombrePoblacion := "PoblacionInvalida"
+		nombrePoblacion := "Orcera"
 
 		_, err := segurasenior.LeerDatosPoblacionDesdeArchivo(nombreArchivo, nombrePoblacion)
 		if err == nil {
