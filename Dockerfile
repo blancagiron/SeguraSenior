@@ -7,7 +7,10 @@ RUN apk add --no-cache wget go \
 
 ENV GOCACHE=/app/.cache
 
-RUN mkdir -p ${GOCACHE} \
+RUN adduser -D  -h /app tester \
+    && mkdir -p ${GOCACHE} \
     && chmod -R a+w ${GOCACHE}
+
+USER tester
 
 ENTRYPOINT ["task", "test"]
