@@ -146,3 +146,26 @@ func ParsearFecha(fechaEnString string) (time.Time, error) {
 	return fecha, nil
 }
 
+func LeerIdentificadorDatosDesdeJSON(nombreArchivoDatos, nombrePoblacion string) (IdentificadorDatos, error) {
+
+	datos, fallo := CargarDatosDesdeArchivo[struct {
+		NombrePueblo string `json:"NombrePueblo"`
+		FechaDatos   string `json:"FechaDatos"`
+	}](nombreArchivoDatos)
+
+	if fallo != nil {
+		return IdentificadorDatos{}, fmt.Errorf("error al cargar datos desde el archivo: %w", fallo)
+	}
+
+	datoPoblacion, fallo := ValidarPoblacionExiste(datos, nombrePoblacion)
+	if fallo != nil {
+		return IdentificadorDatos{}, fallo
+	}
+
+	fecha, fallo := ParsearFecha(datoPoblacion.FechaDatos)
+	if fallo != nil {
+		return IdentificadorDatos{}, fallo
+	}
+
+	return CrearIdentificadorDatos(datoPoblacion.NombrePueblo, fecha), nil
+}
