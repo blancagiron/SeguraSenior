@@ -138,3 +138,11 @@ func ValidarPoblacionExiste[Tipo any](datos map[string]Tipo, nombrePoblacion str
 	return datoPoblacionEspecifica, nil
 }
 
+func ParsearFecha(fechaEnString string) (time.Time, error) {
+	fecha, err := time.Parse("02/01/2006", fechaEnString)
+	if err != nil {
+		return time.Time{}, fmt.Errorf("formato de fecha inválido ('%s'): %w", fechaEnString, err)
+	}
+	return fecha, nil
+}
+
