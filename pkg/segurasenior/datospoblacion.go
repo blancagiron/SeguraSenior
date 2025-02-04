@@ -129,3 +129,12 @@ func CargarDatosDesdeArchivo[Tipo any](nombreArchivo string) (map[string]Tipo, e
 	}
 	return datosDecodificados, nil
 }
+
+func ValidarPoblacionExiste[Tipo any](datos map[string]Tipo, nombrePoblacion string) (Tipo, error) {
+	datoPoblacionEspecifica, poblacionExiste := datos[nombrePoblacion]
+	if !poblacionExiste {
+		return datoPoblacionEspecifica, fmt.Errorf("población '%s' no encontrada", nombrePoblacion)
+	}
+	return datoPoblacionEspecifica, nil
+}
+
