@@ -44,7 +44,7 @@ task test
 
 ## Herramienta CLI para ejecución de los tests
 
-La herramienta CLI que se va a usar es `go test` ya que es la propia del lenguaje, está integrada en el ecosistema de Go y es suficiente para manejar los distintos escenarios de pruebas unitarias.
+La herramienta CLI que se va a usar es `go test` ya que es la propia del lenguaje, está integrada en el ecosistema de Go y es suficiente para manejar los distintos escenarios de pruebas unitarias. Al final de [este documento](./docs/test_runner.md) se pueden consultar los criterios que se han seguido para su elección y otros candidatos.
 
 
 ## Documentación Adicional
