@@ -1,8 +1,5 @@
 package segurasenior
 
-import (
-	"errors"
-)
 
 type EstadoPoblacion string
 
@@ -23,17 +20,11 @@ func ObtenerEstadoPoblacion(datos DatosPoblacion) EstadoPoblacion {
 	return Creciente
 }
 
-func NewRegistroDemografico(datosPoblacion map[IdentificadorDatos]DatosPoblacion, estadoPoblacion EstadoPoblacion) (*RegistroDemografico, error) {
-	for identificador := range datosPoblacion {
-		if identificador.NombrePoblacion == "" {
-			return nil, errors.New("el nombre de la población no puede estar vacío")
-		}
-	}
-	if len(datosPoblacion) == 0 {
-		return nil, errors.New("los datos de población no pueden estar vacíos")
-	}
+func CrearRegistroDesdeDatos(identificador IdentificadorDatos, datos DatosPoblacion) (*RegistroDemografico, error) {
+	estado := ObtenerEstadoPoblacion(datos)
+
 	return &RegistroDemografico{
-		EstadisticasPoblacion: datosPoblacion,
-		EstadoDeLaPoblacion:   estadoPoblacion,
+		EstadisticasPoblacion: map[IdentificadorDatos]DatosPoblacion{identificador: datos},
+		EstadoDeLaPoblacion:   estado,
 	}, nil
 }
