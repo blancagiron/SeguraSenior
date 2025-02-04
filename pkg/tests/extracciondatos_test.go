@@ -8,6 +8,16 @@ import (
 const (
 	archivoValido   = "../testdata/data.json"
 	archivoInvalido = "../testdata/data_invalido.json"
+	PoblacionTotalOrcera = 1735
+	HombresOrcera = 868
+	MujeresOrcera = 867
+	NacimientosOrcera = 6
+	DefuncionesOrcera = 29
+	Menor20Orcera = 15.6
+	Mayor65Orcera = 22.1
+	TasaNatalidadSobre1000Orcera = 3.46
+	TasaMortalidadSobre1000Orcera = 16.71
+
 )
 
 func TestLeerDatosPoblacionDesdeArchivo(test *testing.T) {
