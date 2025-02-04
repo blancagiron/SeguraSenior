@@ -41,3 +41,12 @@ func ValidarRegistroExiste(estadisticas map[IdentificadorDatos]DatosPoblacion, i
 	}
 	return nil
 }
+
+func (registro *RegistroDemografico) AgregarRegistro(identificador IdentificadorDatos, datos DatosPoblacion) error {
+	if err := ValidarRegistroExiste(registro.EstadisticasPoblacion, identificador); err != nil {
+		return err
+	}
+	registro.EstadisticasPoblacion[identificador] = datos
+	registro.EstadoDeLaPoblacion = ObtenerEstadoPoblacion(datos)
+	return nil
+}
