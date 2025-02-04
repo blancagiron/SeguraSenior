@@ -6,6 +6,8 @@ import (
 	"math"
 	"fmt"
 	"encoding/json"
+	"os"
+	"io"
 )
 
 
@@ -97,5 +99,20 @@ func DecodificarJSON[Tipo any](contenido []byte) (map[string]Tipo, error) {
 		return nil, fmt.Errorf("error al decodificar JSON: %w", err)
 	}
 	return datos, nil
+}
+
+func LeerArchivo(nombreArchivo string) ([]byte, error) {
+	file, err := os.Open(nombreArchivo)
+	if err != nil {
+		return nil, fmt.Errorf("no se pudo abrir el archivo: %w", err)
+	}
+	defer file.Close()
+
+	contenido, err := io.ReadAll(file)
+	if err != nil {
+		return nil, fmt.Errorf("error al leer el archivo: %w", err)
+	}
+
+	return contenido, nil
 }
 
