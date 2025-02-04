@@ -2,7 +2,20 @@ package segurasenior
 
 import (
 	"errors"
+	"time"
 )
+
+
+type FechaObtencionDeDatos struct {
+	Dia  uint16
+	Mes  time.Month
+	Anio uint16
+}
+
+type IdentificadorDatos struct {
+	NombrePoblacion string
+	FechaDeDatos    FechaObtencionDeDatos
+}
 
 type DatosPoblacion struct {
 	PoblacionTotal          uint32
@@ -48,4 +61,15 @@ func NewDatosPoblacion(poblacion uint32, hombres uint32, mujeres uint32, edadMed
 		TasaNatalidadSobre1000:  tasaNatalidad,
 		TasaMortalidadSobre1000: tasaMortalidad,
 	}, nil
+}
+
+func CrearIdentificadorDatos(nombre string, fecha time.Time) IdentificadorDatos {
+	var identificador IdentificadorDatos
+	identificador.NombrePoblacion = nombre
+	identificador.FechaDeDatos = FechaObtencionDeDatos{
+		Dia:  uint16(fecha.Day()),
+		Mes:  fecha.Month(),
+		Anio: uint16(fecha.Year()),
+	}
+	return identificador
 }
