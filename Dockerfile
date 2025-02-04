@@ -12,7 +12,7 @@ RUN apk add --no-cache wget tar \
 ENV PATH=$PATH:/usr/local/go/bin \
     GOCACHE=/app/.cache
 
-RUN adduser -D  tester \
+RUN adduser -D  -h /app tester \
     && mkdir -p  ${GOCACHE} \
     && chmod -R a+w ${GOCACHE}
 
