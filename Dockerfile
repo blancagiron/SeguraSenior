@@ -1,7 +1,5 @@
 FROM alpine:latest
 
-WORKDIR /app/test
-
 RUN apk update && apk add --no-cache wget tar \
     && GO_VERSION=$(wget -qO- https://go.dev/VERSION?m=text | head -n 1) \
     && wget -q https://go.dev/dl/${GO_VERSION}.linux-amd64.tar.gz \
@@ -18,5 +16,6 @@ RUN adduser -D  -h /app tester \
 
 USER tester
 
+WORKDIR /app/test
 
 ENTRYPOINT ["task", "test"]
