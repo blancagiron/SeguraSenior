@@ -8,7 +8,7 @@
 
 - **Imágenes Oficiales y Verificadas:**  Las imágenes oficiales y de usuarios verificados ofrecen mayor confianza en términos de seguridad y mantenimiento. En Docker Hub esto se puede consultar viendo cuáles tienen las insignias de `Docker Official Image` o de `Verified Publisher`.
 
-- **Soporte y actualizaciones regulares:**  Se valorará que las imágenes reciban actualizaciones frecuentes, ya que esto es importante para corregir posibles vulnerabilidades y mejorar funcionalidades. Además se deben evitar imágenes experimentales o sin soporte oficial, ya que pueden presentar problemas de estabilidad o falta de actualizaciones.
+- **Soporte y actualizaciones regulares:**  Se valorará que las imágenes reciban actualizaciones frecuentes, ya que esto es importante para corregir posibles vulnerabilidades y mejorar funcionalidades. Además se deben evitar imágenes experimentales, ya que pueden presentar problemas de estabilidad o falta de actualizaciones.
   
 ---
 
@@ -22,7 +22,7 @@ Son las imágenes de Docker de Go, mantenidas de forma regular por la comunidad 
  - `golang:latest`: Versión basada en Debian Bookworm, la cúal es la versión estable más reciente (Debian 12). Su última actualización fue hace dos semanas. 
 
 - **Basadas en Alpine:**
-  - `golang:<version>-alpine`: Imagen basada en Alpine Linux. Reduce el tamaño del contenedor. Su última actualización fue hace dos semanas. En Docker Hub se indica que es una variante experimental y no cuenta con soporte oficial por parte de Go. 
+  - `golang:<version>-alpine`: Imagen basada en Alpine Linux. Reduce el tamaño del contenedor. Su última actualización fue hace dos semanas. En Docker Hub se indica que es una variante experimental. 
   - 
 ### [Alpine](https://hub.docker.com/_/alpine)
 
@@ -41,4 +41,4 @@ Aunque todas las opciones cuentan con soporte y actualizaciones constantes, adem
 
 ![Comparación de tamaños](../documentacion_adicional/comparacion_tamanios.png)
 
-Aunque `golang:alpine` es la opción que ocupa menos espacio, es una variante experimental y no cuenta con soporte oficial directo del equipo de Go. Por este motivo, se ha decidido utilizar `alpine` como imagen base, ya que permite tener entorno más ligero, controlado y flexible, permitiendo instalar únicamente las herramientas necesarias y mantener el tamaño del contenedor reducido.
+Aunque `golang:alpine` es la opción que ocupa menos espacio, es una variante experimental. Por este motivo, se ha decidido utilizar `alpine` como imagen base, ya que permite tener entorno más ligero, controlado y flexible, permitiendo instalar únicamente las herramientas necesarias y mantener el tamaño del contenedor reducido.
