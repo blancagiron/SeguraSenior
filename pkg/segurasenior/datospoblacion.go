@@ -4,6 +4,8 @@ import (
 	"errors"
 	"time"
 	"math"
+	"fmt"
+	"encoding/json"
 )
 
 
@@ -88,3 +90,12 @@ func (datosPoblacion *DatosPoblacion) CalcularTasas() {
 		datosPoblacion.TasaMortalidadSobre1000 = math.Round((float64(datosPoblacion.Defunciones)/poblacionTotalFloat)*FactorTasasPorMil*PrecisionRedondeo) / PrecisionRedondeo
 	}
 }
+
+func DecodificarJSON[Tipo any](contenido []byte) (map[string]Tipo, error) {
+	var datos map[string]Tipo
+	if err := json.Unmarshal(contenido, &datos); err != nil {
+		return nil, fmt.Errorf("error al decodificar JSON: %w", err)
+	}
+	return datos, nil
+}
+
