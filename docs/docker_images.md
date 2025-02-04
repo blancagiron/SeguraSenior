@@ -10,8 +10,6 @@
 
 - **Soporte y actualizaciones regulares:**  Se valorará que las imágenes reciban actualizaciones frecuentes, ya que esto es importante para corregir posibles vulnerabilidades y mejorar funcionalidades. Además se deben evitar imágenes experimentales o sin soporte oficial, ya que pueden presentar problemas de estabilidad o falta de actualizaciones.
   
-- **No ser versión específica:** Elegir una versión fija puede generar problemas de mantenimiento, se preferirán aquellas con etiquetas flotantes para asegurar que siempre se utilice la versión más reciente y segura.
-
 ---
 
 ## Candidatos:
