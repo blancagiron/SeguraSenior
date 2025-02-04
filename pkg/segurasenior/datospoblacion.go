@@ -116,3 +116,16 @@ func LeerArchivo(nombreArchivo string) ([]byte, error) {
 	return contenido, nil
 }
 
+func CargarDatosDesdeArchivo[Tipo any](nombreArchivo string) (map[string]Tipo, error) {
+	contenido, fallo := LeerArchivo(nombreArchivo)
+
+	if fallo != nil {
+		return nil, fmt.Errorf("error al leer datos desde el archivo: %w", fallo)
+	}
+	datosDecodificados, fallo := DecodificarJSON[Tipo](contenido)
+
+	if fallo != nil {
+		return nil, fmt.Errorf("error al decodificar datos desde JSON: %w", fallo)
+	}
+	return datosDecodificados, nil
+}
