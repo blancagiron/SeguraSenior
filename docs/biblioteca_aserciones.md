@@ -40,7 +40,7 @@ Es una biblioteca externa que es necesario instalar. Su última actualización f
 
 Paquete que forma parte de la biblioteca estándar de Go que proporciona las herramientas básicas para escribir y ejecutar pruebas. En [este enlace](https://pkg.go.dev/testing?tab=versions) se puede ver que está mantenido con actualizaciones regulares.
 
-
+No tiene funciones de aserción predefinidas. Las comprobaciones se realizan con condicionales `if` y permite reportar fallos con métodos como `t.Errorf()`, `t.Fatal()` o `t.Fail()`, entre otros, los cuales indican si una prueba ha fallado. Esto permite validar el comportamiento del código y detectar errores.
 
 ---
 
