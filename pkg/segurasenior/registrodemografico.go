@@ -16,6 +16,13 @@ type RegistroDemografico struct {
 	EstadoDeLaPoblacion   EstadoPoblacion
 }
 
+func ObtenerEstadoPoblacion(datos DatosPoblacion) EstadoPoblacion {
+	if datos.TasaMortalidadSobre1000 > datos.TasaNatalidadSobre1000 {
+		return Decreciente
+	}
+	return Creciente
+}
+
 func NewRegistroDemografico(datosPoblacion map[IdentificadorDatos]DatosPoblacion, estadoPoblacion EstadoPoblacion) (*RegistroDemografico, error) {
 	for identificador := range datosPoblacion {
 		if identificador.NombrePoblacion == "" {
