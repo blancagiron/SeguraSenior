@@ -23,16 +23,16 @@ Son las imágenes de Docker de Go, mantenidas de forma regular por la comunidad 
 
 - **Basadas en Alpine:**
   - `golang:<version>-alpine`: Imagen basada en Alpine Linux. Reduce el tamaño del contenedor. Su última actualización fue hace dos semanas. En Docker Hub se indica que es una variante experimental. 
-  - 
+  
 ### [Alpine](https://hub.docker.com/_/alpine)
 
 Cuenta con la insignia de `Docker Official Image`. Es útil para construir contenedores ligeros.
 
-- `alpine:<latest>`: Su última actualización fue hace 20 días. Su tamaño es en torno a 3-4 MB, pero hay que tener en cuenta que tendríamos que instalar Go.
+- `alpine:<latest>`: Su última actualización fue hace 20 días. Su tamaño es en torno a 3-4 MB.
 
 
 ### [Bitnami/Golang](https://hub.docker.com/r/bitnami/golang):  
-- `[bitnami/golang:<latest>](https://hub.docker.com/r/bitnami/golang)`: Cuenta con la insignia de `Verified Publisher`, su última actualización fue hace días. Tiene Go preinstalado y su tamaño suele ir en torno a los 230 MB.
+- `[bitnami/golang:<latest>](https://hub.docker.com/r/bitnami/golang)`: Cuenta con la insignia de `Verified Publisher`, su última actualización fue hace días. Su tamaño suele ir en torno a los 230 MB.
 
 
 # Decisión final:
@@ -41,4 +41,4 @@ Aunque todas las opciones cuentan con soporte y actualizaciones constantes, adem
 
 ![Comparación de tamaños](../documentacion_adicional/comparacion_tamanios.png)
 
-Aunque `golang:alpine` es la opción que ocupa menos espacio, es una variante experimental. Por este motivo, se ha decidido utilizar `alpine` como imagen base, ya que permite tener entorno más ligero, controlado y flexible, permitiendo instalar únicamente las herramientas necesarias y mantener el tamaño del contenedor reducido.
+Aunque `golang:alpine` es la opción que ocupa menos espacio, es una variante experimental. Por este motivo, se ha decidido utilizar `alpine` como imagen base,ya que ofrece mayor estabilidad y ocupa prácticamente el mismo espacio, permitiendo un entorno más controlado y flexible sin comprometer el tamaño del contenedor.
