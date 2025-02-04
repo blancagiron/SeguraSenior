@@ -27,6 +27,12 @@ Se debe tener **Taskfile** instalado en tu entorno. Si no se tiene, se puede ins
 ```console
 task check
 ```
+
+* **Ejecutar la tarea `test`**: para ejecutar todas las pruebas unitarias definidas en el proyecto y verificar que el código funciona correctamente.
+
+```console
+task test
+```
   
 ---
 
@@ -36,6 +42,11 @@ task check
 
 ---
 
+## Herramienta CLI para ejecución de los tests
+
+La herramienta CLI que se va a usar es `go test` ya que es la propia del lenguaje, está integrada en el ecosistema de Go y es suficiente para manejar los distintos escenarios de pruebas unitarias. Al final de [este documento](./docs/test_runner.md) se pueden consultar los criterios que se han seguido para su elección y otros candidatos.
+
+
 ## Documentación Adicional
 
 - [Licencia](./LICENSE)
@@ -44,6 +55,8 @@ task check
 - [Milestones](./docs/milestones.md)
 - [Gestor de tareas](./docs/gestor_tareas.md)
 - [Gestor de dependencias](./docs/gestor_dependencias.md)
+- [Test runner elegido](./docs/test_runner.md)
+- [Biblioteca de aserciones](./docs/biblioteca_aserciones.md)
 
 ---
 

@@ -1,10 +1,11 @@
 package segurasenior
 
 import (
-	"errors"
+	"fmt"
 )
 
 type EstadoPoblacion string
+
 
 const (
 	Decreciente EstadoPoblacion = "decreciente"
@@ -16,17 +17,36 @@ type RegistroDemografico struct {
 	EstadoDeLaPoblacion   EstadoPoblacion
 }
 
-func NewRegistroDemografico(datosPoblacion map[IdentificadorDatos]DatosPoblacion, estadoPoblacion EstadoPoblacion) (*RegistroDemografico, error) {
-	for identificador := range datosPoblacion {
-		if identificador.NombrePoblacion == "" {
-			return nil, errors.New("el nombre de la población no puede estar vacío")
-		}
+func ObtenerEstadoPoblacion(datos DatosPoblacion) EstadoPoblacion {
+	if datos.TasaMortalidadSobre1000 > datos.TasaNatalidadSobre1000 {
+		return Decreciente
 	}
-	if len(datosPoblacion) == 0 {
-		return nil, errors.New("los datos de población no pueden estar vacíos")
-	}
+	return Creciente
+}
+
+func CrearRegistroDesdeDatos(identificador IdentificadorDatos, datos DatosPoblacion) (*RegistroDemografico, error) {
+	estado := ObtenerEstadoPoblacion(datos)
+
 	return &RegistroDemografico{
-		EstadisticasPoblacion: datosPoblacion,
-		EstadoDeLaPoblacion:   estadoPoblacion,
+		EstadisticasPoblacion: map[IdentificadorDatos]DatosPoblacion{identificador: datos},
+		EstadoDeLaPoblacion:   estado,
 	}, nil
+}
+
+func ValidarRegistroExiste(estadisticas map[IdentificadorDatos]DatosPoblacion, identificador IdentificadorDatos) error {
+	if _, existe := estadisticas[identificador]; existe {
+		return fmt.Errorf("ya existe un registro para '%s' en la fecha %d/%d/%d",
+			identificador.NombrePoblacion, identificador.FechaDeDatos.Dia,
+			identificador.FechaDeDatos.Mes, identificador.FechaDeDatos.Anio)
+	}
+	return nil
+}
+
+func (registro *RegistroDemografico) AgregarRegistro(identificador IdentificadorDatos, datos DatosPoblacion) error {
+	if err := ValidarRegistroExiste(registro.EstadisticasPoblacion, identificador); err != nil {
+		return err
+	}
+	registro.EstadisticasPoblacion[identificador] = datos
+	registro.EstadoDeLaPoblacion = ObtenerEstadoPoblacion(datos)
+	return nil
 }

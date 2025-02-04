@@ -4,4 +4,7 @@ tasks:
   check:
     cmds:
       - "gofmt -e ./pkg/segurasenior"
+  test:
+    cmds:
+      - "go test ./... -v"
 
