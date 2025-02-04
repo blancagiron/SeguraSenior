@@ -2,7 +2,7 @@ FROM alpine:latest
 
 WORKDIR /app/test
 
-RUN apk add --no-cache wget go \
+RUN apk update && apk add --no-cache wget go \
     && wget -qO- https://taskfile.dev/install.sh | sh -s -- -b /usr/local/bin 
 
 ENV GOCACHE=/app/.cache
