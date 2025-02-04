@@ -52,11 +52,6 @@ La herramienta CLI que se va a usar es `go test` ya que es la propia del lenguaj
 
 Se dockeriza la aplicación para que los tests unitarios se ejecuten en un entorno completamente controlado y reproducible. Esto significa que, independientemente del sistema operativo o la configuración local de cada desarrollador, se pueden ejecutar los tests de forma automática, segura y consistente en cualquier máquina o servicio en la nube.
 
-- **Ejecución del contenedor de Docker Hub:**
-
-```console
-docker run -u 1001 -t -v `pwd`:/app/test blancagiron/segurasenior:latest
-```
 
 - **Ejecución del contenedor en local**
   - Primero construimos la imagen:
