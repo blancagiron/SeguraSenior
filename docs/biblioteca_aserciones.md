@@ -25,14 +25,14 @@ Se debe instalar la biblioteca por separado. Usualmente depende del framework Gi
 
 ### [**Is**](https://github.com/matryer/is) 
 
-No requiere instalar dependencias externas adicionales a la biblioteca estándar de Go. Sin embargo, su última actualización fue hace dos años, lo que podría indicar una falta de mantenimiento activo. 
+Es una biblioteca externa que hay que instalar. Además, su última actualización fue hace dos años, lo que podría indicar una falta de mantenimiento activo. 
 
 
 ---
 
 ### [**Ghost**](https://github.com/rliebz/ghost)
 
-No requiere instalar dependencias externas adicionales a la biblioteca estándar de Go. Su última actualización fue hace 2 semanas, lo que refleja actividad reciente.
+Es una biblioteca externa que es necesario instalar. Su última actualización fue hace 2 semanas, lo que refleja actividad reciente.
 
 ---
 
