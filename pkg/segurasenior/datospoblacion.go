@@ -3,6 +3,7 @@ package segurasenior
 import (
 	"errors"
 	"time"
+	"math"
 )
 
 
@@ -17,6 +18,10 @@ type IdentificadorDatos struct {
 	FechaDeDatos    FechaObtencionDeDatos
 }
 
+const (
+	FactorTasasPorMil = 1000
+	PrecisionRedondeo = 100
+)
 
 type DatosPoblacion struct {
 	PoblacionTotal          uint32
