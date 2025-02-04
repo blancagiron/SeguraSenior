@@ -15,16 +15,11 @@
 
 ### [**Testify**](https://github.com/stretchr/testify)
 
-Su última versión fue lanzada hace 3 meses. 
-Se debe instalar, es una dependencia adicional que no forma parte de la biblioteca estándar de Go. 
- 
----
+Su última versión fue lanzada hace 3 meses y se debe instalar al tratarse de una biblioteca externa.
 
 ### [**GoMega:**](https://github.com/onsi/gomega)
 
-
 Se debe instalar la biblioteca por separado. Usualmente depende del framework Ginkgo, por lo que habría que instalar otra dependencia más (Ginkgo) en vez de sólo una.
-
   
 ---
 
